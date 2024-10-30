@@ -3,25 +3,28 @@ import HomeView from "../views/HomeView.vue";
 import SignInView from "../views/SignInView.vue";
 import SignUpView from "../views/SignUpView.vue";
 import NotFound from "../views/NotFoundView.vue";
+import UserProfile from "../views/ProfileView.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: HomeView,
-    meta: { requiresAuth: true },
+    meta: { title: "Foxi Sphere | Dive into Creativity" },
+    // meta: { requiresAuth: true },
   },
   {
     path: "/signin",
     name: "signin",
     component: SignInView,
-    meta: { requiresUnauth: true },
+    meta: { requiresUnauth: true, title: "Foxi Sphere | Sign In" },
   },
+  { path: "/:id", component: UserProfile },
   {
     path: "/signup",
     name: "signup",
     component: SignUpView,
-    meta: { requiresUnauth: true },
+    meta: { requiresUnauth: true, title: "Foxi Sphere | Sign Up" },
   },
   {
     path: "/:pathMatch(.*)*",
@@ -37,7 +40,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem("authToken");
-
+  document.title = to.meta.title;
   if (
     to.matched.some((record) => record.meta.requiresAuth) &&
     !isAuthenticated
