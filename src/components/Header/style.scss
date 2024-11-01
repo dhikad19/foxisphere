@@ -1,5 +1,5 @@
 .app-bar__container {
-  max-width: 1350px;
+  max-width: 1300px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -65,5 +65,20 @@
   color: white;
   text-transform: capitalize;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 14px;
+}
+
+.btn-content__sign-up {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 14px;
+  color: white;
+}
+
+.img-active {
+  filter: grayscale(100%) brightness(0%);
+}
+
+.img-nonactive {
+  filter: none;
 }

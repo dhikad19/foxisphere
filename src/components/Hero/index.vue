@@ -1,89 +1,41 @@
 <template>
   <div class="hero-container">
     <div class="hero-wrapper">
-      <v-carousel
-        height="400"
-        :show-arrows="false"
-        cycle
-        hide-delimiter-background
-      >
-        <v-carousel-item
+      <div class="top-hero">
+        <h1 class="hero-title">Sphere of Inspiration</h1>
+      </div>
+      <carousel :items-to-show="1" autoplay="2000">
+        <slide 
           v-for="(slide, i) in slides"
           :key="i"
         >
-          <v-card style="margin-bottom: 100px;" flat height="400" color="transparent">
+          <v-card style="width: 100%" flat height="400" color="transparent">
             <v-row dense>
               <v-col cols="8">
                 <v-sheet
-                :color="colors[i]"
-                height="400"
-              >
-              </v-sheet>
+                  :color="colors[i]"
+                  height="400"
+                >
+                </v-sheet>
               </v-col>
-              <v-col cols="4"></v-col>
+              <v-col cols="4">
+                {{ slide }}
+              </v-col>
             </v-row>
           </v-card>
-          
-        </v-carousel-item>
-      </v-carousel>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
-      <h1>test</h1>
+        </slide>
+    
+        <template #addons>
+          <pagination />
+        </template>
+      </carousel>
     </div>
   </div>
 </template>
 
 <script>
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination } from 'vue3-carousel'
 export default {
   data() {
     return {
@@ -102,6 +54,11 @@ export default {
           'Fifth',
         ],
     }
+  },
+  components: {
+    Carousel,
+    Slide,
+    Pagination
   },
   name: 'HeroContainer'
 }
