@@ -37,15 +37,10 @@
         </template>
         <template v-if="!$vuetify.display.mdAndUp">
           <!-- <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
-          <div
-            class="ml-4"
-            style="border: 1px solid #fff3; border-radius: 4px; padding: 7.5px">
+          <div class="ml-4 button-navigation">
             <div class="side-bar" @click="onToggle()">
-              <div class="menu-btn" :class="isActive ? 'active' : ''">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-              </div>
+              <v-icon v-if="!isActive" color="white">mdi-menu</v-icon>
+              <v-icon v-else color="black">mdi-close</v-icon>
             </div>
           </div>
         </template>

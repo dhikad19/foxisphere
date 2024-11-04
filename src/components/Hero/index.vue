@@ -6,17 +6,39 @@
       </div>
       <v-carousel
         height="400"
-        show-arrows="hover"
-        cycle
-        hide-delimiter-background>
+        interval="7000"
+        :show-arrows="false"
+        :cycle="cycleMode"
+        v-model="model"
+        hide-delimiters>
         <v-carousel-item v-for="(slide, i) in slides" :key="i">
-          <v-sheet :color="colors[i]" height="100%">
-            <div class="d-flex fill-height justify-center align-center">
-              <div class="text-h2">{{ slide }} Slide</div>
-            </div>
-          </v-sheet>
+          <v-row dense>
+            <v-col cols="8">
+              <v-sheet :color="colors[i]" height="400">
+                <div class="d-flex fill-height justify-center align-center">
+                  <div class="text-h2">{{ slide }} Slide</div>
+                </div>
+              </v-sheet>
+            </v-col>
+            <v-col cols="4">
+              <h2>{{ slide }}</h2>
+            </v-col>
+          </v-row>
         </v-carousel-item>
       </v-carousel>
+      <div class="carousel-controller mt-10">
+        <div style="gap: 6px;" class="carousel-container d-flex align-center justify-center">
+          <div class="carousel-wrapper"  v-for="(item, i) in colors" :key="i">
+            
+            <div @click="model = i" v-if="model == i" class="progress-container">
+              <div class="progress-bar" :style="{ width: progressWidth + '%' }"></div>
+            </div>
+            <div v-else @click="model = i" class="dot">
+              
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +47,34 @@
   export default {
     data() {
       return {
+        model: 0,
+        modelBackup: 0,
+        progressWidth: 0,
+        cycleMode: true,
+        progressInterval: null,
+        isTabActive: true,
+        items: [
+          {
+            title: '',
+            image: ''
+          },
+          {
+            title: '',
+            image: ''
+          },
+          {
+            title: '',
+            image: ''
+          },
+          {
+            title: '',
+            image: ''
+          },
+          {
+            title: '',
+            image: ''
+          },
+        ],
         colors: [
           "indigo",
           "warning",
@@ -36,7 +86,55 @@
       };
     },
     name: "HeroContainer",
-  };
+    mounted() {
+      document.addEventListener('visibilitychange', this.handleVisibilityChange);
+      this.startProgress();
+    },
+    beforeUnmount() {
+      document.removeEventListener('visibilitychange', this.handleVisibilityChange);
+    },
+    methods: {
+      handleVisibilityChange() {
+        this.isTabActive = !document.hidden;
+      },
+      startProgress() {
+        this.resetProgress(); // Reset progress if already running
+        const totalTime = 6650; // 8 seconds
+        const interval = 100; // Update every 100 ms
+        const increment = (interval / totalTime) * 100; // Calculate increment
+
+        this.progressInterval = setInterval(() => {
+          this.progressWidth += increment;
+          if (this.progressWidth >= 100) {
+            this.progressWidth = 100;
+            clearInterval(this.progressInterval); // Stop the interval when complete
+          }
+        }, interval);
+      },
+      resetProgress() {
+        clearInterval(this.progressInterval); // Clear any existing intervals
+        this.progressWidth = 0 // Reset the width
+      }
+    },
+    watch: {
+      isTabActive(val) {
+        this.progressWidth = 0
+        this.model = this.modelBackup
+        this.startProgress()
+        if (!val) {
+          this.cycleMode = false
+        } else {
+          this.cycleMode = true
+        }
+      },
+      model() {
+        this.progressWidth = 0;
+        this.modelBackup = this.model
+        this.resetProgress()
+        this.startProgress()
+      }
+    },
+  }
 </script>
 
 <style lang="scss" scoped>
