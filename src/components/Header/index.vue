@@ -16,7 +16,26 @@
         <template v-if="$vuetify.display.mdAndUp">
           <v-btn elevation="0" class="btn-content">Timeline</v-btn>
           <v-btn elevation="0" class="btn-content">Write</v-btn>
-          <v-btn elevation="0" class="btn-content">Categories</v-btn>
+          <v-menu
+            open-on-hover
+            position-x="center" 
+            position-y="top"
+          >
+            <template v-slot:activator="{ props }">
+              <v-btn elevation="0" v-bind="props" class="btn-content">Categories</v-btn>
+            </template>
+
+            <v-card width="600">
+              <v-list>
+                <v-list-item
+                  v-for="(item, index) in items"
+                  :key="index"
+                >
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-card>
+          </v-menu>
           <v-btn elevation="0" class="btn-content">About</v-btn>
         </template>
         <v-spacer></v-spacer>
