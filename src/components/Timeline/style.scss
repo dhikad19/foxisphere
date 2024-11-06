@@ -1,0 +1,29 @@
+.timeline-container {
+  max-width: 1300px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+  padding-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  @media screen and (max-width: 960px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.timeline-title {
+  font-family: "Asap", sans-serif;
+  font-weight: 500;
+  font-size: 50px;
+  margin-bottom: 10px;
+  padding: 0px;
+  margin-left: -3px;
+  line-height: normal;
+}
+
+.timeline-subtitle {
+  font-family: "Asap", sans-serif;
+  font-size: 20px;
+}

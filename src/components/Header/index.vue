@@ -10,19 +10,25 @@
           src="assets/header.png"
           style="margin-left: -8px"
           class="app-bar__logo"
-          :class="isActive ? 'img-active' : 'img-nonactive'">
+          :class="isActive || scrollPosition >= '745' ? 'img-active' : 'img-nonactive'">
         </v-img>
         <v-spacer></v-spacer>
         <template v-if="$vuetify.display.mdAndUp">
-          <v-btn elevation="0" class="btn-content">Timeline</v-btn>
-          <v-btn elevation="0" class="btn-content">Write</v-btn>
+          <v-btn elevation="0" :class="scrollPosition >= '745' ? 'btn-content__black' : 'btn-content'">Timeline</v-btn>
+          <v-btn elevation="0" :class="scrollPosition >= '745' ? 'btn-content__black' : 'btn-content'">Write</v-btn>
           <v-menu
             open-on-hover
             position-x="center" 
             position-y="top"
           >
             <template v-slot:activator="{ props }">
-              <v-btn elevation="0" v-bind="props" class="btn-content">Categories</v-btn>
+              <v-btn 
+                elevation="0"
+                v-bind="props" 
+                :class="scrollPosition >= '745' ? 'btn-content__black' : 'btn-content'"
+              >
+                Categories
+              </v-btn>
             </template>
 
             <v-card width="600">
@@ -36,13 +42,13 @@
               </v-list>
             </v-card>
           </v-menu>
-          <v-btn elevation="0" class="btn-content">About</v-btn>
+          <v-btn elevation="0" :class="scrollPosition >= '745' ? 'btn-content__black' : 'btn-content'">About</v-btn>
         </template>
         <v-spacer></v-spacer>
         <v-btn
           @click="signIn()"
           style="border: 1px solid #fff3"
-          :class="isActive ? 'btn-content__active' : 'btn-content'"
+          :class="isActive || scrollPosition >= '745' ? 'btn-content__active' : 'btn-content'"
           >Sign in</v-btn
         >
         <template v-if="$vuetify.display.mdAndUp">
@@ -72,7 +78,28 @@
   </v-layout>
 </template>
 <script>
+  import { ref, onMounted, onBeforeUnmount } from 'vue';
   export default {
+    setup() {
+    const scrollPosition = ref(0);
+
+    // Scroll handler for the window scroll
+    const handleScroll = () => {
+      scrollPosition.value = window.scrollY;
+    };
+
+    onMounted(() => {
+      window.addEventListener('scroll', handleScroll);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('scroll', handleScroll);
+    });
+
+    return {
+      scrollPosition
+    };
+  },
     name: "HeaderComponent",
     data() {
       return {
