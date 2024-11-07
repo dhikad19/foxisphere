@@ -10,12 +10,12 @@
           src="assets/header.png"
           style="margin-left: -8px"
           class="app-bar__logo"
-          :class="isActive || scrollPosition >= '745' ? 'img-active' : 'img-nonactive'">
+          :class="isActive || scrollPosition >= heightBarAnchor ? 'img-active' : 'img-nonactive'">
         </v-img>
         <v-spacer></v-spacer>
         <template v-if="$vuetify.display.mdAndUp">
-          <v-btn elevation="0" :class="scrollPosition >= '745' ? 'btn-content__black' : 'btn-content'">Timeline</v-btn>
-          <v-btn elevation="0" :class="scrollPosition >= '745' ? 'btn-content__black' : 'btn-content'">Write</v-btn>
+          <v-btn elevation="0" :class="scrollPosition >= heightBarAnchor ? 'btn-content__black' : 'btn-content'">Timeline</v-btn>
+          <v-btn elevation="0" :class="scrollPosition >= heightBarAnchor ? 'btn-content__black' : 'btn-content'">Write</v-btn>
           <v-menu
             open-on-hover
             position-x="center" 
@@ -25,7 +25,7 @@
               <v-btn 
                 elevation="0"
                 v-bind="props" 
-                :class="scrollPosition >= '745' ? 'btn-content__black' : 'btn-content'"
+                :class="scrollPosition >= heightBarAnchor ? 'btn-content__black' : 'btn-content'"
               >
                 Categories
               </v-btn>
@@ -42,13 +42,13 @@
               </v-list>
             </v-card>
           </v-menu>
-          <v-btn elevation="0" :class="scrollPosition >= '745' ? 'btn-content__black' : 'btn-content'">About</v-btn>
+          <v-btn elevation="0" :class="scrollPosition >= heightBarAnchor ? 'btn-content__black' : 'btn-content'">About</v-btn>
         </template>
         <v-spacer></v-spacer>
         <v-btn
           @click="signIn()"
           style="border: 1px solid #fff3"
-          :class="isActive || scrollPosition >= '745' ? 'btn-content__active' : 'btn-content'"
+          :class="isActive || scrollPosition >= heightBarAnchor ? 'btn-content__active' : 'btn-content'"
           >Sign in</v-btn
         >
         <template v-if="$vuetify.display.mdAndUp">
@@ -64,7 +64,7 @@
           <!-- <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
           <div class="ml-4 button-navigation">
             <div class="side-bar" @click="onToggle()">
-              <v-icon v-if="!isActive" color="white">mdi-menu</v-icon>
+              <v-icon v-if="!isActive" :color="scrollPosition >= heightBarAnchor ? 'black' : 'white'">mdi-menu</v-icon>
               <v-icon v-else color="black">mdi-close</v-icon>
             </div>
           </div>
@@ -105,6 +105,7 @@
       return {
         drawer: false,
         group: null,
+        heightBarAnchor: '745',
         appColor: "rgb(255 255 255 / 0%)",
         isActive: false,
         items: [
@@ -129,6 +130,23 @@
     },
 
     watch: {
+      scrollPosition(val) {
+        if (val >= this.heightBarAnchor) {
+          if(this.drawer) {
+            this.appColor = 'white'
+          } else {
+            this.appColor = 'rgba(255, 255, 255, .5)'
+          }
+          
+        } else {
+          if(this.drawer) {
+            this.appColor = 'white'
+          } else {
+            this.appColor = 'rgb(255 255 255 / 0%)'
+          }
+          
+        }
+      },
       group() {
         this.drawer = false;
       },

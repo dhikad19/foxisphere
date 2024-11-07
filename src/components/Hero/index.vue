@@ -5,7 +5,7 @@
         <h1 class="hero-title">Blog Sphere</h1>
       </div>
       <v-carousel
-        height="400"
+        height="100%"
         interval="7000"
         :show-arrows="false"
         :cycle="cycleMode"
@@ -13,15 +13,19 @@
         hide-delimiters>
         <v-carousel-item v-for="(slide, i) in slides" :key="i">
           <v-row dense>
-            <v-col cols="8">
+            <v-col cols="12" md="8">
               <v-sheet :color="colors[i]" height="400">
                 <div class="d-flex fill-height justify-center align-center">
                   <div class="text-h2">{{ slide }} Slide</div>
                 </div>
               </v-sheet>
             </v-col>
-            <v-col cols="4">
-              <h2>{{ slide }}</h2>
+            <v-col cols="12" md="4">
+              <h2 style="color: white">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+                Necessitatibus vel recusandae quisquam voluptates hic soluta 
+                possimus quia excepturi magni! Soluta, nihil vero.
+              </h2>
             </v-col>
           </v-row>
         </v-carousel-item>

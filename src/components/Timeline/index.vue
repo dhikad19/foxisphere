@@ -4,15 +4,15 @@
       Timeline
     </h1>
     <p class="timeline-subtitle">Editor's Picks</p>
-    <div class="timeline-wrapper">
-      <v-item-group selected-class="bg-primary">
+    <div class="timeline-wrapper mt-8">
+      <v-item-group selected-class="bg-primary" v-model="itemSelect" :mandatory="true">
         <div class="d-flex align-center flex-wrap">
           <div
-            v-for="n in 100"
-            :key="n"
+            v-for="(item, i) in tags"
+            :key="i"
           >
             <v-item v-slot="{ isSelected, selectedClass, toggle }">
-              <v-card
+              <!-- <v-card
                 :class="['d-flex align-center', selectedClass]"
                 height="200"
                 dark
@@ -23,7 +23,13 @@
                 >
                   {{ isSelected ? 'Selected' : 'Click Me!' }}
                 </div>
-              </v-card>
+              </v-card> -->
+              <div @click="toggle">
+                <div :class="isSelected ? 'chip-active' : 'chip-notactive'">
+                  <span>{{ item.name }}</span>
+                </div>
+              </div>
+              
             </v-item>
           </div>
         </div>
@@ -35,6 +41,43 @@
 <script>
 export default {
   name: 'timelineComponent',
+  data() {
+    return {
+      itemSelect: 0,
+      tags: [
+        {
+          name: 'All',
+          id: '',
+          value: ''
+        },
+        {
+          name: 'Games',
+          id: '',
+          value: ''
+        },
+        {
+          name: 'Programing',
+          id: '',
+          value: ''
+        },
+        {
+          name: 'Technology',
+          id: '',
+          value: ''
+        },
+        {
+          name: 'Travel',
+          id: '',
+          value: ''
+        },
+        {
+          name: 'Food',
+          id: '',
+          value: ''
+        },
+      ]
+    }
+  }
 }
 </script>
 
