@@ -41,7 +41,7 @@
 }
 
 .carousel-controller {
-  background-color: #ffffff;
+  background-color: #ffffff26;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,7 +65,7 @@
 }
 
 .progress-container {
-  width: 30px;
+  animation: expandWidth 0.2s ease-out forwards;
   background-color: #bdc0d6; /* Background for the progress bar */
   border-radius: 10px;
   overflow: hidden;
@@ -77,4 +77,13 @@
   background-color: #ff0000; /* Color of the filling progress */
   width: 0; /* Start at 0% width */
   transition: none; /* Smooth transition */
+}
+
+@keyframes expandWidth {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 40px; /* Adjust this to your desired final width */
+  }
 }
