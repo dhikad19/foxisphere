@@ -5,35 +5,38 @@
     </h1>
     <p class="timeline-subtitle">Editor's Picks</p>
     <div class="timeline-wrapper mt-8">
-      <v-item-group selected-class="bg-primary" v-model="itemSelect" :mandatory="true">
-        <div class="d-flex align-center flex-wrap">
-          <div
-            v-for="(item, i) in tags"
-            :key="i"
-          >
-            <v-item v-slot="{ isSelected, selectedClass, toggle }">
-              <!-- <v-card
-                :class="['d-flex align-center', selectedClass]"
-                height="200"
-                dark
-                @click="toggle"
+      <v-row dense>
+        <v-col cols="8" class="pr-10">
+          <v-tabs
+          show-arrows
+            >
+            <template v-slot:prev="{ disabled, onClick }">
+              <v-btn
+                :disabled="disabled"
+                @click="onClick"
+                color="primary"
+                outlined
+                class="mr-2"
               >
-                <div
-                  class="text-h3 flex-grow-1 text-center"
-                >
-                  {{ isSelected ? 'Selected' : 'Click Me!' }}
-                </div>
-              </v-card> -->
-              <div @click="toggle">
-                <div :class="isSelected ? 'chip-active' : 'chip-notactive'">
-                  <span>{{ item.name }}</span>
-                </div>
-              </div>
-              
-            </v-item>
-          </div>
-        </div>
-      </v-item-group>
+                <v-icon left>
+                  mdi-arrow-left
+                </v-icon>
+                Prev
+              </v-btn>
+            </template>
+              <v-tab
+                style="text-transform: capitalize; letter-spacing: normal"
+                v-for="(item, i) in tags"
+                :key="i"
+                :text="item.name"
+                :value="item.value"
+              ></v-tab>
+          </v-tabs>
+        </v-col>
+        <v-col cols="4">
+
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -46,34 +49,49 @@ export default {
       itemSelect: 0,
       tags: [
         {
+          name: 'For you',
+          id: '',
+          value: 'foryou'
+        },
+        {
+          name: 'Following',
+          id: '',
+          value: 'following'
+        },
+        {
           name: 'All',
           id: '',
-          value: ''
+          value: 'all'
         },
         {
           name: 'Games',
           id: '',
-          value: ''
+          value: 'games'
         },
         {
           name: 'Programing',
           id: '',
-          value: ''
+          value: 'programming'
         },
         {
           name: 'Technology',
           id: '',
-          value: ''
+          value: 'technology'
         },
         {
           name: 'Travel',
           id: '',
-          value: ''
+          value: 'travel'
         },
         {
           name: 'Food',
           id: '',
-          value: ''
+          value: 'food'
+        },
+        {
+          name: 'Addiction',
+          id: '',
+          value: 'addiction'
         },
       ]
     }
