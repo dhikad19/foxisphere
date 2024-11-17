@@ -102,9 +102,9 @@
         this.isTabActive = !document.hidden;
       },
       startProgress() {
-        this.resetProgress(); // Reset progress if already running
-        const totalTime = 6650; // 8 seconds
-        const interval = 100; // Update every 100 ms
+        this.resetProgress(); 
+        const totalTime = 6650; 
+        const interval = 100; 
         const increment = (interval / totalTime) * 100; // Calculate increment
 
         this.progressInterval = setInterval(() => {

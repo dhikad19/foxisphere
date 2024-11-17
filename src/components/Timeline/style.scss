@@ -27,3 +27,97 @@
   font-family: "Asap", sans-serif;
   font-size: 20px;
 }
+
+.category-2 {
+  background-size: cover;
+  border-radius: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 320px !important;
+  width: 100%;
+  background-image: url("/assets/banner/games.jpg");
+}
+
+.category-1 {
+  background-size: cover;
+  border-radius: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 320px !important;
+  width: 100%;
+  background-image: url("/assets/banner/category-2.png");
+}
+
+.category-0 {
+  background-size: cover;
+  border-radius: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 548px !important;
+  width: 100%;
+  background-image: url("/assets/banner/food.jpg");
+}
+
+.category-3 {
+  background-size: cover;
+  border-radius: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 220px !important;
+  width: 100%;
+  background-image: url("/assets/banner/sport.png");
+}
+
+.category-4 {
+  background-size: cover;
+  border-radius: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 220px !important;
+  width: 100%;
+  background-image: url("/assets/banner/category.png");
+}
+
+.text-category__inner {
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+
+.text-category__description {
+  font-size: 14px;
+  line-height: normal;
+  margin-top: 10px;
+  max-width: 430px;
+  margin-bottom: 0px;
+  font-weight: 400;
+}
+
+.text-category__date {
+  font-size: 11px;
+  margin-bottom: 0px;
+  color: rgb(65, 65, 65);
+}
+
+.text-category__title {
+  font-size: 18px;
+  line-height: normal;
+  margin-bottom: 0px;
+  font-weight: 800;
+}
+
+.chip {
+  padding: 6px 20px 6px 20px;
+  border-radius: 25px;
+  border: 1px solid white;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-right: 5px;
+  color: black;
+  background-color: #ffcd40;
+  user-select: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #ffa153;
+  }
+}
