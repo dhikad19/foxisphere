@@ -10,15 +10,15 @@
         <v-col cols="5">
           <v-card class="category-0" height="548" flat>
             <div style="height: 100%" class="d-flex align-end">
-              <div class="d-flex flex-column" style="margin-bottom: -5px; margin-left: -5px">
-                <div >
-                  <p style="z-index: 10; background-color: white; display: inline-block; padding: 5px 10px;" class="text-category__inner mt-2"><b>Category .</b> Food</p>
+              <div class="d-flex flex-column pa-4">
+                <div>
+                  <p class="text-category__inner mt-2"><b>Category .</b> Music</p>
                 </div>
-                <div >
-                  <p style="z-index: 10; background-color: white; display: inline-block; padding: 5px 10px;" class="text-category__date mt-0">16 DEC</p>
+                <div>
+                  <p class="text-category__date mt-4">16 DEC</p>
                 </div>
-                <div >
-                  <p style="z-index: 10; background-color: white; display: inline-block; padding: 5px 10px;" class="text-category__title mt-0">GAMING NEWS AND UPDATE</p>
+                <div>
+                  <p class="text-category__title mt-0" style="text-transform: uppercase">10 Types of Guitars for Beginners: A Guide to Choosing Your First Guitar</p>
                 </div>
               </div>
             </div>
@@ -35,6 +35,14 @@
                       <p class="text-category__date mt-4">16 DEC</p>
                       <p class="text-category__title mt-0" style="text-transform: uppercase; max-width: 430px; line-height: normal">Top 10 Programming Languages You Should Learn in 2024</p>
                       <p class="text-category__description">With the tech landscape constantly evolving, it can be hard to decide which programming languages to focus on. This post highlights the top 10 languages you should learn in 2024, with a focus on relevance, demand in the job market, and versatility.</p>
+                      <div class="mt-3 mb-3" style="height: 1.5px; background-color: black; width: 100%"></div>
+                      <p class="text-category__title mt-0" style="text-transform: uppercase; max-width: 430px; font-size: 13px; line-height: normal">
+                        Understanding APIs: How to Work with APIs in Your Projects
+                      </p>
+                      <div class="mt-3 mb-3" style="height: 1px; background-color: black; width: 100%"></div>
+                      <p class="text-category__title mt-0" style="text-transform: uppercase; max-width: 430px; font-size: 13px; line-height: normal">
+                        Version Control Essentials: Why Git is a Developer's Best Friend
+                      </p>
                     </div>
                   </v-card>
                 </v-col>
