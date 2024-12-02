@@ -3,6 +3,7 @@
     <v-app-bar
       :color="appColor"
       style="backdrop-filter: blur(15px)"
+      scroll-behavior="hide"
       :class="isActive ? 'app-bar__active' : ''"
       elevation="0">
       <div class="app-bar__container">
