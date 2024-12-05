@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import SignInView from "../views/SignInView.vue";
 import SignUpView from "../views/SignUpView.vue";
+import WriteView from "../views/WriteView.vue";
 import NotFound from "../views/NotFoundView.vue";
 import UserProfile from "../views/ProfileView.vue";
 
@@ -18,6 +19,12 @@ const routes = [
     name: "signin",
     component: SignInView,
     meta: { requiresUnauth: true, title: "Foxi Sphere | Sign In" },
+  },
+  {
+    path: "/write",
+    name: "write",
+    component: WriteView,
+    meta: { requiresUnauth: true, title: "Foxi Sphere | Write" },
   },
   { path: "/:id", component: UserProfile },
   {

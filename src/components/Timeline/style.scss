@@ -1,123 +1,82 @@
 .timeline-container {
+  width: 100%;
+  height: 100%;
+}
+
+.timeline-wrapper {
   max-width: 1300px;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 50px;
-  padding-bottom: 80px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   padding-left: 20px;
   padding-right: 20px;
   @media screen and (max-width: 960px) {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 50px;
   }
 }
 
-.timeline-title {
-  font-family: "Asap", sans-serif;
-  font-weight: 500;
-  font-size: 50px;
-  margin-bottom: 10px;
-  padding: 0px;
-  margin-left: -3px;
-  line-height: normal;
+.scroller-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.timeline-subtitle {
-  font-family: "Asap", sans-serif;
-  font-size: 20px;
-}
-
-.category-2 {
-  background-size: cover;
-  border-radius: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 320px !important;
-  width: 100%;
-  background-image: url("/assets/banner/games.jpg");
-}
-
-.category-1 {
-  background-size: cover;
-  border-radius: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 320px !important;
-  width: 100%;
-  background-image: url("/assets/banner/category-2.png");
-}
-
-.category-0 {
-  background-size: cover;
-  border-radius: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 548px !important;
-  width: 100%;
-  background-image: url("/assets/banner/music.png");
-}
-
-.category-3 {
-  background-size: cover;
-  border-radius: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 220px !important;
-  width: 100%;
-  background-image: url("/assets/banner/sport.png");
-}
-
-.category-4 {
-  background-size: cover;
-  border-radius: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 220px !important;
-  width: 100%;
-  background-image: url("/assets/banner/category.png");
-}
-
-.text-category__inner {
-  font-size: 12px;
-  margin-bottom: 0px;
-}
-
-.text-category__description {
-  font-size: 14px;
-  line-height: normal;
-  margin-top: 10px;
-  max-width: 430px;
-  margin-bottom: 0px;
-  font-weight: 400;
-}
-
-.text-category__date {
-  font-size: 11px;
-  margin-bottom: 0px;
-  color: rgb(65, 65, 65);
-}
-
-.text-category__title {
-  font-size: 18px;
-  line-height: normal;
-  margin-bottom: 0px;
-  font-weight: 800;
-}
-
-.chip {
-  padding: 6px 20px 6px 20px;
-  border-radius: 25px;
-  border: 1px solid white;
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: 5px;
-  margin-right: 5px;
-  color: black;
-  background-color: #ffcd40;
-  user-select: none;
+.arrow {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
   cursor: pointer;
-  &:hover {
-    background-color: #ffa153;
-  }
+}
+
+.scroller {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%; /* Adjust the width to control the visible area */
+  padding: 10px;
+  position: relative;
+}
+
+.scroller-item {
+  padding: 6px;
+  user-select: none;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  margin-bottom: -10px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.192);
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.scroller-item__active {
+  padding: 6px;
+  user-select: none;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  margin-bottom: -10px;
+  text-align: center;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.left-arrow,
+.right-arrow {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.scroller::-webkit-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none;
 }
