@@ -2,17 +2,25 @@
   <div class="write-container">
     <div class="write-wrapper">
       <div v-if="editor" class="container">
-        <v-card class="toolbar-group">
-          <v-btn @click="editor.chain().focus().undo().run()" :disabled="!editor.can().chain().focus().undo().run()">
-            <v-icon>
-              mdi-undo
-            </v-icon>
+        <v-card class="toolbar-group pa-2 d-flex align-center" height="100%" variant="outlined">
+          <v-btn 
+            width="32"
+            height="32"
+            style="border-radius: 4px; font-size: 12px"
+            icon="mdi-undo"
+            @click="editor.chain().focus().undo().run()" 
+            :disabled="!editor.can().chain().focus().undo().run()">
           </v-btn>
-          <v-btn @click="editor.chain().focus().redo().run()" :disabled="!editor.can().chain().focus().redo().run()">
-            <v-icon>
-              mdi-redo
-            </v-icon>
+          <v-btn 
+            width="32"
+            height="32"
+            style="border-radius: 4px; font-size: 12px"
+            class="ml-1"
+            icon="mdi-redo"
+            @click="editor.chain().focus().redo().run()" 
+            :disabled="!editor.can().chain().focus().redo().run()">
           </v-btn>
+          <div style="height: 100%; width: 1px; border-right: 1px solid black"></div>
         </v-card>
         <editor-content :editor="editor" />
       </div>
