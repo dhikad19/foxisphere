@@ -21,8 +21,7 @@
 }
 
 .top-hero {
-  margin-top: 50px;
-  display: flex;
+  margin-top: 40px;
   margin-bottom: 20px;
 }
 
@@ -41,7 +40,7 @@
 }
 
 .carousel-controller {
-  background-color: #ffffff26;
+  background-color: #ffffff7c;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,6 +60,13 @@
   cursor: pointer;
   &:hover {
     background-color: #ff0000;
+  }
+}
+
+.search {
+  margin-top: 42px;
+  @media screen and (max-width: 960px) {
+    margin-top: 0px;
   }
 }
 

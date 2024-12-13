@@ -1,9 +1,14 @@
 <template>
   <div class="hero-container">
     <div class="hero-wrapper">
-      <div class="top-hero">
-        <h1 class="hero-title">Blog Sphere</h1>
-      </div>
+      <v-row dense class="top-hero">
+        <v-col cols="12" sm="12" md="10">
+          <h1 class="hero-title">Blog Sphere</h1>
+        </v-col>
+        <v-col cols="12" sm="12" md="2">
+          <SearchComponent class="search" />
+        </v-col>
+      </v-row>
       <v-carousel
         height="100%"
         interval="7000"
@@ -48,6 +53,7 @@
 </template>
 
 <script>
+  import SearchComponent from '../Search/index.vue'
   export default {
     data() {
       return {
@@ -89,7 +95,10 @@
         slides: ["First", "Second", "Third", "Fourth", "Fifth"],
       };
     },
-    name: "HeroContainer",
+    name: "HeroComponent",
+    components: {
+      SearchComponent
+    },
     mounted() {
       document.addEventListener('visibilitychange', this.handleVisibilityChange);
       this.startProgress();
