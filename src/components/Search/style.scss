@@ -34,3 +34,29 @@
     width: 95vw;
   }
 }
+
+.search-item__title {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.search-item__desc {
+  font-size: 13px;
+  display: -webkit-box;
+  color: grey;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: #ff000018;
+  }
+}
