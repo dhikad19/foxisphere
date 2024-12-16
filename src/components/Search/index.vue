@@ -25,50 +25,53 @@
           </v-text-field>
           <v-card
             v-if="search != ''"
-            class="pa-3"
+            class="pt-3 pb-3"
             variant="text"
             style="background-color: white; width: 100%; margin-top: 1px">
-            <div v-if="filteredResources[0]?.filteredData.length != 0">
-              <p style="color: grey; font-size: 16px">Keyword</p>
-              <div class="mt-3 mb-3">
-                <div
-                  style="color: black"
-                  v-for="(item, i) in filteredResources[0]?.filteredData"
-                  :key="i">
-                  <div class="search-item">
-                    <p
-                      class="search-item__title"
-                      v-html="highlightMatch(item.name)"></p>
-                    <p class="search-item__desc">{{ item.description }}</p>
+
+            <div class="search-item__container">
+              <div class="pl-3 pr-3" v-if="filteredResources[0]?.filteredData.length != 0">
+                <p style="color: grey; font-size: 16px">Keyword</p>
+                <div class="mt-3 mb-3">
+                  <div
+                    style="color: black"
+                    v-for="(item, i) in filteredResources[0]?.filteredData"
+                    :key="i">
+                    <div class="search-item">
+                      <p
+                        class="search-item__title"
+                        v-html="highlightMatch(item.name)"></p>
+                      <p class="search-item__desc">{{ item.description }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div
-                class="mt-3 mb-4"
-                style="border-bottom: 0.5px solid #bdc0d68a; height: 1px"></div>
-            </div>
-
-            <div v-if="filteredResources[1]?.filteredData.length != 0">
-              <p style="color: grey; font-size: 16px">Resource</p>
-              <div class="mt-3 mb-3">
                 <div
-                  style="color: black"
-                  v-for="(item, i) in filteredResources[1]?.filteredData"
-                  :key="i">
-                  <div class="search-item">
-                    <p
-                      class="search-item__title"
-                      v-html="highlightMatch(item.name)"></p>
-                    <p class="search-item__desc">{{ item.description }}</p>
+                  class="mt-3 mb-4"
+                  style="border-bottom: 0.5px solid #bdc0d68a; height: 1px"></div>
+              </div>
+  
+              <div class="pl-3 pr-3" v-if="filteredResources[1]?.filteredData.length != 0">
+                <p style="color: grey; font-size: 16px">Resource</p>
+                <div class="mt-3 mb-3">
+                  <div
+                    style="color: black"
+                    v-for="(item, i) in filteredResources[1]?.filteredData"
+                    :key="i">
+                    <div class="search-item">
+                      <p
+                        class="search-item__title"
+                        v-html="highlightMatch(item.name)"></p>
+                      <p class="search-item__desc">{{ item.description }}</p>
+                    </div>
                   </div>
                 </div>
+                <div
+                  class="mt-3 mb-4"
+                  style="border-bottom: 0.5px solid #bdc0d68a; height: 1px"></div>
               </div>
-              <div
-                class="mt-3 mb-4"
-                style="border-bottom: 0.5px solid #bdc0d68a; height: 1px"></div>
             </div>
 
-            <div class="d-flex align-center justify-center" style="width: 100%">
+            <div class="d-flex align-center justify-center pl-3 pr-3" style="width: 100%">
               <v-btn
                 variant="flat"
                 height="40"
@@ -111,6 +114,21 @@
                 description:
                   "test data test test data test test data test test data test test data test",
               },
+              {
+                name: "how bicycle make",
+                description:
+                  "test data test test data test test data test test data test test data test",
+              },
+              {
+                name: "how bicycle make",
+                description:
+                  "test data test test data test test data test test data test test data test",
+              },
+              {
+                name: "how bicycle make",
+                description:
+                  "test data test test data test test data test test data test test data test",
+              },
             ],
           },
           {
@@ -118,6 +136,16 @@
             data: [
               {
                 name: "how much mobil in jakarta",
+                description:
+                  "test data test test data test test data test test data test test data test",
+              },
+              {
+                name: "how bicycle works",
+                description:
+                  "test data test test data test test data test test data test test data test",
+              },
+              {
+                name: "how bicycle works",
                 description:
                   "test data test test data test test data test test data test test data test",
               },
