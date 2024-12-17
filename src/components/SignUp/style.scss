@@ -1,0 +1,104 @@
+.title-content {
+  font-weight: 500;
+}
+
+.signup-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.signup-title {
+  font-weight: 500;
+  color: white;
+  font-size: 22px;
+  line-height: normal;
+  text-align: center;
+}
+
+.signup-desc {
+  color: white;
+  font-size: 15px;
+  line-height: normal;
+  max-width: 400px;
+  text-align: center;
+}
+
+.text-divider {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  color: #4f4f4fe5;
+}
+
+.text-divider:before,
+.text-divider:after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid #4f4f4fe5;
+  margin: auto;
+}
+
+.text-divider:before {
+  margin-right: 10px;
+}
+
+.text-divider:after {
+  margin-left: 10px;
+}
+
+.title-form {
+  font-weight: 500;
+  font-size: 30px;
+  text-align: center;
+}
+
+.desc-form {
+  max-width: 380px;
+  text-align: center;
+  line-height: normal;
+  font-size: 15px;
+  color: #4f4f4fe5;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.container img {
+  padding: 15px;
+  border-top-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.form-container {
+  height: 100%;
+  margin: 0 auto;
+  width: 400px;
+}
+
+.signup-bg {
+  background-image: url("/assets/background-blend.png");
+  background-size: cover; /* Cover the entire screen */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+}
+
+.password-toggle-icon {
+  cursor: pointer;
+  font-size: 23px; /* Adjust icon size if needed */
+  position: relative; /* Ensure the icon is positioned correctly */
+}

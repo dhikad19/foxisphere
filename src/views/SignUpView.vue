@@ -1,17 +1,16 @@
 <template>
   <div class="signup-container">
-    <!-- <SignInComponent /> -->
-     <h1>Hello Signup</h1>
+    <SignUpComponent />
   </div>
 </template>
 
 <script>
-// import SignInComponent from '@/components/SignIn/index.vue'
+import SignUpComponent from '@/components/SignUp/index.vue'
 
 export default {
   name: 'SignUpView',
-  // components: {
-  //   SignInComponent
-  // }
+  components: {
+    SignUpComponent
+  }
 }
 </script>

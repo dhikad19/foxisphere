@@ -25,11 +25,10 @@
           </v-text-field>
           <v-card
             v-if="search != ''"
-            class="pt-3 pb-3"
-            variant="text"
-            style="background-color: white; width: 100%; margin-top: 1px">
+            class="pb-3 card-search"
+            variant="text">
 
-            <div class="search-item__container">
+            <div class="search-item__container pt-3">
               <div class="pl-3 pr-3" v-if="filteredResources[0]?.filteredData.length != 0">
                 <p style="color: grey; font-size: 16px">Keyword</p>
                 <div class="mt-3 mb-3">
@@ -66,7 +65,7 @@
                   </div>
                 </div>
                 <div
-                  class="mt-3 mb-4"
+                  class="mt-3"
                   style="border-bottom: 0.5px solid #bdc0d68a; height: 1px"></div>
               </div>
             </div>
@@ -75,9 +74,9 @@
               <v-btn
                 variant="flat"
                 height="40"
-                class="mb-2 mt-1"
+                class="mb-1 mt-4"
                 style="text-transform: capitalize"
-                color="#ff0000">
+                color="#FF7800">
                 <p style="font-weight: 500; letter-spacing: normal">
                   Show All Result
                 </p>
@@ -179,9 +178,17 @@
 
       highlightMatch(text) {
         if (!this.search) return text;
-        const regex = new RegExp(`(${this.search})`, "gi");
+
+        // Escape special regex characters using a function that only escapes necessary characters
+        // eslint-disable-next-line no-useless-escape
+        const escapedSearch = this.search.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1');
+
+        // Create the regular expression using the escaped search term
+        const regex = new RegExp(`(${escapedSearch})`, "gi");
+
+        // Replace the matched text with <b> tags
         return text.replace(regex, "<b>$1</b>");
-      },
+      }
     },
   };
 </script>

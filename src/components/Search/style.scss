@@ -1,10 +1,10 @@
 .search-btn {
   display: flex;
   align-items: center;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 7px;
+  padding-right: 7px;
   color: white;
   border-radius: 6px;
   font-weight: 500;
@@ -40,6 +40,14 @@
   font-weight: 400;
 }
 
+.card-search {
+  background-color: white;
+  width: 100%;
+  margin-top: 1px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
 .search-item__desc {
   font-size: 13px;
   display: -webkit-box;
@@ -57,7 +65,7 @@
   border-radius: 6px;
 
   &:hover {
-    background-color: #ff000018;
+    background-color: #ff770025;
   }
 }
 
@@ -67,7 +75,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
   background: #f1f1f1;

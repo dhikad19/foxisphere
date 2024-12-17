@@ -36,14 +36,9 @@
 
 .app-bar__logo {
   max-height: 32px;
-  min-width: 140px;
-  max-width: 150px;
-  margin-top: 6px;
-  @media screen and (max-width: 960px) {
-    max-height: 32px;
-    min-width: 130px;
-    max-width: 130px;
-  }
+  min-width: 130px;
+  max-width: 130px;
+  margin-top: 1px;
 }
 
 .button-navigation {

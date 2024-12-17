@@ -3,13 +3,12 @@
     <v-app-bar
       :color="appColor"
       style="backdrop-filter: blur(15px)"
-      scroll-behavior="hide"
       :class="isActive ? 'app-bar__active' : ''"
       elevation="0">
       <div class="app-bar__container">
         <v-img
           src="assets/header.png"
-          style="margin-left: -8px"
+          style="margin-left: -1px"
           class="app-bar__logo"
           :class="isActive || scrollPosition >= heightBarAnchor ? 'img-active' : 'img-nonactive'">
         </v-img>
@@ -56,7 +55,7 @@
           <v-btn
             @click="signUp()"
             variant="flat"
-            color="#ff0000"
+            color="#FF7800"
             class="btn-content__sign-up ml-4"
             >Sign Up</v-btn
           >
