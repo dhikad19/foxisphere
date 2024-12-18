@@ -42,7 +42,7 @@
         </v-col>
       </v-row>
       <v-row dense style="height: 100%;" class="mobile">
-        <v-col cols="8" class="pr-6">
+        <v-col cols="7" class="pr-6">
           <div class="left-content">
             <div>
               <div class="d-flex align-center">
@@ -54,7 +54,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="4">
+        <v-col cols="5">
           <v-img :src="image"></v-img>
         </v-col>
         <v-col cols="12">

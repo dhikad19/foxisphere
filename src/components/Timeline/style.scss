@@ -44,11 +44,12 @@
 .scroller-item {
   padding: 6px;
   user-select: none;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.055);
   padding-left: 15px;
   padding-right: 15px;
-  padding-bottom: 15px;
-  margin-bottom: -10px;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.192);
+  padding-bottom: 8px;
+  margin-right: 6px;
   text-align: center;
   cursor: pointer;
   font-size: 14px;
@@ -58,12 +59,14 @@
 .scroller-item__active {
   padding: 6px;
   user-select: none;
+  border-radius: 20px;
+  color: #ff7800;
+  background-color: rgba(255, 119, 0, 0.1019607843);
   padding-left: 15px;
   padding-right: 15px;
-  padding-bottom: 15px;
-  margin-bottom: -10px;
+  padding-bottom: 8px;
+  margin-right: 6px;
   text-align: center;
-  border-bottom: 1px solid black;
   cursor: pointer;
   font-size: 14px;
   font-weight: normal;
@@ -79,4 +82,32 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   display: none;
+}
+
+.left-container {
+  padding-right: 20px;
+  @media screen and (max-width: 960px) {
+    padding-right: 0px;
+  }
+}
+
+.right-container {
+  padding-left: 20px;
+  @media screen and (max-width: 960px) {
+    padding-left: 0px;
+  }
+}
+
+.right-content {
+  width: 100%;
+  border-radius: 6px;
+  padding: 10px;
+  color: #ff7800;
+  background-color: rgba(255, 119, 0, 0.1019607843);
+}
+
+.right-content__flat {
+  width: 100%;
+  border-radius: 6px;
+  padding: 10px;
 }

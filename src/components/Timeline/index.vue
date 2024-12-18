@@ -2,7 +2,7 @@
   <div class="timeline-container">
     <div class="timeline-wrapper">
       <v-row dense>
-        <v-col md="7" cols="12">
+        <v-col md="8" cols="12" class="left-container">
           <div class="scroller-container">
             <v-icon v-if="left >= 100" icon variant="plain" class="arrow left-arrow" @click="scrollLeft">
               mdi-chevron-left
@@ -19,7 +19,8 @@
               mdi-chevron-right
             </v-icon>
           </div>
-          <div class="mt-10">
+          <v-divider class="mt-5"></v-divider>
+          <div class="mt-8">
             <div v-for="(item, i) in blogData" :key="i">
               <Card 
                 :title="item.title" 
@@ -36,7 +37,34 @@
             </div>
           </div>
         </v-col>
-        <v-col md="5" cols="12"></v-col>
+        <v-col md="4" cols="12" class="right-container">
+          <div style="height: 100%">
+            <div class="right-content">
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+            </div>
+            <div class="right-content__flat mt-5">
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+            </div>
+            <div class="right-content mt-5">
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+              <h1>test</h1>
+            </div>
+          </div>
+        </v-col>
       </v-row>
     </div>
   </div>
