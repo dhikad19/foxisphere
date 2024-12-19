@@ -1,7 +1,7 @@
 <template>
   <div class="signup-container">
     <v-row dense>
-      <v-col cols="6">
+      <v-col md="6" cols="12" class="desktop-bg">
         <div class="signup-bg d-flex align-center justify-center">
           <v-carousel
             cycle
@@ -21,79 +21,161 @@
           </v-carousel>
         </div>
       </v-col>
-      <v-col cols="6">
-        <div
-          class="d-flex align-center flex-column justify-space-between"
-          style="width: 100%; height: 100%">
-          <div class="form-login__container">
-            <div
-              class="mt-6 mb-8 d-flex align-center justify-center flex-column">
-              <p class="title-form">Get Started!</p>
-              <p class="mt-2 desc-form">
-                Create your account now.
-              </p>
-            </div>
-            <div class="form-container">
-              <v-form fast-fail @submit.prevent>
-                <v-row dense>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="email"
-                      label="Email"
-                      :rules="emailRules"
-                      append-inner-icon="mdi-at"
-                      variant="outlined"
-                      density="compact"></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-btn
-                  @click="handleGoogleLogin()"
-                  color="#FF8417"
-                  height="40"
-                  class="mt-2"
-                  style="
-                    color: white;
-                    text-transform: capitalize;
-                    letter-spacing: normal;
-                  "
-                  flat
-                  type="submit"
-                  block
-                  >Next</v-btn
-                >
-                <p class="text-divider mt-4">or</p>
-                <v-btn
-                  variant="outlined"
-                  class="mt-4"
-                  style="letter-spacing: normal"
-                  block>
-                  <template v-slot:default>
-                    <img
-                      src="images/icon/google.png"
-                      alt="Button Image"
-                      contain
-                      height="20"
-                      max-width="20"
-                      class="button-image mr-3" />
-                    <span
-                      style="
-                        text-transform: capitalize;
-                        font-weight: 500;
-                        color: #4f4f4fe5;
-                      "
-                      >Sign up with google</span
-                    >
-                    <!-- Optional text next to the image -->
-                  </template>
-                </v-btn>
-              </v-form>
+      <v-col md="6" cols="12">
+        <div style="width: 100%; height: 100%">
+          <div class="desktop-signin">
+            <div class="form-login__container" style="width: 100%">
+              <div style="width: 125px; margin-top: 20px; width: 100%;" class="d-flex align-center justify-center">
+                <div class="d-flex align-center justify-center">
+                  <v-img class="header-bar" src="assets/header.png" max-height="32" width="130"></v-img>
+                </div>
+              </div>
+              <div class="form-container">
+                <div
+                  class="mt-6 mb-8 d-flex align-center justify-center flex-column">
+                  <p class="title-form">Get Started!</p>
+                  <p class="mt-2 desc-form">
+                    Create your account now.
+                  </p>
+                </div>
+                <v-form fast-fail @submit.prevent>
+                  <v-row dense>
+                    <v-col cols="12">
+                      <v-text-field
+                        v-model="email"
+                        label="Email"
+                        :rules="emailRules"
+                        append-inner-icon="mdi-at"
+                        variant="outlined"
+                        density="compact"></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-btn
+                    @click="handleGoogleLogin()"
+                    color="#FF8417"
+                    height="40"
+                    class="mt-2"
+                    style="
+                      color: white;
+                      text-transform: capitalize;
+                      letter-spacing: normal;
+                    "
+                    flat
+                    type="submit"
+                    block
+                    >Next</v-btn
+                  >
+                  <p class="text-divider mt-4">or</p>
+                  <v-btn
+                    variant="outlined"
+                    class="mt-4"
+                    style="letter-spacing: normal"
+                    block>
+                    <template v-slot:default>
+                      <img
+                        src="images/icon/google.png"
+                        alt="Button Image"
+                        contain
+                        height="20"
+                        max-width="20"
+                        class="button-image mr-3" />
+                      <span
+                        style="
+                          text-transform: capitalize;
+                          font-weight: 500;
+                          color: #4f4f4fe5;
+                        "
+                        >Sign up with google</span
+                      >
+                      <!-- Optional text next to the image -->
+                    </template>
+                  </v-btn>
+                </v-form>
+              </div>
+              <div>
+                <p class="mb-8" style="color: #4f4f4fe5; font-size: 16px">
+                  Already have an account?
+                  <b style="color: #ff8417; cursor: pointer" @click="toSignIn()">Sign In</b>
+                </p>
+              </div>
             </div>
           </div>
-          <div>
-            <p class="mb-8" style="color: #4f4f4fe5; font-size: 16px">
-              Already have an account?
-              <b style="color: #ff8417; cursor: pointer" @click="toSignIn()">Sign In</b>
-            </p>
+          <div class="mobile-signin">
+            <div class="form-login__container">
+              <div style="width: 100%">
+                <div style="width: 125px; margin-top: 20px; margin-left: 15px">
+                  <v-img class="header-bar" src="assets/header.png" max-height="32" width="130"></v-img>
+                </div>
+                <div class="form-container">
+                  <div
+                    class="mt-6 mb-8 d-flex align-center justify-center flex-column">
+                    <p class="title-form">Get Started!</p>
+                    <p class="mt-2 desc-form">
+                      Create your account now.
+                    </p>
+                  </div>
+                  <v-form fast-fail @submit.prevent>
+                    <v-row dense>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="email"
+                          label="Email"
+                          :rules="emailRules"
+                          append-inner-icon="mdi-at"
+                          variant="outlined"
+                          density="compact"></v-text-field>
+                      </v-col>
+                    </v-row>
+                    <v-btn
+                      @click="handleGoogleLogin()"
+                      color="#FF8417"
+                      height="40"
+                      class="mt-2"
+                      style="
+                        color: white;
+                        text-transform: capitalize;
+                        letter-spacing: normal;
+                      "
+                      flat
+                      type="submit"
+                      block
+                      >Next</v-btn
+                    >
+                    <p class="text-divider mt-4">or</p>
+                    <v-btn
+                      variant="outlined"
+                      class="mt-4"
+                      style="letter-spacing: normal"
+                      block>
+                      <template v-slot:default>
+                        <img
+                          src="images/icon/google.png"
+                          alt="Button Image"
+                          contain
+                          height="20"
+                          max-width="20"
+                          class="button-image mr-3" />
+                        <span
+                          style="
+                            text-transform: capitalize;
+                            font-weight: 500;
+                            color: #4f4f4fe5;
+                          "
+                          >Sign up with google</span
+                        >
+                        <!-- Optional text next to the image -->
+                      </template>
+                    </v-btn>
+                  </v-form>
+                </div>
+              </div>
+              <div>
+                <p class="mb-8" style="color: #4f4f4fe5; font-size: 16px">
+                  Already have an account?
+                  <b style="color: #ff8417; cursor: pointer" @click="toSignIn()">Sign In</b>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </v-col>

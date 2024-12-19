@@ -146,6 +146,45 @@ export default {
           date: '14-6-2024',
           comments: 20,
           content: 'Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Aenean in nisi a arcu hendrerit dapibus. Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat.'
+        },
+        {
+          title: 'Blockchain di Luar Cryptocurrency',
+          subTitle: 'Menelusuri Penggunaan Lain dari Teknologi Blockchain',
+          writtersImage: '/images/male/variant-1.png',
+          image: 'https://via.placeholder.com/800x400.png?text=Blockchain+Technology',
+          like: 25,
+          read: '3 Menit baca',
+          writters: 'Dwi Andika',
+          categories: 'Teknologi',
+          date: '12-10-2024',
+          comments: 10,
+          content: 'Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Quisque fringilla feugiat risus at volutpat.'
+        },
+        {
+          title: 'Inovasi Teknologi 5G',
+          subTitle: 'Bagaimana 5G akan Merevolusi Dunia Digital?',
+          writtersImage: '/images/male/variant-1.png',
+          image: 'https://via.placeholder.com/800x400.png?text=5G+Technology',
+          like: 35,
+          read: '6 Menit baca',
+          writters: 'Dwi Andika',
+          categories: 'Teknologi',
+          date: '13-4-2024',
+          comments: 15,
+          content: 'Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor.'
+        },
+        {
+          title: 'Revolusi Dunia Game dengan VR',
+          subTitle: 'Pengalaman Bermain Game yang Tidak Terbatas dengan Virtual Reality',
+          writtersImage: '/images/male/variant-1.png',
+          image: 'https://via.placeholder.com/800x400.png?text=VR+Gaming',
+          like: 50,
+          read: '4 Menit baca',
+          writters: 'Dwi Andika',
+          categories: 'Teknologi',
+          date: '14-6-2024',
+          comments: 20,
+          content: 'Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Aenean in nisi a arcu hendrerit dapibus. Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat.'
         }
       ],
       items: [

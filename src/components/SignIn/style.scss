@@ -50,6 +50,10 @@
   font-weight: 500;
   font-size: 30px;
   text-align: center;
+  @media screen and (max-width: 960px) {
+    font-size: 28px;
+    margin-top: 70px !important;
+  }
 }
 
 .desc-form {
@@ -84,6 +88,11 @@
 
 .header-bar {
   display: none;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  width: 100%;
+  filter: grayscale(100%) brightness(0%);
   @media screen and (max-width: 960px) {
     display: unset;
   }
@@ -91,7 +100,7 @@
 
 .form-container {
   margin: 0 auto;
-  width: 400px;
+  max-width: 400px;
   @media screen and (max-width: 960px) {
     padding: 8px;
   }
@@ -124,4 +133,17 @@
   align-items: center;
   justify-content: space-between;
   height: 100vh;
+}
+
+.desktop-signin {
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
+}
+
+.mobile-signin {
+  display: none;
+  @media screen and (max-width: 960px) {
+    display: unset;
+  }
 }

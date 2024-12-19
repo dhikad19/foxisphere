@@ -85,16 +85,18 @@
 }
 
 .left-container {
-  padding-right: 20px;
+  padding-right: 30px;
   @media screen and (max-width: 960px) {
-    padding-right: 0px;
+    padding-left: 4px;
+    padding-right: 6px;
   }
 }
 
 .right-container {
-  padding-left: 20px;
+  padding-left: 50px;
   @media screen and (max-width: 960px) {
-    padding-left: 0px;
+    padding-right: 5px;
+    padding-left: 4px;
   }
 }
 

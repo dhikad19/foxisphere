@@ -102,3 +102,30 @@
   font-size: 23px; /* Adjust icon size if needed */
   position: relative; /* Ensure the icon is positioned correctly */
 }
+
+.desktop-signin {
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
+}
+
+.mobile-signin {
+  display: none;
+  @media screen and (max-width: 960px) {
+    display: unset;
+  }
+}
+
+.form-login__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.desktop-bg {
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
+}
