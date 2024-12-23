@@ -26,12 +26,13 @@
           <div class="desktop-signin">
             <div class="form-login__container" style="width: 100%">
               <div style="width: 125px; margin-top: 20px; width: 100%;" class="d-flex align-center justify-center">
-                <div class="d-flex align-center justify-center">
+                <div class="d-flex align-center justify-center" @click="toHome()">
                   <v-img class="header-bar" src="assets/header.png" max-height="32" width="130"></v-img>
                 </div>
               </div>
-              <div class="form-container">
-                <div class="mb-8 d-flex align-center justify-center flex-column">
+              <div class="form-container mb-10">
+                <div 
+                class="mb-8 d-flex align-center justify-center flex-column">
                 <p class="title-form">Hello Again!</p>
                 <p class="mt-2 desc-form">
                   Please log in to access your <span style="color: #ff8417">Sphere</span>.
@@ -160,11 +161,11 @@
           <div class="mobile-signin">
             <div class="form-login__container">
               <div style="width: 100%">
-                <div style="width: 125px; margin-top: 20px; margin-left: 15px">
+                <div style="width: 125px; margin-top: 20px; margin-left: 15px" @click="toHome()">
                   <v-img class="header-bar" src="assets/header.png" max-height="32" width="130"></v-img>
                 </div>
                 <div class="form-container">
-                  <div class="mb-8 d-flex align-center justify-center flex-column">
+                  <div class="mt-6 mb-8 d-flex align-center justify-center flex-column">
                   <p class="title-form">Hello Again!</p>
                   <p class="mt-2 desc-form">
                     Please log in to access your <span style="color: #ff8417">Sphere</span>.
@@ -345,6 +346,9 @@
       },
       toSignUp() {
         this.$router.push({ path: '/signup' })
+      },
+      toHome() {
+        this.$router.push({ path: '/' })
       },
       handleRemember() {
         this.checkbox = !this.checkbox

@@ -26,34 +26,39 @@
           <div class="desktop-signin">
             <div class="form-login__container" style="width: 100%">
               <div style="width: 125px; margin-top: 20px; width: 100%;" class="d-flex align-center justify-center">
-                <div class="d-flex align-center justify-center">
+                <div class="d-flex align-center justify-center" @click="toHome()">
                   <v-img class="header-bar" src="assets/header.png" max-height="32" width="130"></v-img>
                 </div>
               </div>
-              <div class="form-container">
+              <div class="form-container mb-10 d-flex flex-column" style="width: 100%">
                 <div
-                  class="mt-6 mb-8 d-flex align-center justify-center flex-column">
+                  class="mb-8 d-flex align-center justify-center flex-column">
                   <p class="title-form">Get Started!</p>
                   <p class="mt-2 desc-form">
-                    Create your account now.
+                    Create your foxi account now.
                   </p>
                 </div>
-                <v-form fast-fail @submit.prevent>
+                <v-form 
+                fast-fail 
+                v-if="step == 1" 
+                @submit.prevent>
                   <v-row dense>
                     <v-col cols="12">
                       <v-text-field
                         v-model="email"
+                        width="100%"
                         label="Email"
                         :rules="emailRules"
                         append-inner-icon="mdi-at"
                         variant="outlined"
-                        density="compact"></v-text-field>
+                        density="compact">
+                      </v-text-field>
                     </v-col>
                   </v-row>
                   <v-btn
-                    @click="handleGoogleLogin()"
                     color="#FF8417"
                     height="40"
+                    @click="handleStep()"
                     class="mt-2"
                     style="
                       color: white;
@@ -68,6 +73,7 @@
                   <p class="text-divider mt-4">or</p>
                   <v-btn
                     variant="outlined"
+                    @click="handleGoogleLogin()"
                     class="mt-4"
                     style="letter-spacing: normal"
                     block>
@@ -91,6 +97,9 @@
                     </template>
                   </v-btn>
                 </v-form>
+                <v-form v-else-if="step == 2" fast-fail @submit.prevent>
+                  <p>test</p>
+                </v-form>
               </div>
               <div>
                 <p class="mb-8" style="color: #4f4f4fe5; font-size: 16px">
@@ -103,7 +112,7 @@
           <div class="mobile-signin">
             <div class="form-login__container">
               <div style="width: 100%">
-                <div style="width: 125px; margin-top: 20px; margin-left: 15px">
+                <div style="width: 125px; margin-top: 20px; margin-left: 15px" @click="toHome()">
                   <v-img class="header-bar" src="assets/header.png" max-height="32" width="130"></v-img>
                 </div>
                 <div class="form-container">
@@ -114,7 +123,10 @@
                       Create your account now.
                     </p>
                   </div>
-                  <v-form fast-fail @submit.prevent>
+                  <v-form 
+                  v-if="step == 1" 
+                  fast-fail 
+                  @submit.prevent>
                     <v-row dense>
                       <v-col cols="12">
                         <v-text-field
@@ -127,10 +139,10 @@
                       </v-col>
                     </v-row>
                     <v-btn
-                      @click="handleGoogleLogin()"
                       color="#FF8417"
                       height="40"
                       class="mt-2"
+                      @click="handleStep()"
                       style="
                         color: white;
                         text-transform: capitalize;
@@ -145,6 +157,7 @@
                     <v-btn
                       variant="outlined"
                       class="mt-4"
+                      @click="handleGoogleLogin()"
                       style="letter-spacing: normal"
                       block>
                       <template v-slot:default>
@@ -166,6 +179,12 @@
                         <!-- Optional text next to the image -->
                       </template>
                     </v-btn>
+                  </v-form>
+                  <v-form 
+                  v-else-if="step == 2" 
+                  fast-fail 
+                  @submit.prevent>
+                    <p>step2</p>
                   </v-form>
                 </div>
               </div>
@@ -190,6 +209,7 @@
     data() {
       return {
         checkbox: false,
+        step: 1,
         show: false,
         items: [
           {
@@ -226,8 +246,14 @@
       };
     },
     methods: {
+      handleStep() {
+        this.step = 2
+      },
       toSignIn() {
         this.$router.push({ path: '/signin' })
+      },
+      toHome() {
+        this.$router.push({ path: '/' })
       },
       handleRemember() {
         this.checkbox = !this.checkbox

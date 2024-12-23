@@ -50,6 +50,10 @@
   font-weight: 500;
   font-size: 30px;
   text-align: center;
+  @media screen and (max-width: 960px) {
+    font-size: 28px;
+    margin-top: 70px !important;
+  }
 }
 
 .desc-form {
@@ -83,9 +87,11 @@
 }
 
 .form-container {
-  height: 100%;
   margin: 0 auto;
-  width: 400px;
+  max-width: 400px;
+  @media screen and (max-width: 960px) {
+    padding: 8px;
+  }
 }
 
 .signup-bg {
@@ -127,5 +133,17 @@
 .desktop-bg {
   @media screen and (max-width: 960px) {
     display: none;
+  }
+}
+
+.header-bar {
+  display: none;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  width: 100%;
+  filter: grayscale(100%) brightness(0%);
+  @media screen and (max-width: 960px) {
+    display: unset;
   }
 }
