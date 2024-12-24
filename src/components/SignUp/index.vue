@@ -98,7 +98,43 @@
                   </v-btn>
                 </v-form>
                 <v-form v-else-if="step == 2" fast-fail @submit.prevent>
-                  <p>test</p>
+                  <v-row dense>
+                    <v-col cols="12">
+                      <v-text-field
+                        v-model="fullName"
+                        label="Full Name"
+                        variant="outlined"
+                        density="compact">
+                      </v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-text-field
+                        v-model="email"
+                        width="100%"
+                        label="Email"
+                        disabled
+                        :rules="emailRules"
+                        append-inner-icon="mdi-at"
+                        variant="outlined"
+                        density="compact">
+                      </v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-btn
+                    color="#FF8417"
+                    height="40"
+                    class="mt-2"
+                    @click="handleStep()"
+                    style="
+                      color: white;
+                      text-transform: capitalize;
+                      letter-spacing: normal;
+                    "
+                    flat
+                    type="submit"
+                    block
+                    >Next</v-btn
+                  >
                 </v-form>
               </div>
               <div>
@@ -184,7 +220,32 @@
                   v-else-if="step == 2" 
                   fast-fail 
                   @submit.prevent>
-                    <p>step2</p>
+                  <v-row dense>
+                    <v-col cols="12">
+                      <v-text-field
+                        v-model="email"
+                        label="Email"
+                        :rules="emailRules"
+                        append-inner-icon="mdi-at"
+                        variant="outlined"
+                        density="compact"></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-btn
+                    color="#FF8417"
+                    height="40"
+                    class="mt-2"
+                    @click="handleStep()"
+                    style="
+                      color: white;
+                      text-transform: capitalize;
+                      letter-spacing: normal;
+                    "
+                    flat
+                    type="submit"
+                    block
+                    >Next</v-btn
+                  >
                   </v-form>
                 </div>
               </div>
@@ -235,6 +296,7 @@
         slides: ["First", "Second", "Third", "Fourth", "Fifth"],
         email: "",
         password: "",
+        fullName: "",
         emailRules: [
           v => !!v || 'Email is required',
           v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Email must be valid'
