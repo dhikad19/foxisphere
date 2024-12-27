@@ -39,23 +39,56 @@
         </v-col>
         <v-col md="4" cols="12" class="right-container">
           <div style="height: 100%">
-            <div class="right-content">
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
+            <div class="right-content__fla">
+              <h1 style="font-size: 18px; color: #4f4f4f">Kata - Kata Hari Ini</h1>
+              <div class="quote mt-2" >
+                <p style="font-size: 14px; font-style: italic">
+                  "Ketika satu pintu tertutup, pintu lain terbuka. 
+                  Tetapi sering kali kita terlalu lama menatap pintu yang tertutup 
+                  sehingga tidak melihat pintu yang telah dibukakan untuk kita." 
+                </p>
+                <p class="mt-2" style="font-size: 14px; font-weight: 500">
+                  – Helen Keller
+                </p>
+              </div>
             </div>
-            <div class="right-content__flat mt-5">
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
+            <v-divider class="mt-8"></v-divider>
+            <div class="right-content mt-8">
+              <h1 style="font-size: 18px; color: #4f4f4f">Recent Post</h1>
+              <v-row dense class="mt-4 mb-2">
+                <v-col cols="12" v-for="(item, i) in blogData.slice(0, 4)" :key="i">
+                  <div class="d-flex">
+                    <v-icon color="#ff7800">mdi-circle-small</v-icon>
+                    <div>
+                      <p style="font-size: 15px; font-weight: 500;">
+                        {{ item.title }}
+                      </p>
+                      <p style="font-size: 14px; color: #4f4f4f; line-height: normal">
+                        {{ item.subTitle }}
+                      </p>
+                    </div>
+                  </div>
+                </v-col>
+                <v-col cols="12" class="mt-3" style="width: 100%">
+                  <p style="font-size: 13px; color: #ff7800; text-align: center; font-weight: 500">
+                    More list...
+                  </p>
+                </v-col>
+              </v-row>
+              
             </div>
-            <div class="right-content mt-5">
+            <div class="right-content__flat mt-8">
+              <h1 style="font-size: 18px; color: #4f4f4f">Popular Categories</h1>
+              <div class="mt-4" style="display: flex; align-items: center; flex-wrap: wrap">
+                <div class="scroller-item mb-2" v-for="(item, i) in items.slice(0, 7)" :key="i">
+                  {{ item.name }}
+                </div>
+              </div>
+              <p class="mt-3" style="font-size: 13px; color: #ff7800; text-align: center; font-weight: 500">
+                More categories...
+              </p>
+            </div>
+            <div class="right-content mt-8">
               <h1>test</h1>
               <h1>test</h1>
               <h1>test</h1>

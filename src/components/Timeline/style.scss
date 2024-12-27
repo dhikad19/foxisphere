@@ -104,12 +104,18 @@
   width: 100%;
   border-radius: 6px;
   padding: 10px;
-  color: #ff7800;
-  background-color: rgba(255, 119, 0, 0.1019607843);
+  color: #4f4f4f;
+  background-color: rgba(0, 0, 0, 0.102);
 }
 
 .right-content__flat {
   width: 100%;
   border-radius: 6px;
   padding: 10px;
+}
+
+.quote {
+  padding: 10px;
+  border-left: 3px solid #ff7700;
+  background-color: #ff77002f;
 }

@@ -5,6 +5,7 @@ import SignUpView from "../views/SignUpView.vue";
 import WriteView from "../views/WriteView.vue";
 import NotFound from "../views/NotFoundView.vue";
 import UserProfile from "../views/ProfileView.vue";
+import AboutView from "../views/AboutView.vue";
 
 const routes = [
   {
@@ -32,6 +33,12 @@ const routes = [
     name: "signup",
     component: SignUpView,
     meta: { requiresUnauth: true, title: "Foxi Sphere | Sign Up" },
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: AboutView,
+    meta: { requiresUnauth: true, title: "Foxi Sphere | About" },
   },
   {
     path: "/:pathMatch(.*)*",
