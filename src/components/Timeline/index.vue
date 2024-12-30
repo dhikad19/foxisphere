@@ -20,7 +20,7 @@
             </v-icon>
           </div>
           <v-divider class="mt-5"></v-divider>
-          <div class="mt-8">
+          <div class="mt-12">
             <div v-for="(item, i) in blogData" :key="i">
               <Card 
                 :title="item.title" 
@@ -39,7 +39,7 @@
         </v-col>
         <v-col md="4" cols="12" class="right-container">
           <div style="height: 100%">
-            <div class="right-content__fla">
+            <div class="right-content__flat">
               <h1 style="font-size: 18px; color: #4f4f4f">Kata - Kata Hari Ini</h1>
               <div class="quote mt-2" >
                 <p style="font-size: 14px; font-style: italic">
@@ -52,8 +52,21 @@
                 </p>
               </div>
             </div>
-            <v-divider class="mt-8"></v-divider>
-            <div class="right-content mt-8">
+            <v-divider class="mt-12"></v-divider>
+            
+            <div class="right-content__flat mt-12">
+              <h1 style="font-size: 18px; color: #4f4f4f">Popular Categories</h1>
+              <div class="mt-4" style="display: flex; align-items: center; flex-wrap: wrap">
+                <div class="scroller-item mb-2" v-for="(item, i) in items.slice(0, 7)" :key="i">
+                  {{ item.name }}
+                </div>
+              </div>
+              <p class="mt-3" style="font-size: 13px; color: #ff7800; text-align: center; font-weight: 500">
+                More categories...
+              </p>
+            </div>
+
+            <div class="right-content mt-12">
               <h1 style="font-size: 18px; color: #4f4f4f">Recent Post</h1>
               <v-row dense class="mt-4 mb-2">
                 <v-col cols="12" v-for="(item, i) in blogData.slice(0, 4)" :key="i">
@@ -75,26 +88,10 @@
                   </p>
                 </v-col>
               </v-row>
-              
             </div>
-            <div class="right-content__flat mt-8">
-              <h1 style="font-size: 18px; color: #4f4f4f">Popular Categories</h1>
-              <div class="mt-4" style="display: flex; align-items: center; flex-wrap: wrap">
-                <div class="scroller-item mb-2" v-for="(item, i) in items.slice(0, 7)" :key="i">
-                  {{ item.name }}
-                </div>
-              </div>
-              <p class="mt-3" style="font-size: 13px; color: #ff7800; text-align: center; font-weight: 500">
-                More categories...
-              </p>
-            </div>
-            <div class="right-content mt-8">
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
-              <h1>test</h1>
+
+            <div class="right-content__flat mt-12">
+              <h1 style="font-size: 18px; color: #4f4f4f">Top Picks</h1>
             </div>
           </div>
         </v-col>
@@ -219,6 +216,36 @@ export default {
           comments: 20,
           content: 'Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Aenean in nisi a arcu hendrerit dapibus. Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat.'
         }
+      ],
+      accounts: [
+        {
+          name: 'Agus',
+          images: 'images/male/variant-2.png',
+          job: 'Acounting',
+          descriptions: '',
+          topTreads: ''
+        },
+        {
+          name: 'Dita',
+          images: 'images/female/variant-2.png',
+          job: 'Programmer',
+          descriptions: '',
+          topTreads: ''
+        },
+        {
+          name: 'Kinan',
+          images: 'images/female/variant-4.png',
+          job: 'Enterpreneur',
+          descriptions: '',
+          topTreads: ''
+        },
+        {
+          name: 'Dika',
+          images: 'images/male/variant-1.png',
+          job: 'Programmer',
+          descriptions: '',
+          topTreads: ''
+        },
       ],
       items: [
         { id: 1, name: 'For You' },
