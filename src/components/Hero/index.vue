@@ -3,7 +3,7 @@
     <div class="hero-wrapper">
       <v-row dense class="top-hero">
         <v-col cols="12" sm="12" md="10">
-          <h1 class="hero-title">Blog Sphere</h1>
+          <h1 class="hero-title">Blog</h1>
         </v-col>
         <v-col cols="12" sm="12" md="2">
           <SearchComponent class="search" />

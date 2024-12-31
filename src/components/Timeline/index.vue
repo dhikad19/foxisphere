@@ -91,7 +91,16 @@
             </div>
 
             <div class="right-content__flat mt-12">
-              <h1 style="font-size: 18px; color: #4f4f4f">Top Picks</h1>
+              <h1 style="font-size: 18px; color: #4f4f4f">Top Community</h1>
+
+              <v-row dense class="mt-4 mb-2">
+                <v-col cols="12" v-for="(item, i) in community" :key="i">
+                  <p>{{item.name}}</p>
+                  <div v-for="(list, j) in item.sub" :key="j">
+                    <p>{{list.name}}</p>
+                  </div>
+                </v-col>
+              </v-row>
             </div>
           </div>
         </v-col>
@@ -111,6 +120,64 @@ export default {
     return {
       active: 1,
       left: 0,
+      community: [
+        {
+          name: 'Hobby',
+          sub: [
+            {
+              name: 'Books',
+            },
+            {
+              name: 'Movie',
+            },
+            {
+              name: 'Sport',
+            },
+          ]
+        },
+        {
+          name: 'Culinary',
+          sub: [
+            {
+              name: 'Resep',
+            },
+            {
+              name: 'Recook',
+            },
+            {
+              name: 'Viral',
+            },
+          ]
+        },
+        {
+          name: 'Game',
+          sub: [
+            {
+              name: 'Genshin Impact',
+            },
+            {
+              name: 'Tekken',
+            },
+            {
+              name: 'Zenless Zone Zero',
+            },
+          ]
+        },
+        {
+          name: 'Anime',
+          sub: [
+            {
+              name: 'Jujutsu Kaisen',
+            },
+            {
+              name: 'Chainsawman',
+            },
+            {
+              name: 'My Hero Academia',
+            },
+          ]
+        },
+      ],
       blogData: [
         {
           title: 'Masa Depan Teknologi AI',

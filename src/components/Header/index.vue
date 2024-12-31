@@ -27,7 +27,7 @@
                 v-bind="props" 
                 :class="scrollPosition >= heightBarAnchor ? 'btn-content__black' : 'btn-content'"
               >
-                Categories
+                Community
               </v-btn>
             </template>
 
@@ -47,7 +47,7 @@
         <v-spacer></v-spacer>
         <v-btn
           @click="signIn()"
-          style="border: 1px solid #fff3"
+          :style="scrollPosition >= heightBarAnchor ? 'border: 1px solid #8080802e' : 'border: 1px solid #fff3'"
           :class="isActive || scrollPosition >= heightBarAnchor ? 'btn-content__active' : 'btn-content'"
           >Sign in</v-btn
         >
