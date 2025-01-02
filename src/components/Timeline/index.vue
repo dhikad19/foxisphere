@@ -39,22 +39,7 @@
         </v-col>
         <v-col md="4" cols="12" class="right-container">
           <div style="height: 100%">
-            <div class="right-content__flat">
-              <h1 style="font-size: 18px; color: #4f4f4f">Kata - Kata Hari Ini</h1>
-              <div class="quote mt-2" >
-                <p style="font-size: 14px; font-style: italic">
-                  "Ketika satu pintu tertutup, pintu lain terbuka. 
-                  Tetapi sering kali kita terlalu lama menatap pintu yang tertutup 
-                  sehingga tidak melihat pintu yang telah dibukakan untuk kita." 
-                </p>
-                <p class="mt-2" style="font-size: 14px; font-weight: 500">
-                  – Helen Keller
-                </p>
-              </div>
-            </div>
-            <v-divider class="mt-12"></v-divider>
-            
-            <div class="right-content__flat mt-12">
+            <div class="right-content__flat mt-1">
               <h1 style="font-size: 18px; color: #4f4f4f">Popular Categories</h1>
               <div class="mt-4" style="display: flex; align-items: center; flex-wrap: wrap">
                 <div class="scroller-item mb-2" v-for="(item, i) in items.slice(0, 7)" :key="i">
@@ -95,9 +80,12 @@
 
               <v-row dense class="mt-4 mb-2">
                 <v-col cols="12" v-for="(item, i) in community" :key="i">
-                  <p>{{item.name}}</p>
+                  <p class="mb-2" style="font-weight: 500; color: #FF8417;">{{item.name}}</p>
                   <div v-for="(list, j) in item.sub" :key="j">
-                    <p>{{list.name}}</p>
+                    <div class="d-flex align-center">
+                      <v-icon class="mr-1">mdi-circle-small</v-icon>
+                      <p style="font-size: 15px">{{list.name}}</p>
+                    </div>
                   </div>
                 </v-col>
               </v-row>
@@ -129,9 +117,6 @@ export default {
             },
             {
               name: 'Movie',
-            },
-            {
-              name: 'Sport',
             },
           ]
         },
@@ -171,9 +156,6 @@ export default {
             },
             {
               name: 'Chainsawman',
-            },
-            {
-              name: 'My Hero Academia',
             },
           ]
         },
