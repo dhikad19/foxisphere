@@ -20,7 +20,7 @@
             </v-icon>
           </div>
           <v-divider class="mt-5"></v-divider>
-          <div class="mt-12">
+          <div class="mt-12 mb-10">
             <div v-for="(item, i) in blogData" :key="i">
               <Card 
                 :title="item.title" 
@@ -36,6 +36,12 @@
               />
             </div>
           </div>
+          <v-pagination
+            density="compact"
+            v-model="page"
+            :length="15"
+            :total-visible="7"
+          ></v-pagination>
         </v-col>
         <v-col md="4" cols="12" class="right-container">
           <div style="height: 100%">
@@ -82,9 +88,14 @@
                 <v-col cols="12" v-for="(item, i) in community" :key="i">
                   <p class="mb-2" style="font-weight: 500; color: #FF8417;">{{item.name}}</p>
                   <div v-for="(list, j) in item.sub" :key="j">
-                    <div class="d-flex align-center">
-                      <v-icon class="mr-1">mdi-circle-small</v-icon>
-                      <p style="font-size: 15px">{{list.name}}</p>
+                    <div class="d-flex mb-2">
+                      <p class="mb-0 mr-3">
+                        {{ list.emoji }}
+                      </p>
+                      <div>
+                        <p style="font-size: 15px; font-weight: 500" class="mb-1">{{list.name}}</p>
+                        <p style="font-size: 14px; line-height: normal; color: grey" v-html="list.description"></p>
+                      </div>
                     </div>
                   </div>
                 </v-col>
@@ -106,31 +117,37 @@ export default {
   },
   data() {
     return {
+      page: 1,
       active: 1,
       left: 0,
       community: [
         {
-          name: 'Hobby',
+          name: 'Hobi',
           sub: [
             {
-              name: 'Books',
+              name: 'Buku',
+              description: 'Jelajahi setiap halaman untuk merasakan perspektif baru.',
+              emoji: '📕'
             },
             {
-              name: 'Movie',
+              name: 'Film',
+              description: 'Menghadirkan berbagai cerita dan emosi, memberikan pengalaman seru yang bisa dinikmati.',
+              emoji: '🎞️'
             },
           ]
         },
         {
-          name: 'Culinary',
+          name: 'Kuliner',
           sub: [
             {
               name: 'Resep',
-            },
-            {
-              name: 'Recook',
+              description: 'Buat momen istimewa dengan hidangan penuh rasa.',
+              emoji: '🥗'
             },
             {
               name: 'Viral',
+              description: 'Makanan yang sedang banyak dibicarakan di media sosial.',
+              emoji: '🍛'
             },
           ]
         },
@@ -139,12 +156,18 @@ export default {
           sub: [
             {
               name: 'Genshin Impact',
+              description: 'Gabungkan elemen untuk kalahkan musuh dan temukan rahasia dunia Teyvat yang penuh misteri.',
+              emoji: '🗡️'
             },
             {
-              name: 'Tekken',
+              name: 'Balatro',
+              description: 'Permainan poker di gadget yang menawarkan pengalaman bermain poker yang realistis dan seru.',
+              emoji: '🃏'
             },
             {
-              name: 'Zenless Zone Zero',
+              name: 'Mobile Legends',
+              description: ' Aksi cepat dan strategi cerdas dalam pertempuran 5v5.',
+              emoji: '🎮'
             },
           ]
         },
@@ -153,9 +176,13 @@ export default {
           sub: [
             {
               name: 'Jujutsu Kaisen',
+              description: '<span style="color: #ff7700;">Yuji Itadori</span>, seorang remaja dengan kekuatan luar biasa yang terlibat dalam pertempuran melawan roh jahat setelah menelan benda terkutuk.',
+              emoji: '👊'
             },
             {
               name: 'Chainsawman',
+              description: '<span style="color: #ff7700;">Denji</span>, seorang pemuda miskin yang menjadi pemburu iblis dengan kekuatan unik—tubuhnya bisa berubah menjadi mesin chainsaw.',
+              emoji: '🪚'
             },
           ]
         },
@@ -186,6 +213,32 @@ export default {
           date: '11-10-2024',
           comments: 12,
           content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Aenean in nisi a arcu hendrerit dapibus. Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat.'
+        },
+        {
+          title: 'Blockchain di Luar Cryptocurrency',
+          subTitle: 'Menelusuri Penggunaan Lain dari Teknologi Blockchain',
+          writtersImage: '/images/male/variant-1.png',
+          image: 'https://via.placeholder.com/800x400.png?text=Blockchain+Technology',
+          like: 25,
+          read: '3 Menit baca',
+          writters: 'Dwi Andika',
+          categories: 'Teknologi',
+          date: '12-10-2024',
+          comments: 10,
+          content: 'Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Quisque fringilla feugiat risus at volutpat.'
+        },
+        {
+          title: 'Inovasi Teknologi 5G',
+          subTitle: 'Bagaimana 5G akan Merevolusi Dunia Digital?',
+          writtersImage: '/images/male/variant-1.png',
+          image: 'https://via.placeholder.com/800x400.png?text=5G+Technology',
+          like: 35,
+          read: '6 Menit baca',
+          writters: 'Dwi Andika',
+          categories: 'Teknologi',
+          date: '13-4-2024',
+          comments: 15,
+          content: 'Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor.'
         },
         {
           title: 'Blockchain di Luar Cryptocurrency',
