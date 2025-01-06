@@ -366,6 +366,14 @@ export default {
     };
   },
   methods: {
+    calculateReadingTime(text) {
+      const numChars = text.length;
+      const avgCharsPerWord = 5;
+      const wordsPerMinute = 200;
+      const numWords = numChars / avgCharsPerWord;
+      const readingTimeMinutes = numWords / wordsPerMinute;
+      return Math.ceil(readingTimeMinutes)
+    },
     logScrollPosition() {
       const scroller = this.$refs.scroller;
       this.left = scroller.scrollLeft
