@@ -6,6 +6,8 @@ import WriteView from "../views/WriteView.vue";
 import NotFound from "../views/NotFoundView.vue";
 import UserProfile from "../views/ProfileView.vue";
 import AboutView from "../views/AboutView.vue";
+import communityView from "../views/communityView.vue";
+import PostView from "../views/PostView.vue";
 
 const routes = [
   {
@@ -39,6 +41,18 @@ const routes = [
     name: "about",
     component: AboutView,
     meta: { requiresUnauth: true, title: "Foxi Sphere | About" },
+  },
+  {
+    path: "/post",
+    name: "post",
+    component: PostView,
+    meta: { requiresUnauth: true, title: "Foxi Sphere | Post" },
+  },
+  {
+    path: "/community",
+    name: "community",
+    component: communityView,
+    meta: { requiresUnauth: true, title: "Foxi Sphere | Community" },
   },
   {
     path: "/:pathMatch(.*)*",
