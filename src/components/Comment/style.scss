@@ -1,0 +1,15 @@
+.comment-content {
+  margin-top: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.699);
+  border-radius: 6px;
+  color: rgba(128, 128, 128, 0.699);
+  cursor: pointer;
+  padding: 7px;
+  font-size: 15px;
+  transition: 1.4s;
+
+  &:hover {
+    border: 1px solid grey;
+    color: grey;
+  }
+}
