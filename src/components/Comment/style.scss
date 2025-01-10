@@ -13,3 +13,26 @@
     color: grey;
   }
 }
+
+.btn-editor {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background-color: rgba(128, 128, 128, 0.24);
+  border-radius: 4px;
+}
+
+.btn-editor__active {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background-color: #ffeee0;
+  color: #ff7800;
+  border-radius: 4px;
+}
