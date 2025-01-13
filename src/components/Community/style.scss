@@ -12,9 +12,29 @@
   padding-bottom: 80px;
   padding-left: 20px;
   padding-right: 20px;
+  display: flex;
   @media screen and (max-width: 960px) {
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 50px;
+  }
+}
+
+.community-content {
+  // width: 100%;
+  max-width: 400px;
+}
+
+.community-sidebar__sticky {
+  position: sticky;
+  top: 95px;
+  max-height: calc(100vh - 95px);
+  max-width: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+  &:hover {
+    scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
   }
 }
