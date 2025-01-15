@@ -1,3 +1,18 @@
 .app-bar-container {
   border-bottom: 1px solid #e4e4e4; /* Custom border to simulate a line */
 }
+
+.app-bar-logo {
+  max-height: 90px;
+  min-width: 120px;
+  max-width: 120px;
+}
+
+.app-bar-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

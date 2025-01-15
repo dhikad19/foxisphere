@@ -5,21 +5,18 @@
   padding-bottom: 6px;
   padding-left: 7px;
   padding-right: 7px;
-  color: white;
+  color: #4f4f4f;
   border-radius: 6px;
-  font-weight: 500;
   border: 1px solid #ffffff57;
+  background-color: #4f4f4f17;
   user-select: none;
+  max-width: 700px;
   cursor: pointer;
   transition: 0.4s;
   width: 100%;
   &:hover {
     background-color: #ffffff28;
   }
-}
-
-.search-btn {
-  margin-bottom: 25px;
 }
 
 .search-text {
@@ -37,7 +34,6 @@
 
 .search-item__title {
   font-size: 15px;
-  font-weight: 400;
 }
 
 .card-search {

@@ -1,7 +1,7 @@
 <template>
   <div class="search-container">
     <div class="search-btn" @click="overlaySearch()">
-      <v-icon style="font-size: 20px" class="mr-4 ml-2"> mdi-magnify </v-icon>
+      <v-icon color="#4f4f4f" style="font-size: 20px" class="mr-4 ml-2"> mdi-magnify </v-icon>
       <p class="search-text">Search...</p>
     </div>
     <v-overlay

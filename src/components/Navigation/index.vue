@@ -3,9 +3,20 @@
     <v-app>
       <v-app-bar elevation="0" class="app-bar-container">
         <div class="app-bar-content">
-          <v-img src="assets/header-new.png">
-
+          <v-img
+            src="assets/header-new.png"
+            style="margin-left: -1px"
+            class="app-bar-logo"
+            :class="isActive || scrollPosition >= heightBarAnchor ? 'img-active' : 'img-nonactive'">
           </v-img>
+          <div>
+            <SearchComponent class="search" />
+          </div>
+          <div>
+            <v-btn>
+              test
+            </v-btn>
+          </div>
         </div>
       </v-app-bar>
       <v-layout>
@@ -163,6 +174,7 @@
 </style>
 
 <script>
+import SearchComponent from '../Search/index.vue'
 export default {
   name: 'BarComponents',
   data () {
@@ -171,5 +183,8 @@ export default {
         rail: false,
       }
     },
+    components: {
+      SearchComponent
+    }
 }
 </script>
