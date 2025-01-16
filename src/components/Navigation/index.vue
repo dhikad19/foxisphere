@@ -3,20 +3,78 @@
     <v-app>
       <v-app-bar elevation="0" class="app-bar-container">
         <div class="app-bar-content">
-          <v-img
+          <v-row dense>
+            <v-col cols="3">
+              <v-img
+                src="assets/header-new.png"
+                style="margin-bottom: 2px;"
+                class="app-bar-logo"
+                :class="isActive || scrollPosition >= heightBarAnchor ? 'img-active' : 'img-nonactive'">
+              </v-img>
+            </v-col>
+            <v-col cols="6" class="d-flex justify-center align-center">
+              <SearchComponent class="search" />
+            </v-col>
+            <v-col cols="3" class="d-flex flex-row-reverse align-center">
+              <div v-if="hasLoggedIn" class="d-flex align-center">
+                <div class="btn-header__create">
+                  <v-icon size="30">mdi-plus</v-icon>
+                  <p class="ml-2">
+                    Posting
+                  </p>
+                  <v-tooltip
+                    activator="parent"
+                    location="bottom"
+                  >
+                    Buat Postingan
+                  </v-tooltip>
+                </div>
+                <div class="btn-header ml-2">
+                  <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
+                    <v-icon size="26">mdi-bell-outline</v-icon>
+                  </v-badge>
+                </div>
+                <div class="btn-header ml-2">
+                  <v-badge color="#ff7800" content="1">
+                    <v-icon size="26">mdi-chat-processing-outline</v-icon>
+                  </v-badge>
+                </div>
+              </div>
+              <div v-else>
+                <v-btn
+                  variant="outlined"
+                  style="text-transform: capitalize; letter-spacing: normal"
+                  color="#FF7800"
+                  class="ml-2"
+                  @click="signIn()"
+                  >Masuk</v-btn
+                >
+                <template v-if="$vuetify.display.mdAndUp">
+                  <v-btn
+                    @click="signUp()"
+                    variant="flat"
+                    style="text-transform: capitalize; letter-spacing: normal"
+                    color="#FF7800"
+                    >Daftar</v-btn
+                  >
+                </template>
+              </div>
+            </v-col>
+          </v-row>
+          <!-- <v-img
             src="assets/header-new.png"
-            style="margin-left: -1px"
+            style="margin-bottom: 2px;"
             class="app-bar-logo"
             :class="isActive || scrollPosition >= heightBarAnchor ? 'img-active' : 'img-nonactive'">
           </v-img>
-          <div>
+          <div class="d-flex align-center justify-center">
             <SearchComponent class="search" />
           </div>
           <div>
             <v-btn>
               test
             </v-btn>
-          </div>
+          </div> -->
         </div>
       </v-app-bar>
       <v-layout>
@@ -177,8 +235,10 @@
 import SearchComponent from '../Search/index.vue'
 export default {
   name: 'BarComponents',
-  data () {
+  data() {
       return {
+        hasLoggedIn: true,
+        notificationCounter: 12000,
         drawer: true,
         rail: false,
       }

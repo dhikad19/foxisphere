@@ -46,7 +46,7 @@
                 </div>
                 <div
                   class="mt-3 mb-4"
-                  style="border-bottom: 0.5px solid #bdc0d68a; height: 1px"></div>
+                  style="border-bottom: 0.5px solid #bdc0d634; height: 1px"></div>
               </div>
   
               <div class="pl-3 pr-3" v-if="filteredResources[1]?.filteredData.length != 0">
