@@ -38,11 +38,69 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 25px;
+  border-radius: 45px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   &:hover {
     background-color: #4f4f4f31;
   }
+}
+
+.tab {
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tab-active {
+  cursor: pointer;
+  border-bottom: 2px solid #ff7800;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tab-title {
+  color: grey;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tab-title__active {
+  color: #4f4f4f;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tab-box {
+  margin-left: 7px;
+  font-family: 500;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+  padding: 5px;
+  border-radius: 3px;
+  user-select: none;
+  height: 18px;
+  width: 18px;
+}
+
+.tab-box__active {
+  margin-left: 7px;
+  font-family: 500;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff7800;
+  padding: 5px;
+  border-radius: 3px;
+  user-select: none;
+  height: 18px;
+  width: 18px;
 }
