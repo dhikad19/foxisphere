@@ -1,20 +1,30 @@
 <template>
   <div class="list-container">
-    <div class="list-wrapper d-flex">
-      <v-img 
-        :src="image" 
-        height="30" 
-        max-width="30" 
-        style="border-radius: 50%;"
-      >
-      </v-img>
-      <div>
-        <p>
-          {{ user }}
-        </p>
-        <p>
-          membalas komentar anda pada {{ community }}
-        </p>
+    <div :class="read ? 'list-wrapper' : 'list-wrapper__no-read'" class=" pa-3">
+      <div class="list-content d-flex">
+        <v-avatar size="32" style="margin-top: 2px">
+          <v-img 
+            :src="image" 
+          >
+          </v-img>
+        </v-avatar>
+        <div class="ml-4 d-flex">
+          <div>
+            <p class="title-content">
+              <span class="user">
+                {{ user }}
+              </span>
+              membalas komentar anda pada
+              <span class="community">
+                {{ community }}
+              </span>
+            </p>
+            <p class="description-content">
+              {{ description }}
+            </p>
+          </div>
+          <div style="margin-left: 10px" :class="read ? 'dot-noactive' : 'dot-active'"></div>
+        </div>
       </div>
     </div>
   </div>
