@@ -22,12 +22,6 @@
                   <p class="ml-2">
                     Posting
                   </p>
-                  <v-tooltip
-                    activator="parent"
-                    location="bottom"
-                  >
-                    Buat Postingan
-                  </v-tooltip>
                 </div>
                 <v-menu offset="14" :close-on-content-click="false">
                   <template v-slot:activator="{ props }">
@@ -36,12 +30,6 @@
                         <v-icon size="24">mdi-bell-outline</v-icon>
                       </v-badge>
                       <v-icon size="24" v-else>mdi-bell-outline</v-icon>
-                      <v-tooltip
-                        activator="parent"
-                        location="bottom"
-                      >
-                        Notifikasi
-                      </v-tooltip>
                     </div>
                   </template>
                   <v-card width="380" style="border-radius: 6px">
@@ -154,17 +142,11 @@
                     </v-list-item>
                   </v-list> -->
                 </v-menu>
-                <div class="btn-header ml-2">
+                <div class="btn-header ml-2" @click="handleChat()">
                   <v-badge color="#ff7800" :content="messageCounter" v-if="messageCounter > 0">
                     <v-icon size="24">mdi-chat-processing-outline</v-icon>
                   </v-badge>
                   <v-icon v-else size="24">mdi-chat-processing-outline</v-icon>
-                  <v-tooltip
-                    activator="parent"
-                    location="bottom"
-                  >
-                    Pesan
-                  </v-tooltip>
                 </div>
                 
               </div>
@@ -316,11 +298,9 @@
         </div>
       </v-navigation-drawer>
       <v-main></v-main>
-        
       </v-layout>
-      
     </v-app>
-    
+    <ChatComponent v-if="chatActive" />
   </div>
 </template>
 
@@ -347,6 +327,7 @@
 
 <script>
 import SearchComponent from '../Search/index.vue'
+import ChatComponent from '../Chat/index.vue'
 import InboxList from '../Notification/List/Inbox/index.vue'
 import TeamList from '../Notification/List/Team/index.vue'
 export default {
@@ -354,6 +335,7 @@ export default {
   data() {
       return {
         tabActive: 'inbox',
+        chatActive: null,
         tabContent: [
           {
             name: 'Inbox',
@@ -643,10 +625,19 @@ export default {
     },
     components: {
       SearchComponent,
+      ChatComponent,
       InboxList,
       TeamList
     },
     methods: {
+      handleChat() {
+        this.chatActive = !this.chatActive
+        if (this.chatActive) {
+          localStorage.setItem('chatActive', true)
+        } else {
+          localStorage.setItem('chatActive', false)
+        }
+      },
       handleTab(index) {
         this.tabContent.forEach((tab, i) => {
         tab.active = i === index;
@@ -654,5 +645,17 @@ export default {
       this.tabActive = this.tabContent[index].value
       }
     },
+    created() {
+      const chatStatus = localStorage.getItem('chatActive')
+      if (chatStatus) {
+        if (chatStatus == 'true') {
+          this.chatActive = true
+        } else if (chatStatus == 'false') {
+          this.chatActive = false
+        }
+      } else {
+        this.chatActive = false
+      }
+    }
 }
 </script>

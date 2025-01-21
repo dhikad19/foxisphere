@@ -1,0 +1,13 @@
+.chat-wrapper {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.chat-box {
+  height: calc(100vh - 64px);
+  min-width: 650px;
+  border-left: 0.01px solid #e4e4e4;
+  border-radius: 0px;
+  padding: 10px;
+}
