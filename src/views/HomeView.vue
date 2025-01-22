@@ -111,7 +111,7 @@
 </template>
 
 <script>
-  import Bar from '@/components/Bar/index.vue'
+  // import Bar from '@/components/Bar/index.vue'
   import Navigation from '@/components/Navigation/index.vue'
 // import Hero from '@/components/Hero/index.vue'
 // import HeaderBar from '@/components/Header/index.vue'
@@ -120,7 +120,7 @@
 export default {
   name: 'HomeView',
   components: {
-    Bar,
+    // Bar,
     Navigation,
     // HeaderBar,
     // Hero,

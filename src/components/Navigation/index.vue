@@ -634,8 +634,10 @@ export default {
         this.chatActive = !this.chatActive
         if (this.chatActive) {
           localStorage.setItem('chatActive', true)
+          localStorage.setItem('variant', 'full')
         } else {
           localStorage.setItem('chatActive', false)
+          localStorage.setItem('variant', 'null')
         }
       },
       handleTab(index) {
