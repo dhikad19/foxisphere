@@ -8,17 +8,17 @@
           <p>Chat</p>
           <div class="d-flex">
             <div class="chat-btn" @click="handleFull()">
-              <v-icon>
+              <v-icon size="17">
                 mdi-open-in-new
               </v-icon>
             </div>
             <div class="chat-btn" @click="handleMinimize()">
-              <v-icon>
+              <v-icon size="17">
                 mdi-minus
               </v-icon>
             </div>
             <div class="chat-btn" @click="handleClose()">
-              <v-icon>
+              <v-icon size="17">
                 mdi-close
               </v-icon>
             </div>
@@ -104,8 +104,57 @@
             
           </div>
           <div class="chat-list__content">
-            <div class="chat-bubble">
-
+            <div class="chat-top__title">
+              <p>
+                Agus
+              </p>
+            </div>
+            <v-divider></v-divider>
+            <div class="chat-content__box">
+              <div class="chat-data__box">
+                <div class="chat-bubbles" v-for="(item, i) in messages" :key="i">
+                  <div v-if="!isSameUser(i)" class="d-flex" style="width: 100%;">
+                    <div class="mr-5 ml-1">
+                      <v-menu open-on-hover position-x="center" offset="14">
+                        <template v-slot:activator="{ props }">
+                          <v-avatar size="30" v-bind="props">
+                            <v-img :src="item.image"></v-img>
+                          </v-avatar>
+                        </template>
+                        <v-list>
+                          <v-list-item
+                            v-for="(item, index) in items"
+                            :key="index"
+                            :value="index"
+                          >
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                          </v-list-item>
+                        </v-list>
+                      </v-menu>
+                      
+                    </div>
+                    <div style="width: 100%;">
+                      <div class="d-flex align-center justify-space-between" style="width: 100%">
+                        <p style="font-weight: 500"> {{ item.user }} </p>
+                        <p style="font-size: 12px"> {{ formatTime(item.time) }} </p>
+                      </div>
+                      <p style="font-size: 13px; margin-top: 4px; max-width: 250px">
+                        {{ item.message }}
+                      </p>
+                    </div>
+                  </div>
+                  <div v-else style="word-wrap: break-word; width: 100%">
+                    <div class="chat-bubles_same-person">
+                      <p class="chat-time__same-user"> {{ formatTime(item.time) }} </p>
+                      <p style="font-size: 13px; word-wrap: break-word; width: 100%; max-width: 250px"> {{ item.message }} </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-text">
+                <v-divider></v-divider>
+                <Input @send-message="addMessage"/>
+              </div>
             </div>
           </div>
         </div>
@@ -126,11 +175,20 @@
 @use './style.scss';
 </style>
 
+
 <script>
+import Input from './Input/index.vue'
 export default {
   name: 'ChatComponents',
   data() {
     return {
+      items: [
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me 2' },
+      ],
+      messages: [],
       variant: null,
       friendList: [
         {
@@ -1031,7 +1089,35 @@ export default {
       ]
     }
   },
+  components: {
+    Input
+  },
   methods: {
+    isSameUser(index) {
+      if (index === 0) return false;
+      return this.messages[index].user === this.messages[index - 1].user;
+    },
+    formatTime(timestamp) {
+      const now = new Date();
+      const messageDate = new Date(timestamp);
+
+      const isToday = now.toDateString() === messageDate.toDateString();
+      const isYesterday = (now - messageDate) / (1000 * 3600 * 24) === 1;
+
+      if (isToday) {
+        // Show only time if message was sent today
+        return messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      } else if (isYesterday) {
+        // Show "Yesterday" if message was sent yesterday
+        return 'Yesterday';
+      } else {
+        // Show the full date if message was sent more than a day ago
+        return messageDate.toLocaleDateString();
+      }
+    },
+    addMessage(message) {
+      this.messages.push(message);
+    },
     handleMaximize() {
     this.variant = 'full'
     localStorage.setItem('variant', 'full')
