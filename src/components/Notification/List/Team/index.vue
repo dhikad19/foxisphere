@@ -10,7 +10,7 @@
           
           <div v-if="team.length > 4" class="d-flex">
             <div v-for="item in team.slice(0, 3)" :key="item" class="d-flex">
-              <v-avatar size="32" style="margin-top: 2px; margin-left: -16px;z-index: 9;">
+              <v-avatar size="32" style="margin-top: 2px; margin-left: -16px; z-index: 9;">
                 <v-img 
                   :src="item.image" 
                 >
