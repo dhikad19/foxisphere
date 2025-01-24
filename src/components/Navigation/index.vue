@@ -300,7 +300,7 @@
       <v-main></v-main>
       </v-layout>
     </v-app>
-    <ChatComponent v-if="chatActive" />
+    <ChatComponent :handle-close-chat="handleChat" v-if="chatActive" />
   </div>
 </template>
 

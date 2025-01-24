@@ -115,9 +115,9 @@
                 <div class="chat-bubbles" v-for="(item, i) in messages" :key="i">
                   <div v-if="!isSameUser(i)" class="d-flex" style="width: 100%;">
                     <div class="mr-5 ml-1">
-                      <v-menu open-on-hover position-x="center" offset="14">
+                      <v-menu open-on-hover position="center" offset="14">
                         <template v-slot:activator="{ props }">
-                          <v-avatar size="30" v-bind="props">
+                          <v-avatar class="avatar-user" size="30" v-bind="props">
                             <v-img :src="item.image"></v-img>
                           </v-avatar>
                         </template>
@@ -135,7 +135,20 @@
                     </div>
                     <div style="width: 100%;">
                       <div class="d-flex align-center justify-space-between" style="width: 100%">
-                        <p style="font-weight: 500"> {{ item.user }} </p>
+                        <v-menu open-on-hover position="center" offset="14">
+                          <template v-slot:activator="{ props }">
+                            <p class="chat-user__name" v-bind="props"> {{ item.user }} </p>
+                          </template>
+                          <v-list>
+                            <v-list-item
+                              v-for="(item, index) in items"
+                              :key="index"
+                              :value="index"
+                            >
+                              <v-list-item-title>{{ item.title }}</v-list-item-title>
+                            </v-list-item>
+                          </v-list>
+                        </v-menu>
                         <p style="font-size: 12px"> {{ formatTime(item.time) }} </p>
                       </div>
                       <p style="font-size: 13px; margin-top: 4px; max-width: 250px">
@@ -146,7 +159,9 @@
                   <div v-else style="word-wrap: break-word; width: 100%">
                     <div class="chat-bubles_same-person">
                       <p class="chat-time__same-user"> {{ formatTime(item.time) }} </p>
-                      <p style="font-size: 13px; word-wrap: break-word; width: 100%; max-width: 250px"> {{ item.message }} </p>
+                      <p class="chat-same__user">
+                        {{ item.message }} 
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1092,7 +1107,16 @@ export default {
   components: {
     Input
   },
+  props: {
+    handleCloseChat: {
+      type: Function,
+      required: true,
+    },
+  },
   methods: {
+    handleClose() {
+      this.handleCloseChat()
+    },
     isSameUser(index) {
       if (index === 0) return false;
       return this.messages[index].user === this.messages[index - 1].user;

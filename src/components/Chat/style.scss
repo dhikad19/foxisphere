@@ -153,3 +153,31 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.chat-same__user {
+  font-size: 13px;
+  word-wrap: break-word;
+  width: 100%;
+  margin-bottom: 3px;
+  max-width: 250px;
+}
+
+.chat-user__name {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.avatar-user {
+  cursor: pointer;
+}
+
+.send-btn {
+  border-radius: 50%;
+  background-color: rgba(128, 128, 128, 0.185);
+  min-height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  cursor: pointer;
+}
