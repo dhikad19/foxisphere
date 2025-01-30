@@ -55,25 +55,23 @@ export default {
       message: "",
       image: 'https://randomuser.me/api/portraits/men/85.jpg',
       isSending: false,
-      user: "Agus", 
+      user: "Agus",
+      position: 'user'
     };
   },
   methods: {
     onSendMessage() {
       if (this.message.trim() === "") return;
-
-      // Create a timestamp when the message is sent
-      const timestamp = new Date(); // Raw Date object
+      const timestamp = new Date();
 
       // Emit the message with user, message, and timestamp
       this.$emit('send-message', {
         image: this.image,
         user: this.user,
         message: this.message,
-        time: timestamp, // Send raw timestamp
+        position: this.position,
+        time: timestamp,
       });
-
-      // Reset the input
       this.message = "";
       this.isSending = false;
     },
