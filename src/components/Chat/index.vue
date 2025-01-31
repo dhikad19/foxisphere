@@ -102,7 +102,7 @@
               </div>
             </div>
             <v-divider></v-divider>
-            <p class="title-chat-list">Guild</p>
+            <p class="title-chat-list">Guild / Clan</p>
             <div style="padding: 10px;">
               <div class="chat-list__friend" v-for="(item, i) in guildList" :key="i">
                 <div class="chat-list__team-content">
@@ -200,12 +200,16 @@
                               </v-list-item>
                             </v-list>
                           </v-menu>
-                          <p style="font-size: 12px" class="ml-2"> {{ formatTime(item.time) }} </p>
+                          <p style="font-size: 11px" class="ml-2"> {{ formatTime(item.time) }} </p>
                         </div>
-                        <v-menu location="start" :close-on-content-click="false" offset="10">
+                        <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
                           <template v-slot:activator="{ props }">
-                            <div class="btn-action-hover" v-bind="props">
-                              <v-icon>
+                            <div 
+                              class="btn-action-hover__option" 
+                              v-bind="props"
+                              :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f' : 'color: transparent'"
+                            >
+                              <v-icon size="18" >
                                 mdi-dots-vertical
                               </v-icon>
                             </div>
@@ -215,7 +219,7 @@
                               <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
                             </div>
 
-                            <v-menu location="bottom" :close-on-content-click="false" offset="10">
+                            <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
                               <template v-slot:activator="{ props }">
                                 <div class="btn-action-hover ml-1 mr-1" v-bind="props">
                                   <v-icon size="20" color="#4f4f4f">
@@ -223,9 +227,21 @@
                                   </v-icon>
                                 </div>
                               </template>
-                              <v-card>
-                                test
-                              </v-card>
+                              <div class="action-hover d-flex align-center justify-center" style="gap: 5px">
+                                <div v-for="(reaction, j) in reaction" :key="j">
+                                  <div 
+                                    style="cursor: pointer; font-size: 18px; user-select: none" 
+                                    @click="handleReaction(i, j)"
+                                  >
+                                    {{ reaction.emoticon }}
+                                  </div>
+                                </div>
+                                <div @click="handleExpandReaction()" class="btn-action-hover">
+                                  <v-icon>
+                                    mdi-plus
+                                  </v-icon>
+                                </div>
+                              </div>
                             </v-menu>
 
                             <div class="btn-action-hover">
@@ -243,10 +259,66 @@
                   </div>
                   <div v-else style="word-wrap: break-word; width: 100%">
                     <div class="chat-bubles_same-person">
-                      <p class="chat-time__same-user"> {{ formatTime(item.time) }} </p>
-                      <p class="chat-same__user">
-                        {{ item.message }} 
-                      </p>
+                      <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
+                      <div class="d-flex justify-space-between align-center" style="width: 100%">
+                        <p class="chat-same__user">
+                          {{ item.message }} 
+                        </p>
+                        <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
+                          <template v-slot:activator="{ props }">
+                            <div 
+                              class="btn-action-hover__option" 
+                              v-bind="props"
+                              :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f' : 'color: transparent'"
+                            >
+                              <v-icon size="18" >
+                                mdi-dots-vertical
+                              </v-icon>
+                            </div>
+                          </template>
+                          <div class="d-flex action-hover">
+                            <div class="btn-action-hover">
+                              <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
+                            </div>
+  
+                            <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
+                              <template v-slot:activator="{ props }">
+                                <div class="btn-action-hover ml-1 mr-1" v-bind="props">
+                                  <v-icon size="20" color="#4f4f4f">
+                                    mdi-emoticon-outline
+                                  </v-icon>
+                                </div>
+                              </template>
+                              <div class="action-hover d-flex align-center justify-center" style="gap: 5px">
+                                <div v-for="(reaction, j) in reaction" :key="j">
+                                  <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                    {{ reaction.emoticon }}
+                                  </div>
+                                </div>
+                                <div @click="handleExpandReaction()" class="btn-action-hover">
+                                  <v-icon>
+                                    mdi-plus
+                                  </v-icon>
+                                </div>
+                              </div>
+                            </v-menu>
+  
+                            <div class="btn-action-hover">
+                              <v-icon size="20" color="#4f4f4f">
+                                mdi-flag-outline
+                              </v-icon>
+                            </div>
+                          </div>
+                        </v-menu>
+                      </div>
+                    </div>
+                    <div v-if="item.reaction.length > 0" class="d-flex align-center mt-2" style="margin-left: 54px; flex-wrap: wrap">
+                      <div v-for="(reactionList, k) in item.reaction" :key="k">
+                        <div class="d-flex align-center mr-2 mb-2" :class="reactionList.user ? 'reaction-box__user' : 'reaction-box'" @click="handleUpdateReaction(i, k)">
+                          <p style="font-size: 15px" class="mr-1">{{reactionList.emoticon}}</p>
+                          <p style="font-size: 12px; margin-top: 2px">{{reactionList.count}}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <!-- <div class="action-hover" v-if="item.position == 'other'">
@@ -300,6 +372,17 @@ export default {
   name: 'ChatComponents',
   data() {
     return {
+      menuCLoseOnContentClick: true,
+      emoticonMenu: false,
+      reaction: [
+        { id: 1, emoticon: '😀' },
+        { id: 2, emoticon: '😂' },
+        { id: 3, emoticon: '😍' },
+        { id: 4, emoticon: '😎' },
+        { id: 5, emoticon: '😢' },
+        { id: 6, emoticon: '😡' },
+        { id: 7, emoticon: '❤️' }
+      ],
       items: [
         { title: 'Click Me' },
         { title: 'Click Me' },
@@ -313,7 +396,9 @@ export default {
           isSending: false,
           user: "Farhan",
           position: 'other',
-          time: new Date()
+          isMenuActive: false,
+          time: new Date(),
+          reaction: []
         },
         {
           message: "bagaimana kabarmu",
@@ -321,7 +406,12 @@ export default {
           isSending: false,
           user: "Farhan",
           position: 'other',
-          time: new Date()
+          isMenuActive: false,
+          time: new Date(),
+          reaction: [
+            { id: 1, emoticon: '😀', count: 3, user: true },
+            { id: 2, emoticon: '😂', count: 5, user: false },
+          ]
         },
         {
           message: "Aku sedang di jakarta",
@@ -329,7 +419,9 @@ export default {
           isSending: false,
           user: "Farhan",
           position: 'other',
-          time: new Date()
+          isMenuActive: false,
+          time: new Date(),
+          reaction: []
         },
       ],
       variant: null,
@@ -711,6 +803,48 @@ export default {
     },
   },
   methods: {
+    handleExpandReaction() {
+      this.menuCLoseOnContentClick = false
+      this.emoticonMenu = true
+    },
+    handleReaction(i, j) {
+      const selectedMessage = this.messages[i]; // Get the selected message
+      const selectedReaction = this.reaction[j]; // Get the selected reaction (from availableReactions)
+
+      // Check if the user has already reacted to this emoji
+      const existingReaction = selectedMessage.reaction.find(
+        (r) => r.id === selectedReaction.id && r.user // Assuming "Farhan" is the current user
+      );
+
+      if (!existingReaction) {
+        // If the user has not reacted with this emoji yet, add the reaction
+        const reaction = selectedMessage.reaction.find(
+          (r) => r.id === selectedReaction.id
+        );
+
+        if (reaction) {
+          // If the emoji already exists, just increment the count
+          reaction.count++;
+        } else {
+          // Otherwise, add the emoji with a count of 1
+          selectedMessage.reaction.push({
+            id: selectedReaction.id,
+            emoticon: selectedReaction.emoticon,
+            count: 1,
+            hasGiven: true,
+            user: true, // Store the user who reacted
+          });
+        }
+      } 
+      this.emoticonMenu = false
+      this.messages[i].isMenuActive = false
+    },
+    handleUpdateReaction(i, k) {
+      if (!this.messages[i].reaction[k].user) {
+        this.messages[i].reaction[k].count++
+        this.messages[i].reaction[k].user = true
+      }
+    },
     handleClose() {
       this.handleCloseChat()
     },

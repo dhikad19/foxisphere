@@ -71,6 +71,8 @@ export default {
         message: this.message,
         position: this.position,
         time: timestamp,
+        reaction: [],
+        isMenuActive: false
       });
       this.message = "";
       this.isSending = false;
