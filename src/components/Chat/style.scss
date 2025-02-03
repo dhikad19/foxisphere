@@ -2,11 +2,13 @@
   position: fixed;
   bottom: 0;
   right: 0;
+  z-index: 999;
 }
 
 .chat-wrapper__variant {
   position: fixed;
   right: 0;
+  z-index: 999;
   bottom: 50vh;
 }
 

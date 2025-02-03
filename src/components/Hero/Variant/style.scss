@@ -1,0 +1,93 @@
+.hero-variant-container {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-controller {
+  background-color: #ffffff7c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  max-width: 130px;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: #bdc0d6;
+  cursor: pointer;
+  &:hover {
+    background-color: #ff7800;
+  }
+}
+
+.progress-container {
+  animation: expandWidth 0.2s ease-out forwards;
+  background-color: #bdc0d6;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 8px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ff7800;
+  width: 0;
+  transition: none;
+}
+
+@keyframes expandWidth {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 40px;
+  }
+}
+
+.top-games {
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 4px;
+
+  .title-section {
+    color: white;
+    border-radius: 4px;
+    background-color: #ffb308;
+    padding: 10px;
+  }
+}
+
+.top-guild {
+  font-size: 15px;
+  font-weight: 500;
+
+  .title-section {
+    color: white;
+    border-radius: 4px;
+    background-color: #ffb308;
+    padding: 10px;
+  }
+}
+
+.left-class {
+  padding-right: 20px;
+  @media screen and (max-width: 960px) {
+    padding-right: 4px;
+    padding-top: 25px;
+  }
+}
+
+.right-class {
+  padding-left: 20px;
+  @media screen and (max-width: 960px) {
+    padding-left: 4px;
+    padding-top: 25px;
+  }
+}

@@ -6,113 +6,25 @@
     <Footer /> -->
     <!-- <Bar /> -->
     <Navigation />
-    <div>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
-      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, architecto.</h1>
+    <div class="content-container pa-4" style="margin-top: 65px">
+      <HeroVariant />
     </div>
   </div>
 </template>
 
+<style scoped lang="scss">
+.content-container {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+</style>
+
 <script>
   // import Bar from '@/components/Bar/index.vue'
   import Navigation from '@/components/Navigation/index.vue'
+  import HeroVariant from '@/components/Hero/Variant/index.vue'
 // import Hero from '@/components/Hero/index.vue'
 // import HeaderBar from '@/components/Header/index.vue'
 // import Timeline from '@/components/Timeline/index.vue'
@@ -122,6 +34,7 @@ export default {
   components: {
     // Bar,
     Navigation,
+    HeroVariant
     // HeaderBar,
     // Hero,
     // Footer,

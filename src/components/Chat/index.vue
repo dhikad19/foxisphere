@@ -807,6 +807,7 @@ export default {
       this.menuCLoseOnContentClick = false
       this.emoticonMenu = true
     },
+
     handleReaction(i, j) {
       const selectedMessage = this.messages[i]; // Get the selected message
       const selectedReaction = this.reaction[j]; // Get the selected reaction (from availableReactions)
@@ -839,19 +840,23 @@ export default {
       this.emoticonMenu = false
       this.messages[i].isMenuActive = false
     },
+
     handleUpdateReaction(i, k) {
       if (!this.messages[i].reaction[k].user) {
         this.messages[i].reaction[k].count++
         this.messages[i].reaction[k].user = true
       }
     },
+
     handleClose() {
       this.handleCloseChat()
     },
+
     isSameUser(index) {
       if (index === 0) return false;
       return this.messages[index].user === this.messages[index - 1].user;
     },
+
     formatTime(timestamp) {
       const now = new Date();
       const messageDate = new Date(timestamp);
@@ -870,13 +875,16 @@ export default {
         return messageDate.toLocaleDateString();
       }
     },
+
     addMessage(message) {
       this.messages.push(message);
     },
+
     handleMaximize() {
-    this.variant = 'full'
-    localStorage.setItem('variant', 'full')
+      this.variant = 'full'
+      localStorage.setItem('variant', 'full')
     },
+
     handleMinimize() {
       this.variant = 'minimize'
       localStorage.setItem('variant', 'minimize')
