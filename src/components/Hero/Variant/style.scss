@@ -54,13 +54,36 @@
 .top-games {
   font-size: 15px;
   font-weight: 500;
-  border-radius: 4px;
 
   .title-section {
     color: white;
-    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     background-color: #ffb308;
     padding: 10px;
+  }
+
+  .list-section {
+    padding: 10px;
+    border: 1px solid #ffb308;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+    @media screen and (max-width: 960px) {
+      font-size: 13px;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    padding-right: 4px;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-right: 0px;
+    font-size: 14px;
   }
 }
 
@@ -70,22 +93,45 @@
 
   .title-section {
     color: white;
-    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     background-color: #ffb308;
     padding: 10px;
+  }
+
+  .list-section {
+    padding: 10px;
+    border: 1px solid #ffb308;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+    @media screen and (max-width: 960px) {
+      font-size: 13px;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    padding-left: 4px;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+    padding-left: 0px;
   }
 }
 
 .left-class {
-  padding-right: 20px;
+  padding-right: 15px;
   @media screen and (max-width: 960px) {
     padding-right: 4px;
-    padding-top: 25px;
   }
 }
 
 .right-class {
-  padding-left: 20px;
+  padding-left: 15px;
   @media screen and (max-width: 960px) {
     padding-left: 4px;
     padding-top: 25px;

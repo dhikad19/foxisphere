@@ -8,6 +8,12 @@
   max-width: 120px;
 }
 
+.app-bar-logo__mobile {
+  max-height: 30px;
+  min-width: 30px;
+  max-width: 30px;
+}
+
 .app-bar-content {
   padding-left: 20px;
   padding-right: 20px;
@@ -15,6 +21,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media screen and (max-width: 1200px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 .btn-header {
@@ -27,6 +37,10 @@
   cursor: pointer;
   &:hover {
     background-color: #4f4f4f31;
+  }
+  @media screen and (max-width: 1280px) {
+    height: 35px;
+    min-width: 35px;
   }
 }
 
@@ -103,4 +117,97 @@
   user-select: none;
   height: 18px;
   width: 18px;
+}
+
+.layout-sidebar {
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+}
+
+.mobile-left-navigation {
+  display: none;
+  @media screen and (max-width: 1080px) {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+}
+
+.dekstop-left-navigation {
+  @media screen and (max-width: 1080px) {
+    display: none;
+  }
+}
+
+.btn-drawer {
+  width: 33px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-container {
+  color: #4f4f4f;
+  cursor: pointer;
+  padding: 12px;
+  .username {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 2px;
+  }
+  .email {
+    font-size: 13px;
+    line-height: normal;
+  }
+}
+
+.profile-list {
+  padding: 12px;
+  font-size: 14px;
+  color: #4f4f4f;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  border-radius: 4px;
+  cursor: pointer;
+  p {
+    margin-left: 12px;
+  }
+  &:hover {
+    background-color: #4f4f4f2d;
+  }
+}
+
+.profile-list__user {
+  padding: 12px;
+  font-size: 14px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #4f4f4f;
+  p {
+    margin-left: 12px;
+  }
+}
+
+.profile-list__dark-mode {
+  padding-left: 12px;
+  font-size: 14px;
+  color: #4f4f4f;
+  display: flex;
+  cursor: default;
+  align-items: center;
+  user-select: none;
+  border-radius: 4px;
+  p {
+    margin-left: 12px;
+  }
 }

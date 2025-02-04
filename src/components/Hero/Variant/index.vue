@@ -1,5 +1,6 @@
 <template>
   <div class="hero-variant-container">
+    <SearchComponent class="mb-3" />
     <div class="hero-variant-wrapper">
       <v-row dense>
         <v-col cols="12" md="8" style="height: 100%" class="left-class">
@@ -33,7 +34,7 @@
         </v-col>
         <v-col cols="12" md="4" style="height: 100%" class="right-class">
           <v-row dense>
-            <v-col cols="6" md="12">
+            <v-col cols="12" sm="6" md="12">
               <div class="top-games">
                 <div class="title-section d-flex align-center">
                   <p class="mr-2">Top Games</p>
@@ -41,15 +42,21 @@
                     mdi-crown-outline
                   </v-icon>
                 </div>
+                <div class="list-section">
+                  
+                </div>
               </div>
             </v-col>
-            <v-col cols="6" md="12">
+            <v-col cols="12" sm="6" md="12">
               <div class="top-guild">
                 <div class="title-section d-flex align-center">
                   <p class="mr-2">Top Guild</p>
                   <v-icon color="white">
                     mdi-crown-outline
                   </v-icon>
+                </div>
+                <div class="list-section">
+
                 </div>
               </div>
             </v-col>
@@ -65,6 +72,7 @@
 </style>
 
 <script>
+import SearchComponent from '../../../components/Search/Mobile/index.vue'
 export default {
   name: 'HeroVariantComponent',
   data() {
@@ -126,6 +134,11 @@ export default {
       ],
     }
   },
+
+  components: {
+    SearchComponent
+  },
+
   mounted() {
     document.addEventListener('visibilitychange', this.handleVisibilityChange);
     this.startProgress();

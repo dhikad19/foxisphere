@@ -6,7 +6,7 @@
     <Footer /> -->
     <!-- <Bar /> -->
     <Navigation />
-    <div class="content-container pa-4" style="margin-top: 65px">
+    <div class="content-container pa-3" style="margin-top: 65px">
       <HeroVariant />
     </div>
   </div>
@@ -15,7 +15,7 @@
 <style scoped lang="scss">
 .content-container {
   position: relative;
-  max-width: 1100px;
+  max-width: 1080px;
   margin: 0 auto;
   width: 100%;
 }
