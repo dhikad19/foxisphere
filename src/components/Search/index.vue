@@ -17,9 +17,8 @@
             v-model="search"
             density="compact"
             prepend-inner-icon="mdi-magnify"
-            placeholder="Search..."
+            placeholder="Cari..."
             @input="filterResources"
-            style="background-color: white"
             hide-details
             clearable>
           </v-text-field>

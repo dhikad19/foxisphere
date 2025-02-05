@@ -1,6 +1,8 @@
 <template>
   <div class="hero-variant-container">
-    <SearchComponent class="mb-3" />
+    <div class="search-mobile">
+      <SearchComponent class="mb-3" />
+    </div>
     <div class="hero-variant-wrapper">
       <v-row dense>
         <v-col cols="12" md="8" style="height: 100%" class="left-class">

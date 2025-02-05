@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-container">
     <v-app>
-      <v-app-bar elevation="0" class="app-bar-container">
+      <v-app-bar elevation="0" height="65" class="app-bar-container">
         <div class="app-bar-content">
           <v-row dense>
             <v-col cols="6" sm="6" md="6" lg="3">
@@ -28,7 +28,7 @@
                 </v-img>
               </div>
             </v-col>
-            <v-col md="6" v-if="windowWidth > '1280'" class="d-flex justify-center align-center">
+            <v-col md="6" v-if="windowWidth >= '1280'" class="d-flex justify-center align-center">
               <SearchComponent class="search" />
             </v-col>
             <v-col cols="6" sm="6" md="6" lg="3" class="d-flex flex-row-reverse align-center">
@@ -42,7 +42,7 @@
                 <div class="btn-header" v-else>
                   <v-icon size="26">mdi-plus</v-icon>
                 </div>
-                <v-menu v-if="windowWidth > '1280'" offset="14" :close-on-content-click="false">
+                <v-menu v-if="windowWidth >= '1280'" offset="14" :close-on-content-click="false">
                   <template v-slot:activator="{ props }">
                     <div class="btn-header ml-2" v-bind="props">
                       <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
@@ -167,7 +167,7 @@
                   </v-badge>
                   <v-icon v-else size="22" >mdi-bell-outline</v-icon>
                 </div>
-                <div v-if="windowWidth < '1280'" class="btn-header ml-1" @click="handleChat()">
+                <div v-if="windowWidth <= '1280'" class="btn-header ml-1" @click="handleChat()">
                   <v-icon size="24">mdi-chat-processing-outline</v-icon>
                 </div>
                 <div v-else class="btn-header ml-2" @click="handleChat()">
@@ -176,7 +176,7 @@
                   </v-badge>
                   <v-icon v-else size="24">mdi-chat-processing-outline</v-icon>
                 </div>
-                <v-menu offset="14" v-if="windowWidth > '1280'" :close-on-content-click="false">
+                <v-menu offset="14" v-if="windowWidth >= '1280'" :close-on-content-click="false">
                   <template v-slot:activator="{ props }">
                     <div class="btn-header ml-2" v-bind="props">
                       <v-avatar size="30">
@@ -312,8 +312,6 @@
               ></v-btn>
             </template>
           </v-list-item> -->
-  
-          <v-divider></v-divider>
   
           <v-list density="compact" nav>
             <v-list-item prepend-icon="mdi-home-city" title="Home" value="home"></v-list-item>

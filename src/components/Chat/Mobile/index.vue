@@ -1,29 +1,7 @@
 <template>
-  <div class="chat-container">
-    <div class="chat-wrapper" v-if="variant == 'full'">
-      <div 
-        class="chat-box"
-      >
-        <div class="chat-topbar">
-          <p style="font-weight: 500">Chat</p>
-          <div class="d-flex">
-            <div class="chat-btn" @click="handleFull()">
-              <v-icon size="17">
-                mdi-open-in-new
-              </v-icon>
-            </div>
-            <div class="chat-btn" @click="handleMinimize()">
-              <v-icon size="17">
-                mdi-minus
-              </v-icon>
-            </div>
-            <div class="chat-btn" @click="handleClose()">
-              <v-icon size="17">
-                mdi-close
-              </v-icon>
-            </div>
-          </div>
-        </div>
+  <div class="chat-mobile-container">
+    <div class="chat-mobile-wrapper">
+      <div class="chat-mobile-box">
         <div class="chat-box__content">
           <div class="chat-list">
             <div style="padding: 10px;">
@@ -159,8 +137,13 @@
               <p>
                 Agus
               </p>
+
+              <div class="chat-btn" @click="handleClose()">
+                <v-icon size="17">
+                  mdi-close
+                </v-icon>
+              </div>
             </div>
-            <v-divider></v-divider>
             <div class="chat-content__box">
               <div class="chat-data__box">
                 <div class="chat-bubbles" v-for="(item, i) in messages" :key="i">
@@ -184,7 +167,7 @@
                       </v-menu>
                     </div>
                     <div style="width: 100%;">
-                      <div class="d-flex align-start justify-space-between" style="width: 100%">
+                      <div class="d-flex align-center justify-space-between" style="width: 100%">
                         <div class="d-flex align-center"> 
                           <v-menu :disabled="item.position == 'user'" open-on-hover position="center" offset="14">
                             <template v-slot:activator="{ props }">
@@ -259,10 +242,8 @@
                   </div>
                   <div v-else style="word-wrap: break-word; width: 100%">
                     <div class="chat-bubles_same-person">
-                      <div style="height: 100%" class="d-flex align-start">
-                        <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
-                      </div>
-                      <div class="d-flex justify-space-between align-start" style="width: 100%; height: 100%">
+                      <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
+                      <div class="d-flex justify-space-between align-center" style="width: 100%">
                         <p class="chat-same__user">
                           {{ item.message }} 
                         </p>
@@ -323,28 +304,9 @@
                       </div>
                     </div>
                   </div>
-                  <!-- <div class="action-hover" v-if="item.position == 'other'">
-                    <div class="d-flex">
-                      <div class="btn-action-hover">
-                        <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
-                      </div>
-                      <div class="btn-action-hover ml-1 mr-1">
-                        <v-icon size="20" color="#4f4f4f">
-                          mdi-emoticon-outline
-                        </v-icon>
-                      </div>
-
-                      <div class="btn-action-hover">
-                        <v-icon size="20" color="#4f4f4f">
-                          mdi-flag-outline
-                        </v-icon>
-                      </div>
-                    </div>
-                  </div> -->
                 </div>
               </div>
               <div class="chat-text">
-                <v-divider></v-divider>
                 <Input @send-message="addMessage"/>
               </div>
             </div>
@@ -352,30 +314,17 @@
         </div>
       </div>
     </div>
-    <div class="chat-wrapper__variant" v-else-if="variant == 'minimize'">
-      <div 
-        @click="handleMaximize()"
-        class="chat-box__variant"
-      >
-        <p>Chat</p>
-      </div>
-    </div>
-    <div class="chat-wrapper-mobile">
-      <ChatMobile />
-    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@use './style.scss';
+@use 'style.scss';
 </style>
 
-
 <script>
-import Input from './Input/index.vue'
-import ChatMobile from './Mobile/index.vue'
+import Input from '../Input/index.vue'
 export default {
-  name: 'ChatComponents',
+  name: 'ChatMobileComponents',
   data() {
     return {
       menuCLoseOnContentClick: true,
@@ -800,8 +749,7 @@ export default {
     }
   },
   components: {
-    Input,
-    ChatMobile
+    Input
   },
   props: {
     handleCloseChat: {

@@ -9,7 +9,7 @@
       v-model="overlay"
       :opacity="0.7"
       class="d-flex justify-center">
-      <v-card class="search-card" variant="text" color="white">
+      <v-card class="search-card" color="#e8e8e8">
         <div style="width: 100%">
           <v-text-field
             variant="solo"
@@ -17,9 +17,8 @@
             v-model="search"
             density="compact"
             prepend-inner-icon="mdi-magnify"
-            placeholder="Search..."
+            placeholder="Cari..."
             @input="filterResources"
-            style="background-color: white; border-radius: 4px"
             hide-details
             clearable>
           </v-text-field>

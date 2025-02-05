@@ -41,6 +41,9 @@
   @media screen and (max-width: 1280px) {
     height: 35px;
     min-width: 35px;
+    &:hover {
+      background-color: transparent;
+    }
   }
 }
 
