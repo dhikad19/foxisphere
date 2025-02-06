@@ -5,8 +5,8 @@
         <div class="chat-box__content">
           <div class="chat-list">
             <div style="padding: 10px;">
-              <div class="chat-list__friend" v-for="(item, i) in  friendList" :key="i">
-                <div class="chat-list__friend-content">
+              <div class="chat-list__friend" v-for="(item, i) in chatList" :key="i">
+                <div class="chat-list__friend-content" v-if="item.type == 'personal'">
                   <v-avatar size="30">
                     <v-img :src="item.photo"></v-img>
                   </v-avatar>
@@ -25,110 +25,31 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <v-divider></v-divider>
-            <p class="title-chat-list">Tim / Grup</p>
-            <div style="padding: 10px;">
-              <div class="chat-list__friend" v-for="(item, i) in teamList" :key="i">
-                <div class="chat-list__team-content">
-                  <p style="font-size: 13px" class="mb-1">{{ item.game.gameName }}</p>
-                  <div>
-                    <div v-if="item.team.length > 4" class="d-flex" style="margin-left: 16px">
-                      <div v-for="(teams, j) in item.team.slice(0, 3)" :key="j" class="d-flex">
-                        <v-avatar size="30" style="margin-top: 2px; margin-left: -16px; z-index: 9;">
-                          <v-img 
-                            :src="teams.image" 
-                          >
-                          </v-img>
-                        </v-avatar>
-                      </div>
-                      <div 
-                        class="d-flex align-center justify-center" 
-                        style="margin-left: -16px; z-index: 99;  margin-top: 2px; height: 32px; width: 32px; background-color: #ff7800; border-radius: 50%; color: white">
-                        <p style="font-size: 13px; font-weight: 500">
-                          +{{ item.team.length - 4 }}
+                <div class="chat-list__friend-content flex-column" v-if="item.type == 'guild' || item.type == 'team'">
+                  <div class="mb-1 d-flex align-center justify-space-between" style="width: 100%">
+                    <p style="font-size: 11px">{{ item.game.gameName }} </p>
+                    
+                  </div>
+                  <div class="d-flex align-center justify-space-between" style="width: 100%">
+                    <v-avatar size="30">
+                      <v-img :src="item.photo"></v-img>
+                    </v-avatar>
+                    <div class="ml-2" style="width: 100%">
+                      <div class="d-flex justify-space-between align-center" style="width: 100%">
+                        <p style="font-size: 13px; font-weight: 500" v-if="item.type == 'guild'">
+                          {{ item.guildName }}
                         </p>
+                        <p style="font-size: 13px; font-weight: 500" v-else>
+                          {{ item.teamName }}
+                        </p>
+                        <p style="font-size: 11px">{{ item.latestChat.time }}</p>
                       </div>
-                    </div>
-                    <div v-else class="d-flex" style="margin-left: 16px">
-                      <div v-for="(teams, j) in item.team.slice(0, 3)" :key="j" class="d-flex">
-                        <v-avatar size="30" style="margin-top: 2px; margin-left: -16px;z-index: 9;">
-                          <v-img 
-                            :src="teams.image" 
-                          >
-                          </v-img>
-                        </v-avatar>
+                      <div>
+                        <p style="font-size: 11px">{{item.latestChat.username}}: {{item.latestChat.chat}}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- <div class="ml-2" style="width: 100%">
-                  <div class="d-flex justify-space-between" style="width: 100%">
-                    <p style="font-size: 13px; font-weight: 500">
-                      {{ item.name }}
-                    </p>
-                    <p style="font-size: 11px;">
-                      {{ item.latestChat.time }}
-                    </p>
-                  </div>
-                  <div>
-                    <p v-if="item.latestChat.personChat == 'user'" style="font-size: 12px">{{item.latestChat.chat}}</p>
-                    <p v-else style="font-size: 11px">Anda: {{item.latestChat.chat}}</p>
-                  </div>
-                </div> -->
-              </div>
-            </div>
-            <v-divider></v-divider>
-            <p class="title-chat-list">Guild / Clan</p>
-            <div style="padding: 10px;">
-              <div class="chat-list__friend" v-for="(item, i) in guildList" :key="i">
-                <div class="chat-list__team-content">
-                  <p style="font-size: 13px" class="mb-1">{{ item.game.gameName }}</p>
-                  <div>
-                    <div v-if="item.team.length > 4" class="d-flex" style="margin-left: 16px">
-                      <div v-for="(teams, j) in item.team.slice(0, 3)" :key="j" class="d-flex">
-                        <v-avatar size="30" style="margin-top: 2px; margin-left: -16px; z-index: 9;">
-                          <v-img 
-                            :src="teams.image" 
-                          >
-                          </v-img>
-                        </v-avatar>
-                      </div>
-                      <div 
-                        class="d-flex align-center justify-center" 
-                        style="margin-left: -16px; z-index: 99;  margin-top: 2px; height: 32px; width: 32px; background-color: #ff7800; border-radius: 50%; color: white">
-                        <p style="font-size: 13px; font-weight: 500">
-                          +{{ item.team.length - 4 }}
-                        </p>
-                      </div>
-                    </div>
-                    <div v-else class="d-flex" style="margin-left: 16px">
-                      <div v-for="(teams, j) in item.team.slice(0, 3)" :key="j" class="d-flex">
-                        <v-avatar size="30" style="margin-top: 2px; margin-left: -16px;z-index: 9;">
-                          <v-img 
-                            :src="teams.image" 
-                          >
-                          </v-img>
-                        </v-avatar>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div class="ml-2" style="width: 100%">
-                  <div class="d-flex justify-space-between" style="width: 100%">
-                    <p style="font-size: 13px; font-weight: 500">
-                      {{ item.name }}
-                    </p>
-                    <p style="font-size: 11px;">
-                      {{ item.latestChat.time }}
-                    </p>
-                  </div>
-                  <div>
-                    <p v-if="item.latestChat.personChat == 'user'" style="font-size: 12px">{{item.latestChat.chat}}</p>
-                    <p v-else style="font-size: 11px">Anda: {{item.latestChat.chat}}</p>
-                  </div>
-                </div> -->
               </div>
             </div>
           </div>
@@ -146,7 +67,13 @@
             </div>
             <div class="chat-content__box">
               <div class="chat-data__box">
-                <div class="chat-bubbles" v-for="(item, i) in messages" :key="i">
+                <div 
+                  class="chat-bubbles" 
+                  @mouseenter="onHover(i)" 
+                  @mouseleave="onLeave(i)" 
+                  v-for="(item, i) in messages" 
+                  :key="i"
+                >
                   <div v-if="!isSameUser(i)" class="d-flex" style="width: 100%;">
                     <div class="mr-5 ml-1">
                       <v-menu :disabled="item.position == 'user'" open-on-hover position="center" offset="14">
@@ -188,7 +115,7 @@
                         <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
                           <template v-slot:activator="{ props }">
                             <div 
-                              class="btn-action-hover__option" 
+                              :class="hoveredIndex === i ? 'btn-action-hover__option' : 'btn-action-option'"
                               v-bind="props"
                               :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f' : 'color: transparent'"
                             >
@@ -235,7 +162,7 @@
                           </div>
                         </v-menu>
                       </div>
-                      <p style="font-size: 13px; margin-top: 4px; max-width: 250px">
+                      <p style="font-size: 13px; margin-top: 4px; width: 65%; word-wrap: break-word;">
                         {{ item.message }}
                       </p>
                     </div>
@@ -250,9 +177,9 @@
                         <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
                           <template v-slot:activator="{ props }">
                             <div 
-                              class="btn-action-hover__option" 
+                              :class="hoveredIndex === i ? 'btn-action-hover__option' : 'btn-action-option'"
                               v-bind="props"
-                              :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f' : 'color: transparent'"
+                              :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f !important;' : 'color: transparent;'"
                             >
                               <v-icon size="18" >
                                 mdi-dots-vertical
@@ -327,6 +254,7 @@ export default {
   name: 'ChatMobileComponents',
   data() {
     return {
+      hoveredIndex: null,
       menuCLoseOnContentClick: true,
       emoticonMenu: false,
       reaction: [
@@ -380,16 +308,99 @@ export default {
         },
       ],
       variant: null,
-      friendList: [
+      chatList: [
+        {
+          teamName: 'Team Kucing',
+          game: {
+              gameImage: '',
+              gameName: 'Zenless Zone Zero',
+            },
+          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          team: [
+              {
+                name: 'Agus',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Firman',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Nugie',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Budi',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Agil',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Mio',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+            ],
+            latestChat: {
+              read: false,
+              time: '08:40',
+              chat: 'kocak',
+              username: '@rigen',
+            },
+          type: 'team'
+        },
         {
           name: 'Agus',
           photo: 'https://randomuser.me/api/portraits/men/85.jpg',
           latestChat: {
+            read: true,
+            time: '07:00',
+            chat: 'hi',
+            personChat: 'user'
+          },
+          type: 'personal'
+        },
+        {
+          guildName: 'Guild Arancar',
+          game: {
+              gameImage: '',
+              gameName: 'Zenless Zone Zero',
+            },
+          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          team: [
+              {
+                name: 'Agus',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Firman',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Nugie',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Budi',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Agil',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Mio',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+            ],
+          latestChat: {
             read: false,
             time: '08:40',
             chat: 'lol',
-            personChat: 'user'
-          }
+            username: '@dikad19',
+          },
+          type: 'guild'
         },
         {
           name: 'Mukti',
@@ -399,7 +410,8 @@ export default {
             time: '07:00',
             chat: 'hi',
             personChat: 'user'
-          }
+          },
+          type: 'personal'
         },
         {
           name: 'Rigen',
@@ -409,7 +421,8 @@ export default {
             time: '12:10',
             chat: 'hahaha',
             personChat: 'person'
-          }
+          },
+          type: 'personal'
         },
         {
           name: 'Hifdzi',
@@ -419,333 +432,51 @@ export default {
             time: '13:55',
             chat: 'wkwkwk',
             personChat: 'person'
-          }
+          },
+          type: 'personal'
+        },
+        {
+          teamName: 'Team Kambing',
+          game: {
+              gameImage: '',
+              gameName: 'Zenless Zone Zero',
+            },
+          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          team: [
+              {
+                name: 'Agus',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Firman',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Nugie',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Budi',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Agil',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Mio',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+            ],
+            latestChat: {
+            read: false,
+            time: '08:40',
+            chat: 'XD',
+            username: '@kintam',
+          },
+          type: 'team'
         },
       ],
-      teamList: [
-        {
-          teamName: 'Team Kambing',
-          game: {
-              gameImage: '',
-              gameName: 'Zenless Zone Zero',
-            },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
-          team: [
-              {
-                name: 'Agus',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Firman',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Nugie',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Budi',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Agil',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Mio',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-            ],
-          latestChat: {
-            read: false,
-            time: '08:40',
-            chat: 'lol',
-            personChat: 'user'
-          }
-        },
-        {
-          teamName: 'Team Kambing',
-          game: {
-              gameImage: '',
-              gameName: 'Zenless Zone Zero',
-            },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
-          team: [
-              {
-                name: 'Agus',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Firman',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Nugie',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Budi',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Agil',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Mio',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-            ],
-          latestChat: {
-            read: false,
-            time: '08:40',
-            chat: 'lol',
-            personChat: 'user'
-          }
-        },
-        {
-          teamName: 'Team Kambing',
-          game: {
-              gameImage: '',
-              gameName: 'Zenless Zone Zero',
-            },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
-          team: [
-              {
-                name: 'Agus',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Firman',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Nugie',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Budi',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Agil',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Mio',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-            ],
-          latestChat: {
-            read: false,
-            time: '08:40',
-            chat: 'lol',
-            personChat: 'user'
-          }
-        },
-        {
-          teamName: 'Team Kambing',
-          game: {
-              gameImage: '',
-              gameName: 'Zenless Zone Zero',
-            },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
-          team: [
-              {
-                name: 'Agus',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Firman',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Nugie',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Budi',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Agil',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Mio',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-            ],
-          latestChat: {
-            read: false,
-            time: '08:40',
-            chat: 'lol',
-            personChat: 'user'
-          }
-        },
-        {
-          teamName: 'Team Kambing',
-          game: {
-              gameImage: '',
-              gameName: 'Zenless Zone Zero',
-            },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
-          team: [
-              {
-                name: 'Agus',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Firman',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Nugie',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Budi',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Agil',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Mio',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-            ],
-          latestChat: {
-            read: false,
-            time: '08:40',
-            chat: 'lol',
-            personChat: 'user'
-          }
-        },
-      ],
-      guildList: [
-        {
-          teamName: 'Team Kambing',
-          game: {
-              gameImage: '',
-              gameName: 'Zenless Zone Zero',
-            },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
-          team: [
-              {
-                name: 'Agus',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Firman',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Nugie',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Budi',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Agil',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Mio',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-            ],
-          latestChat: {
-            read: false,
-            time: '08:40',
-            chat: 'lol',
-            personChat: 'user'
-          }
-        },
-        {
-          teamName: 'Team Kambing',
-          game: {
-              gameImage: '',
-              gameName: 'Zenless Zone Zero',
-            },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
-          team: [
-              {
-                name: 'Agus',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Firman',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Nugie',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Budi',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Agil',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Mio',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-            ],
-          latestChat: {
-            read: false,
-            time: '08:40',
-            chat: 'lol',
-            personChat: 'user'
-          }
-        },
-        {
-          teamName: 'Team Kambing',
-          game: {
-              gameImage: '',
-              gameName: 'Zenless Zone Zero',
-            },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
-          team: [
-              {
-                name: 'Agus',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Firman',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Nugie',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Budi',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Agil',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-              {
-                name: 'Mio',
-                image: 'https://randomuser.me/api/portraits/men/85.jpg'
-              },
-            ],
-          latestChat: {
-            read: false,
-            time: '08:40',
-            chat: 'lol',
-            personChat: 'user'
-          }
-        },
-      ]
     }
   },
   components: {
@@ -758,6 +489,14 @@ export default {
     },
   },
   methods: {
+    onHover(index) {
+      this.hoveredIndex = index;
+    },
+    
+    onLeave() {
+      this.hoveredIndex = null;
+    },
+    
     handleExpandReaction() {
       this.menuCLoseOnContentClick = false
       this.emoticonMenu = true

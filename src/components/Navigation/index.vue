@@ -230,7 +230,7 @@
                         <v-icon size="23" color="#4f4f4f">
                           mdi-cursor-default-click-outline
                         </v-icon>
-                        <p>Beriklan di <b style="color: #ff7800">Foxon</b></p>
+                        <p>Beriklan di <b style="color: #ff7800"> Foxon</b></p>
                       </div>
                       <v-divider class="mt-3 mb-3"></v-divider>
                       <div class="profile-list">
