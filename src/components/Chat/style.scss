@@ -313,3 +313,19 @@ button {
   padding-bottom: 10px;
   border-bottom: 1px solid #e4e4e4;
 }
+
+.description-chat__right-side {
+  font-size: 14px;
+  max-width: 230px;
+  line-height: normal;
+  text-align: center;
+}
+
+.username__right-side {
+  font-size: 13px;
+  color: #4f4f4f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 55px;
+}

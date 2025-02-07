@@ -27,6 +27,16 @@
         <div class="chat-box__content">
           <div class="chat-list">
             <div style="padding: 10px;">
+              <div class="discover d-flex" style="width: 100%">
+                <div class="chat-list__box-content justify-start" style="width: 100%; padding: 7px">
+                  <v-icon size="18" class="mr-2">
+                    mdi-account-plus-outline
+                  </v-icon>
+                  <p style="font-size: 13px; font-weight: 500">
+                    Cari Teman Baru
+                  </p>
+                </div>
+              </div>
               <div class="chat-list__box" v-for="(item, i) in chatList" :key="i" @click="setActiveChat(i)">
                 <div :class="item.active ? 'chat-list__box-content-active' : ''" class="chat-list__box-content" style="padding-top: 11px" v-if="item.type == 'personal'">
                   <v-avatar size="30" style="margin-bottom: 10px">
@@ -146,12 +156,9 @@
                                     </v-icon>
                                   </div>
                                 </template>
-                                <div class="action-hover d-flex align-center justify-center" style="gap: 5px">
-                                  <div v-for="(reaction, j) in reaction" :key="j">
-                                    <div 
-                                      style="cursor: pointer; font-size: 18px; user-select: none" 
-                                      @click="handleReaction(i, j)"
-                                    >
+                                <div v-if="!expandReaction" class="action-hover d-flex align-center justify-center" style="gap: 5px">
+                                  <div v-for="(reaction, j) in reaction.slice(0, 6)" :key="j">
+                                    <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
                                       {{ reaction.emoticon }}
                                     </div>
                                   </div>
@@ -159,6 +166,13 @@
                                     <v-icon>
                                       mdi-plus
                                     </v-icon>
+                                  </div>
+                                </div>
+                                <div v-else class="action-hover d-flex align-center justify-center" style="gap: 5px; max-width: 200px; flex-wrap: wrap">
+                                  <div v-for="(reaction, j) in reaction" :key="j">
+                                    <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                      {{ reaction.emoticon }}
+                                    </div>
                                   </div>
                                 </div>
                               </v-menu>
@@ -276,18 +290,43 @@
               </div>
             </div>
             <div v-else style="height: 100%;" class="d-flex align-center justify-center flex-column">
-              <p style="font-size: 13px; max-width: 250px; line-height: normal; text-align: center">
-                Cari tim mabar atau ikuti guild dari game yang kamu mainin!
-              </p>
-              <v-btn 
-                class="mt-5" 
-                variant="flat" 
-                color="#ff7800"
-                height="35"
-                style="text-transform: capitalize; letter-spacing: normal"
-              >
-                Cari
-              </v-btn>
+              
+              <div style="margin-top: -60px">
+                <v-img src="/images/icon/search-message.png" class="mb-5" max-height="70" min-width="70"></v-img>
+              </div>
+              
+              <b><span style="color: #ff7800">Foxon</span> Chat</b>
+              <div v-if="friendList.length > 1 && chatList.length == 0">
+                <p class="mt-1" style="line-height: normal; text-align: center; max-width: 230px; font-size: 13px">
+                  Chat dengan teman anda secara pribadi
+                </p>
+                <div class="d-flex justify-space-around mt-4" style="width: 100%">
+                  <div v-for="(item, i) in friendList.slice(0, 3)" :key="i">
+                    <div @click="handleChatFriendList(i)" class="d-flex align-center flex-column" style="cursor: pointer">
+                      <v-avatar size="32">
+                        <v-img :src="item.photo"></v-img>
+                      </v-avatar>
+                      <p class="mt-1 username__right-side">
+                        {{ item.username }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div v-else class="d-flex align-center flex-column justify-center">
+                <p class="description-chat__right-side">
+                  Cari teman baru atau tim mabar dari game yang kamu mainkan!
+                </p>
+                <v-btn 
+                  class="mt-5" 
+                  variant="flat" 
+                  color="#ff7800"
+                  height="35"
+                  style="text-transform: capitalize; letter-spacing: normal"
+                >
+                  Cari
+                </v-btn>
+              </div>
             </div>
           </div>
         </div>
@@ -323,6 +362,32 @@ export default {
       emoticonMenu: false,
       expandReaction: false,
       isChatActive: false,
+      friendList: [
+        {
+          name: 'Agus',
+          id: '0000000122313123',
+          username: '@agusiagus',
+          photo: 'https://randomuser.me/api/portraits/men/81.jpg'
+        },
+        {
+          name: 'Coki',
+          id: '0000000122313124',
+          username: '@cokicoki',
+          photo: 'https://randomuser.me/api/portraits/men/83.jpg'
+        },
+        {
+          name: 'Dita',
+          id: '0000000122313125',
+          username: '@ditabokin',
+          photo: 'https://randomuser.me/api/portraits/women/82.jpg'
+        },
+        {
+          name: 'Bagus',
+          id: '0000000122313126',
+          username: '@bagusbanget',
+          photo: 'https://randomuser.me/api/portraits/men/88.jpg'
+        },
+      ],
       reaction: [
           { id: 1, emoticon: '👍' },
           { id: 2, emoticon: '😂' },
@@ -595,6 +660,10 @@ export default {
     },
   },
   methods: {
+    // handleChatFriendList(i) {
+
+    // },
+
     handleExpandReaction() {
       this.menuCLoseOnContentClick = false
       this.emoticonMenu = true

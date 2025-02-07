@@ -2,15 +2,30 @@
   <div class="chat-mobile-container">
     <div class="chat-mobile-wrapper">
       <div class="chat-mobile-box">
-        <div class="chat-box__content">
-          <div class="chat-list">
+        <div class="chat-box__content-mobile" v-if="windowWidth <= '768'">
+          <div class="chat-list" v-if="!isChatActiveMobile">
             <div style="padding: 10px;">
-              <div class="chat-list__friend" v-for="(item, i) in chatList" :key="i">
-                <div class="chat-list__friend-content" v-if="item.type == 'personal'">
-                  <v-avatar size="30">
+              <div class="discover d-flex" style="width: 100%">
+                <div class="chat-list__box-content justify-start" style="width: 100%; padding: 7px">
+                  <v-icon size="18" class="mr-2">
+                    mdi-account-plus-outline
+                  </v-icon>
+                  <p style="font-size: 13px; font-weight: 500">
+                    Cari Teman Baru
+                  </p>
+                </div>
+              </div>
+              <div class="chat-list__box" v-for="(item, i) in chatList" :key="i" @click="setActiveChat(i)">
+                <div 
+                  :class="item.active ? 'chat-list__box-content-active' : ''" 
+                  class="chat-list__box-content" 
+                  style="padding-top: 11px" 
+                  v-if="item.type == 'personal'"
+                >
+                  <v-avatar size="30" style="margin-bottom: 10px">
                     <v-img :src="item.photo"></v-img>
                   </v-avatar>
-                  <div class="ml-2" style="width: 100%">
+                  <div class="ml-2 list-separator">
                     <div class="d-flex justify-space-between" style="width: 100%">
                       <p style="font-size: 13px; font-weight: 500">
                         {{ item.name }}
@@ -25,16 +40,324 @@
                     </div>
                   </div>
                 </div>
-                <div class="chat-list__friend-content flex-column" v-if="item.type == 'guild' || item.type == 'team'">
-                  <div class="mb-1 d-flex align-center justify-space-between" style="width: 100%">
+                <div 
+                  :class="item.active ? 'chat-list__box-content-active' : ''" 
+                  class="chat-list__box-content flex-column" 
+                  v-if="item.type == 'guild' || item.type == 'team'"
+                >
+                  <div class="mb-1 d-flex align-center justify-space-between" style="width: 100%; padding-top: 11px">
                     <p style="font-size: 11px">{{ item.game.gameName }} </p>
-                    
                   </div>
                   <div class="d-flex align-center justify-space-between" style="width: 100%">
-                    <v-avatar size="30">
+                    <v-avatar size="30" style="margin-bottom: 10px">
                       <v-img :src="item.photo"></v-img>
                     </v-avatar>
-                    <div class="ml-2" style="width: 100%">
+                    <div class="ml-2 list-separator" style="width: 100%">
+                      <div class="d-flex justify-space-between align-center" style="width: 100%">
+                        <p style="font-size: 13px; font-weight: 500" v-if="item.type == 'guild'">
+                          {{ item.guildName }}
+                        </p>
+                        <p style="font-size: 13px; font-weight: 500" v-else>
+                          {{ item.teamName }}
+                        </p>
+                        <p style="font-size: 11px">{{ item.latestChat.time }}</p>
+                      </div>
+                      <div>
+                        <p style="font-size: 11px">{{item.latestChat.username}}: {{item.latestChat.chat}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else>
+            <div class="chat-list__content-mobile">
+              <div v-if="isChatActiveMobile">
+                <div class="chat-top__title">
+                  <p>Agus</p>
+                  <div class="chat-btn" @click="handleClose()">
+                    <v-icon size="17">
+                      mdi-close
+                    </v-icon>
+                  </div>
+                </div>
+                <div class="chat-content__box">
+                  <div class="chat-data__box">
+                    <div 
+                      class="chat-bubbles" 
+                      @mouseenter="onHover(i)" 
+                      @mouseleave="onLeave(i)" 
+                      v-for="(item, i) in messages" 
+                      :key="i"
+                    >
+                      <div v-if="!isSameUser(i)" class="d-flex" style="width: 100%;">
+                        <div class="mr-5 ml-1">
+                          <v-menu :disabled="item.position == 'user'" open-on-hover position="center" offset="14">
+                            <template v-slot:activator="{ props }">
+                              <v-avatar class="avatar-user" size="30" v-bind="props">
+                                <v-img :src="item.image"></v-img>
+                              </v-avatar>
+                            </template>
+                            <v-list>
+                              <v-list-item
+                                v-for="(item, index) in items"
+                                :key="index"
+                                :value="index"
+                              >
+                                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                              </v-list-item>
+                            </v-list>
+                          </v-menu>
+                        </div>
+                        <div style="width: 100%;">
+                          <div class="d-flex align-center justify-space-between" style="width: 100%">
+                            <div class="d-flex align-center"> 
+                              <v-menu :disabled="item.position == 'user'" open-on-hover position="center" offset="14">
+                                <template v-slot:activator="{ props }">
+                                  <p class="chat-user__name" v-bind="props"> {{ item.user }} </p>
+                                </template>
+                                <v-list>
+                                  <v-list-item
+                                    v-for="(item, index) in items"
+                                    :key="index"
+                                    :value="index"
+                                  >
+                                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                  </v-list-item>
+                                </v-list>
+                              </v-menu>
+                              <p style="font-size: 11px" class="ml-2"> {{ formatTime(item.time) }} </p>
+                            </div>
+                            <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
+                              <template v-slot:activator="{ props }">
+                                <div 
+                                  :class="hoveredIndex === i ? 'btn-action-hover__option' : 'btn-action-option'"
+                                  v-bind="props"
+                                  :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f' : 'color: transparent'"
+                                >
+                                  <v-icon size="18" >
+                                    mdi-dots-vertical
+                                  </v-icon>
+                                </div>
+                              </template>
+                              <div class="d-flex action-hover">
+                                <div class="btn-action-hover">
+                                  <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
+                                </div>
+    
+                                <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
+                                  <template v-slot:activator="{ props }">
+                                    <div class="btn-action-hover ml-1 mr-1" v-bind="props">
+                                      <v-icon size="20" color="#4f4f4f">
+                                        mdi-emoticon-outline
+                                      </v-icon>
+                                    </div>
+                                  </template>
+                                  <div v-if="!expandReaction" class="action-hover d-flex align-center justify-center" style="gap: 5px">
+                                    <div v-for="(reaction, j) in reaction.slice(0, 6)" :key="j">
+                                      <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                        {{ reaction.emoticon }}
+                                      </div>
+                                    </div>
+                                    <div @click="handleExpandReaction()" class="btn-action-hover">
+                                      <v-icon>
+                                        mdi-plus
+                                      </v-icon>
+                                    </div>
+                                  </div>
+                                  <div v-else class="action-hover d-flex align-center justify-center" style="gap: 5px; max-width: 200px; flex-wrap: wrap">
+                                    <div v-for="(reaction, j) in reaction" :key="j">
+                                      <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                        {{ reaction.emoticon }}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </v-menu>
+    
+                                <div class="btn-action-hover">
+                                  <v-icon size="20" color="#4f4f4f">
+                                    mdi-flag-outline
+                                  </v-icon>
+                                </div>
+                              </div>
+                            </v-menu>
+                          </div>
+                          <p style="font-size: 13px; margin-top: 4px; width: 65%; word-wrap: break-word;">
+                            {{ item.message }}
+                          </p>
+                        </div>
+                      </div>
+                      <div v-else style="word-wrap: break-word; width: 100%">
+                        <div class="chat-bubles_same-person">
+                          <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
+                          <div class="d-flex justify-space-between align-center" style="width: 100%">
+                            <p class="chat-same__user">
+                              {{ item.message }} 
+                            </p>
+                            <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
+                              <template v-slot:activator="{ props }">
+                                <div 
+                                  :class="hoveredIndex === i ? 'btn-action-hover__option' : 'btn-action-option'"
+                                  v-bind="props"
+                                  :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f !important;' : 'color: transparent;'"
+                                >
+                                  <v-icon size="18" >
+                                    mdi-dots-vertical
+                                  </v-icon>
+                                </div>
+                              </template>
+                              <div class="d-flex action-hover">
+                                <div class="btn-action-hover">
+                                  <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
+                                </div>
+      
+                                <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
+                                  <template v-slot:activator="{ props }">
+                                    <div class="btn-action-hover ml-1 mr-1" v-bind="props">
+                                      <v-icon size="20" color="#4f4f4f">
+                                        mdi-emoticon-outline
+                                      </v-icon>
+                                    </div>
+                                  </template>
+                                  <div v-if="!expandReaction" class="action-hover d-flex align-center justify-center" style="gap: 5px">
+                                    <div v-for="(reaction, j) in reaction.slice(0, 6)" :key="j">
+                                      <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                        {{ reaction.emoticon }}
+                                      </div>
+                                    </div>
+                                    <div @click="handleExpandReaction()" class="btn-action-hover">
+                                      <v-icon>
+                                        mdi-plus
+                                      </v-icon>
+                                    </div>
+                                  </div>
+                                  <div v-else class="action-hover d-flex align-center justify-center" style="gap: 5px; max-width: 200px; flex-wrap: wrap">
+                                    <div v-for="(reaction, j) in reaction" :key="j">
+                                      <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                        {{ reaction.emoticon }}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </v-menu>
+      
+                                <div class="btn-action-hover">
+                                  <v-icon size="20" color="#4f4f4f">
+                                    mdi-flag-outline
+                                  </v-icon>
+                                </div>
+                              </div>
+                            </v-menu>
+                          </div>
+                        </div>
+                        <div v-if="item.reaction.length > 0" class="d-flex align-center mt-2" style="margin-left: 54px; flex-wrap: wrap">
+                          <div v-for="(reactionList, k) in item.reaction" :key="k">
+                            <div class="d-flex align-center mr-2 mb-2" :class="reactionList.user ? 'reaction-box__user' : 'reaction-box'" @click="handleUpdateReaction(i, k)">
+                              <p style="font-size: 15px" class="mr-1">{{reactionList.emoticon}}</p>
+                              <p style="font-size: 12px; margin-top: 2px">{{reactionList.count}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chat-text">
+                    <Input @send-message="addMessage"/>
+                  </div>
+                </div>
+              </div>
+              <div v-else style="height: 100%;" class="d-flex align-center justify-center flex-column">
+                <div style="margin-top: -60px">
+                  <v-img src="/images/icon/search-message.png" class="mb-5" max-height="70" min-width="70"></v-img>
+                </div>
+                
+                <b><span style="color: #ff7800">Foxon</span> Chat</b>
+                <div v-if="friendList.length > 1 && chatList.length == 0">
+                  <p class="mt-1" style="line-height: normal; text-align: center; max-width: 230px; font-size: 13px">
+                    Chat dengan teman anda secara pribadi
+                  </p>
+                  <div class="d-flex justify-space-around mt-4" style="width: 100%">
+                    <div v-for="(item, i) in friendList.slice(0, 3)" :key="i">
+                      <div @click="handleChatFriendList(i)" class="d-flex align-center flex-column" style="cursor: pointer">
+                        <v-avatar size="32">
+                          <v-img :src="item.photo"></v-img>
+                        </v-avatar>
+                        <p class="mt-1 username__right-side">
+                          {{ item.username }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div v-else class="d-flex align-center flex-column justify-center">
+                  <p class="description-chat__right-side">
+                    Cari teman baru atau tim mabar dari game yang kamu mainkan!
+                  </p>
+                  <v-btn 
+                    class="mt-5" 
+                    variant="flat" 
+                    color="#ff7800"
+                    height="35"
+                    style="text-transform: capitalize; letter-spacing: normal"
+                  >
+                    Cari
+                  </v-btn>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-box__content" v-else>
+          <div class="chat-list">
+            <div style="padding: 10px;">
+              <div class="discover d-flex" style="width: 100%">
+                <div class="chat-list__box-content justify-start" style="width: 100%; padding: 7px">
+                  <v-icon size="18" class="mr-2">
+                    mdi-account-plus-outline
+                  </v-icon>
+                  <p style="font-size: 13px; font-weight: 500">
+                    Cari Teman Baru
+                  </p>
+                </div>
+              </div>
+              <div class="chat-list__box" v-for="(item, i) in chatList" :key="i" @click="setActiveChat(i)">
+                <div 
+                  :class="item.active ? 'chat-list__box-content-active' : ''" 
+                  class="chat-list__box-content" 
+                  style="padding-top: 11px" 
+                  v-if="item.type == 'personal'"
+                >
+                  <v-avatar size="30" style="margin-bottom: 10px">
+                    <v-img :src="item.photo"></v-img>
+                  </v-avatar>
+                  <div class="ml-2 list-separator">
+                    <div class="d-flex justify-space-between" style="width: 100%">
+                      <p style="font-size: 13px; font-weight: 500">
+                        {{ item.name }}
+                      </p>
+                      <p style="font-size: 11px;">
+                        {{ item.latestChat.time }}
+                      </p>
+                    </div>
+                    <div>
+                      <p v-if="item.latestChat.personChat == 'user'" style="font-size: 12px">{{item.latestChat.chat}}</p>
+                      <p v-else style="font-size: 11px">Anda: {{item.latestChat.chat}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div 
+                  :class="item.active ? 'chat-list__box-content-active' : ''" 
+                  class="chat-list__box-content flex-column" 
+                  v-if="item.type == 'guild' || item.type == 'team'"
+                >
+                  <div class="mb-1 d-flex align-center justify-space-between" style="width: 100%; padding-top: 11px">
+                    <p style="font-size: 11px">{{ item.game.gameName }} </p>
+                  </div>
+                  <div class="d-flex align-center justify-space-between" style="width: 100%">
+                    <v-avatar size="30" style="margin-bottom: 10px">
+                      <v-img :src="item.photo"></v-img>
+                    </v-avatar>
+                    <div class="ml-2 list-separator" style="width: 100%">
                       <div class="d-flex justify-space-between align-center" style="width: 100%">
                         <p style="font-size: 13px; font-weight: 500" v-if="item.type == 'guild'">
                           {{ item.guildName }}
@@ -54,187 +377,235 @@
             </div>
           </div>
           <div class="chat-list__content">
-            <div class="chat-top__title">
-              <p>
-                Agus
-              </p>
-
-              <div class="chat-btn" @click="handleClose()">
-                <v-icon size="17">
-                  mdi-close
-                </v-icon>
+            <div v-if="isChatActiveMobile">
+              <div class="chat-top__title">
+                <p>Agus</p>
+                <div class="chat-btn" @click="handleClose()">
+                  <v-icon size="17">
+                    mdi-close
+                  </v-icon>
+                </div>
               </div>
-            </div>
-            <div class="chat-content__box">
-              <div class="chat-data__box">
-                <div 
-                  class="chat-bubbles" 
-                  @mouseenter="onHover(i)" 
-                  @mouseleave="onLeave(i)" 
-                  v-for="(item, i) in messages" 
-                  :key="i"
-                >
-                  <div v-if="!isSameUser(i)" class="d-flex" style="width: 100%;">
-                    <div class="mr-5 ml-1">
-                      <v-menu :disabled="item.position == 'user'" open-on-hover position="center" offset="14">
-                        <template v-slot:activator="{ props }">
-                          <v-avatar class="avatar-user" size="30" v-bind="props">
-                            <v-img :src="item.image"></v-img>
-                          </v-avatar>
-                        </template>
-                        <v-list>
-                          <v-list-item
-                            v-for="(item, index) in items"
-                            :key="index"
-                            :value="index"
-                          >
-                            <v-list-item-title>{{ item.title }}</v-list-item-title>
-                          </v-list-item>
-                        </v-list>
-                      </v-menu>
-                    </div>
-                    <div style="width: 100%;">
-                      <div class="d-flex align-center justify-space-between" style="width: 100%">
-                        <div class="d-flex align-center"> 
-                          <v-menu :disabled="item.position == 'user'" open-on-hover position="center" offset="14">
+              <div class="chat-content__box">
+                <div class="chat-data__box">
+                  <div 
+                    class="chat-bubbles" 
+                    @mouseenter="onHover(i)" 
+                    @mouseleave="onLeave(i)" 
+                    v-for="(item, i) in messages" 
+                    :key="i"
+                  >
+                    <div v-if="!isSameUser(i)" class="d-flex" style="width: 100%;">
+                      <div class="mr-5 ml-1">
+                        <v-menu :disabled="item.position == 'user'" open-on-hover position="center" offset="14">
+                          <template v-slot:activator="{ props }">
+                            <v-avatar class="avatar-user" size="30" v-bind="props">
+                              <v-img :src="item.image"></v-img>
+                            </v-avatar>
+                          </template>
+                          <v-list>
+                            <v-list-item
+                              v-for="(item, index) in items"
+                              :key="index"
+                              :value="index"
+                            >
+                              <v-list-item-title>{{ item.title }}</v-list-item-title>
+                            </v-list-item>
+                          </v-list>
+                        </v-menu>
+                      </div>
+                      <div style="width: 100%;">
+                        <div class="d-flex align-center justify-space-between" style="width: 100%">
+                          <div class="d-flex align-center"> 
+                            <v-menu :disabled="item.position == 'user'" open-on-hover position="center" offset="14">
+                              <template v-slot:activator="{ props }">
+                                <p class="chat-user__name" v-bind="props"> {{ item.user }} </p>
+                              </template>
+                              <v-list>
+                                <v-list-item
+                                  v-for="(item, index) in items"
+                                  :key="index"
+                                  :value="index"
+                                >
+                                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                </v-list-item>
+                              </v-list>
+                            </v-menu>
+                            <p style="font-size: 11px" class="ml-2"> {{ formatTime(item.time) }} </p>
+                          </div>
+                          <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
                             <template v-slot:activator="{ props }">
-                              <p class="chat-user__name" v-bind="props"> {{ item.user }} </p>
-                            </template>
-                            <v-list>
-                              <v-list-item
-                                v-for="(item, index) in items"
-                                :key="index"
-                                :value="index"
+                              <div 
+                                :class="hoveredIndex === i ? 'btn-action-hover__option' : 'btn-action-option'"
+                                v-bind="props"
+                                :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f' : 'color: transparent'"
                               >
-                                <v-list-item-title>{{ item.title }}</v-list-item-title>
-                              </v-list-item>
-                            </v-list>
+                                <v-icon size="18" >
+                                  mdi-dots-vertical
+                                </v-icon>
+                              </div>
+                            </template>
+                            <div class="d-flex action-hover">
+                              <div class="btn-action-hover">
+                                <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
+                              </div>
+  
+                              <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
+                                <template v-slot:activator="{ props }">
+                                  <div class="btn-action-hover ml-1 mr-1" v-bind="props">
+                                    <v-icon size="20" color="#4f4f4f">
+                                      mdi-emoticon-outline
+                                    </v-icon>
+                                  </div>
+                                </template>
+                                <div v-if="!expandReaction" class="action-hover d-flex align-center justify-center" style="gap: 5px">
+                                  <div v-for="(reaction, j) in reaction.slice(0, 6)" :key="j">
+                                    <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                      {{ reaction.emoticon }}
+                                    </div>
+                                  </div>
+                                  <div @click="handleExpandReaction()" class="btn-action-hover">
+                                    <v-icon>
+                                      mdi-plus
+                                    </v-icon>
+                                  </div>
+                                </div>
+                                <div v-else class="action-hover d-flex align-center justify-center" style="gap: 5px; max-width: 200px; flex-wrap: wrap">
+                                  <div v-for="(reaction, j) in reaction" :key="j">
+                                    <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                      {{ reaction.emoticon }}
+                                    </div>
+                                  </div>
+                                </div>
+                              </v-menu>
+  
+                              <div class="btn-action-hover">
+                                <v-icon size="20" color="#4f4f4f">
+                                  mdi-flag-outline
+                                </v-icon>
+                              </div>
+                            </div>
                           </v-menu>
-                          <p style="font-size: 11px" class="ml-2"> {{ formatTime(item.time) }} </p>
                         </div>
-                        <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
-                          <template v-slot:activator="{ props }">
-                            <div 
-                              :class="hoveredIndex === i ? 'btn-action-hover__option' : 'btn-action-option'"
-                              v-bind="props"
-                              :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f' : 'color: transparent'"
-                            >
-                              <v-icon size="18" >
-                                mdi-dots-vertical
-                              </v-icon>
-                            </div>
-                          </template>
-                          <div class="d-flex action-hover">
-                            <div class="btn-action-hover">
-                              <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
-                            </div>
-
-                            <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
-                              <template v-slot:activator="{ props }">
-                                <div class="btn-action-hover ml-1 mr-1" v-bind="props">
-                                  <v-icon size="20" color="#4f4f4f">
-                                    mdi-emoticon-outline
-                                  </v-icon>
-                                </div>
-                              </template>
-                              <div class="action-hover d-flex align-center justify-center" style="gap: 5px">
-                                <div v-for="(reaction, j) in reaction" :key="j">
-                                  <div 
-                                    style="cursor: pointer; font-size: 18px; user-select: none" 
-                                    @click="handleReaction(i, j)"
-                                  >
-                                    {{ reaction.emoticon }}
-                                  </div>
-                                </div>
-                                <div @click="handleExpandReaction()" class="btn-action-hover">
-                                  <v-icon>
-                                    mdi-plus
-                                  </v-icon>
-                                </div>
-                              </div>
-                            </v-menu>
-
-                            <div class="btn-action-hover">
-                              <v-icon size="20" color="#4f4f4f">
-                                mdi-flag-outline
-                              </v-icon>
-                            </div>
-                          </div>
-                        </v-menu>
-                      </div>
-                      <p style="font-size: 13px; margin-top: 4px; width: 65%; word-wrap: break-word;">
-                        {{ item.message }}
-                      </p>
-                    </div>
-                  </div>
-                  <div v-else style="word-wrap: break-word; width: 100%">
-                    <div class="chat-bubles_same-person">
-                      <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
-                      <div class="d-flex justify-space-between align-center" style="width: 100%">
-                        <p class="chat-same__user">
-                          {{ item.message }} 
+                        <p style="font-size: 13px; margin-top: 4px; width: 65%; word-wrap: break-word;">
+                          {{ item.message }}
                         </p>
-                        <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
-                          <template v-slot:activator="{ props }">
-                            <div 
-                              :class="hoveredIndex === i ? 'btn-action-hover__option' : 'btn-action-option'"
-                              v-bind="props"
-                              :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f !important;' : 'color: transparent;'"
-                            >
-                              <v-icon size="18" >
-                                mdi-dots-vertical
-                              </v-icon>
-                            </div>
-                          </template>
-                          <div class="d-flex action-hover">
-                            <div class="btn-action-hover">
-                              <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
-                            </div>
-  
-                            <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
-                              <template v-slot:activator="{ props }">
-                                <div class="btn-action-hover ml-1 mr-1" v-bind="props">
-                                  <v-icon size="20" color="#4f4f4f">
-                                    mdi-emoticon-outline
-                                  </v-icon>
-                                </div>
-                              </template>
-                              <div class="action-hover d-flex align-center justify-center" style="gap: 5px">
-                                <div v-for="(reaction, j) in reaction" :key="j">
-                                  <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
-                                    {{ reaction.emoticon }}
-                                  </div>
-                                </div>
-                                <div @click="handleExpandReaction()" class="btn-action-hover">
-                                  <v-icon>
-                                    mdi-plus
-                                  </v-icon>
-                                </div>
-                              </div>
-                            </v-menu>
-  
-                            <div class="btn-action-hover">
-                              <v-icon size="20" color="#4f4f4f">
-                                mdi-flag-outline
-                              </v-icon>
-                            </div>
-                          </div>
-                        </v-menu>
                       </div>
                     </div>
-                    <div v-if="item.reaction.length > 0" class="d-flex align-center mt-2" style="margin-left: 54px; flex-wrap: wrap">
-                      <div v-for="(reactionList, k) in item.reaction" :key="k">
-                        <div class="d-flex align-center mr-2 mb-2" :class="reactionList.user ? 'reaction-box__user' : 'reaction-box'" @click="handleUpdateReaction(i, k)">
-                          <p style="font-size: 15px" class="mr-1">{{reactionList.emoticon}}</p>
-                          <p style="font-size: 12px; margin-top: 2px">{{reactionList.count}}</p>
+                    <div v-else style="word-wrap: break-word; width: 100%">
+                      <div class="chat-bubles_same-person">
+                        <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
+                        <div class="d-flex justify-space-between align-center" style="width: 100%">
+                          <p class="chat-same__user">
+                            {{ item.message }} 
+                          </p>
+                          <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
+                            <template v-slot:activator="{ props }">
+                              <div 
+                                :class="hoveredIndex === i ? 'btn-action-hover__option' : 'btn-action-option'"
+                                v-bind="props"
+                                :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f !important;' : 'color: transparent;'"
+                              >
+                                <v-icon size="18" >
+                                  mdi-dots-vertical
+                                </v-icon>
+                              </div>
+                            </template>
+                            <div class="d-flex action-hover">
+                              <div class="btn-action-hover">
+                                <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
+                              </div>
+    
+                              <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
+                                <template v-slot:activator="{ props }">
+                                  <div class="btn-action-hover ml-1 mr-1" v-bind="props">
+                                    <v-icon size="20" color="#4f4f4f">
+                                      mdi-emoticon-outline
+                                    </v-icon>
+                                  </div>
+                                </template>
+                                <div v-if="!expandReaction" class="action-hover d-flex align-center justify-center" style="gap: 5px">
+                                  <div v-for="(reaction, j) in reaction.slice(0, 6)" :key="j">
+                                    <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                      {{ reaction.emoticon }}
+                                    </div>
+                                  </div>
+                                  <div @click="handleExpandReaction()" class="btn-action-hover">
+                                    <v-icon>
+                                      mdi-plus
+                                    </v-icon>
+                                  </div>
+                                </div>
+                                <div v-else class="action-hover d-flex align-center justify-center" style="gap: 5px; max-width: 200px; flex-wrap: wrap">
+                                  <div v-for="(reaction, j) in reaction" :key="j">
+                                    <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
+                                      {{ reaction.emoticon }}
+                                    </div>
+                                  </div>
+                                </div>
+                              </v-menu>
+    
+                              <div class="btn-action-hover">
+                                <v-icon size="20" color="#4f4f4f">
+                                  mdi-flag-outline
+                                </v-icon>
+                              </div>
+                            </div>
+                          </v-menu>
+                        </div>
+                      </div>
+                      <div v-if="item.reaction.length > 0" class="d-flex align-center mt-2" style="margin-left: 54px; flex-wrap: wrap">
+                        <div v-for="(reactionList, k) in item.reaction" :key="k">
+                          <div class="d-flex align-center mr-2 mb-2" :class="reactionList.user ? 'reaction-box__user' : 'reaction-box'" @click="handleUpdateReaction(i, k)">
+                            <p style="font-size: 15px" class="mr-1">{{reactionList.emoticon}}</p>
+                            <p style="font-size: 12px; margin-top: 2px">{{reactionList.count}}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div class="chat-text">
+                  <Input @send-message="addMessage"/>
+                </div>
               </div>
-              <div class="chat-text">
-                <Input @send-message="addMessage"/>
+            </div>
+            <div v-else style="height: 100%;" class="d-flex align-center justify-center flex-column">
+              <div style="margin-top: -60px">
+                <v-img src="/images/icon/search-message.png" class="mb-5" max-height="70" min-width="70"></v-img>
+              </div>
+              
+              <b><span style="color: #ff7800">Foxon</span> Chat</b>
+              <div v-if="friendList.length > 1 && chatList.length == 0">
+                <p class="mt-1" style="line-height: normal; text-align: center; max-width: 230px; font-size: 13px">
+                  Chat dengan teman anda secara pribadi
+                </p>
+                <div class="d-flex justify-space-around mt-4" style="width: 100%">
+                  <div v-for="(item, i) in friendList.slice(0, 3)" :key="i">
+                    <div @click="handleChatFriendList(i)" class="d-flex align-center flex-column" style="cursor: pointer">
+                      <v-avatar size="32">
+                        <v-img :src="item.photo"></v-img>
+                      </v-avatar>
+                      <p class="mt-1 username__right-side">
+                        {{ item.username }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div v-else class="d-flex align-center flex-column justify-center">
+                <p class="description-chat__right-side">
+                  Cari teman baru atau tim mabar dari game yang kamu mainkan!
+                </p>
+                <v-btn 
+                  class="mt-5" 
+                  variant="flat" 
+                  color="#ff7800"
+                  height="35"
+                  style="text-transform: capitalize; letter-spacing: normal"
+                >
+                  Cari
+                </v-btn>
               </div>
             </div>
           </div>
@@ -257,14 +628,75 @@ export default {
       hoveredIndex: null,
       menuCLoseOnContentClick: true,
       emoticonMenu: false,
+      expandReaction: false,
+      isChatActive: false,
+      isChatActiveMobile: false,
+      friendList: [
+        {
+          name: 'Agus',
+          id: '0000000122313123',
+          username: '@agusiagus',
+          photo: 'https://randomuser.me/api/portraits/men/81.jpg'
+        },
+        {
+          name: 'Coki',
+          id: '0000000122313124',
+          username: '@cokicoki',
+          photo: 'https://randomuser.me/api/portraits/men/83.jpg'
+        },
+        {
+          name: 'Dita',
+          id: '0000000122313125',
+          username: '@ditabokin',
+          photo: 'https://randomuser.me/api/portraits/women/82.jpg'
+        },
+        {
+          name: 'Bagus',
+          id: '0000000122313126',
+          username: '@bagusbanget',
+          photo: 'https://randomuser.me/api/portraits/men/88.jpg'
+        },
+      ],
       reaction: [
-        { id: 1, emoticon: '😀' },
-        { id: 2, emoticon: '😂' },
-        { id: 3, emoticon: '😍' },
-        { id: 4, emoticon: '😎' },
-        { id: 5, emoticon: '😢' },
-        { id: 6, emoticon: '😡' },
-        { id: 7, emoticon: '❤️' }
+          { id: 1, emoticon: '👍' },
+          { id: 2, emoticon: '😂' },
+          { id: 3, emoticon: '😍' },
+          { id: 4, emoticon: '😎' },
+          { id: 5, emoticon: '💩' },
+          { id: 6, emoticon: '😡' },
+          { id: 7, emoticon: '❤️' },
+          { id: 8, emoticon: '😜' },
+          { id: 9, emoticon: '🤔' },
+          { id: 10, emoticon: '😱' },
+          { id: 11, emoticon: '😇' },
+          { id: 12, emoticon: '😜' },
+          { id: 13, emoticon: '🤗' },
+          { id: 14, emoticon: '😌' },
+          { id: 15, emoticon: '🥺' },
+          { id: 16, emoticon: '😏' },
+          { id: 17, emoticon: '😅' },
+          { id: 18, emoticon: '🙄' },
+          { id: 19, emoticon: '😑' },
+          { id: 20, emoticon: '😷' },
+          { id: 21, emoticon: '🥳' },
+          { id: 22, emoticon: '🤩' },
+          { id: 23, emoticon: '🧐' },
+          { id: 24, emoticon: '🤪' },
+          { id: 25, emoticon: '🤭' },
+          { id: 26, emoticon: '😳' },
+          { id: 27, emoticon: '😌' },
+          { id: 28, emoticon: '🤐' },
+          { id: 29, emoticon: '😢' },
+          { id: 30, emoticon: '😝' },
+          { id: 31, emoticon: '🤬' },
+          { id: 32, emoticon: '🤧' },
+          { id: 33, emoticon: '😬' },
+          { id: 34, emoticon: '🙃' },
+          { id: 35, emoticon: '🥴' },
+          { id: 36, emoticon: '🥱' },
+          { id: 37, emoticon: '🤠' },
+          { id: 38, emoticon: '😀' },
+          { id: 39, emoticon: '🦄' },
       ],
       items: [
         { title: 'Click Me' },
@@ -315,7 +747,8 @@ export default {
               gameImage: '',
               gameName: 'Zenless Zone Zero',
             },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          active: false,
+            photo: 'https://randomuser.me/api/portraits/men/85.jpg',
           team: [
               {
                 name: 'Agus',
@@ -352,6 +785,7 @@ export default {
         },
         {
           name: 'Agus',
+          active: false,
           photo: 'https://randomuser.me/api/portraits/men/85.jpg',
           latestChat: {
             read: true,
@@ -367,7 +801,8 @@ export default {
               gameImage: '',
               gameName: 'Zenless Zone Zero',
             },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          active: false,
+            photo: 'https://randomuser.me/api/portraits/men/85.jpg',
           team: [
               {
                 name: 'Agus',
@@ -404,6 +839,7 @@ export default {
         },
         {
           name: 'Mukti',
+          active: false,
           photo: 'https://randomuser.me/api/portraits/men/85.jpg',
           latestChat: {
             read: true,
@@ -415,6 +851,7 @@ export default {
         },
         {
           name: 'Rigen',
+          active: false,
           photo: 'https://randomuser.me/api/portraits/men/85.jpg',
           latestChat: {
             read: false,
@@ -426,6 +863,7 @@ export default {
         },
         {
           name: 'Hifdzi',
+          active: false,
           photo: 'https://randomuser.me/api/portraits/men/85.jpg',
           latestChat: {
             read: false,
@@ -441,7 +879,8 @@ export default {
               gameImage: '',
               gameName: 'Zenless Zone Zero',
             },
-          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          active: false,
+            photo: 'https://randomuser.me/api/portraits/men/85.jpg',
           team: [
               {
                 name: 'Agus',
@@ -477,6 +916,7 @@ export default {
           type: 'team'
         },
       ],
+      windowWidth: window.innerWidth,
     }
   },
   components: {
@@ -489,6 +929,13 @@ export default {
     },
   },
   methods: {
+    handleClose() {
+      this.chatList.forEach((item) => {
+        item.active = false;
+      });
+      this.isChatActiveMobile = false
+    },
+
     onHover(index) {
       this.hoveredIndex = index;
     },
@@ -500,38 +947,38 @@ export default {
     handleExpandReaction() {
       this.menuCLoseOnContentClick = false
       this.emoticonMenu = true
+      this.expandReaction = true
     },
 
     handleReaction(i, j) {
-      const selectedMessage = this.messages[i]; // Get the selected message
-      const selectedReaction = this.reaction[j]; // Get the selected reaction (from availableReactions)
-
-      // Check if the user has already reacted to this emoji
+      const selectedMessage = this.messages[i];
+      const selectedReaction = this.reaction[j];
       const existingReaction = selectedMessage.reaction.find(
-        (r) => r.id === selectedReaction.id && r.user // Assuming "Farhan" is the current user
+        (r) => r.id === selectedReaction.id && r.user
       );
 
       if (!existingReaction) {
-        // If the user has not reacted with this emoji yet, add the reaction
         const reaction = selectedMessage.reaction.find(
           (r) => r.id === selectedReaction.id
         );
 
         if (reaction) {
-          // If the emoji already exists, just increment the count
           reaction.count++;
         } else {
-          // Otherwise, add the emoji with a count of 1
           selectedMessage.reaction.push({
             id: selectedReaction.id,
             emoticon: selectedReaction.emoticon,
             count: 1,
             hasGiven: true,
-            user: true, // Store the user who reacted
+            user: true,
           });
         }
       } 
+
       this.emoticonMenu = false
+      setTimeout(() => {
+        this.expandReaction = false
+      }, 1000);
       this.messages[i].isMenuActive = false
     },
 
@@ -542,8 +989,8 @@ export default {
       }
     },
 
-    handleClose() {
-      this.handleCloseChat()
+    updateWindowWidth() {
+      this.windowWidth = window.innerWidth;
     },
 
     isSameUser(index) {
@@ -574,6 +1021,15 @@ export default {
       this.messages.push(message);
     },
 
+    setActiveChat(index) {
+      this.chatList.forEach((item) => {
+        item.active = false;
+      });
+      this.chatList[index].active = true;
+      this.isChatActive = true
+      this.isChatActiveMobile = true
+    },
+
     handleMaximize() {
       this.variant = 'full'
       localStorage.setItem('variant', 'full')
@@ -584,7 +1040,36 @@ export default {
       localStorage.setItem('variant', 'minimize')
     }
   },
+
+  beforeUnmount() {
+    window.removeEventListener('resize', this.updateWindowWidth);
+  },
+
+  watch: {
+    windowWidth(val) {
+      if (val >= '768') {
+        this.isChatActiveMobile = false
+        this.isChatActive = false
+        this.chatList.forEach((item) => {
+          item.active = false;
+        })
+      }
+    },
+    emoticonMenu() {
+      setTimeout(() => {
+        this.expandReaction = false
+      }, 500);
+    }
+  },
+
+  computed: {
+    isDesktop() {
+      return this.windowWidth >= 1024;  // Adjust the threshold as needed
+    },
+  },
+
   created() {
+    window.addEventListener('resize', this.updateWindowWidth);
     const chatStatus = localStorage.getItem('variant')
     if (chatStatus) {
       this.variant = chatStatus

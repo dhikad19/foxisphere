@@ -746,10 +746,10 @@ export default {
     },
     computed: {
     // Computed property to determine if the screen is a desktop
-    isDesktop() {
-      return this.windowWidth >= 1024;  // Adjust the threshold as needed
+      isDesktop() {
+        return this.windowWidth >= 1024;  // Adjust the threshold as needed
+      },
     },
-  },
     methods: {
       handleDrawer() {
         this.drawer = !this.drawer
