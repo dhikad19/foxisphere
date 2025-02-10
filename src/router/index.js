@@ -5,6 +5,8 @@ import SignUpView from "../views/SignUpView.vue";
 import WriteView from "../views/WriteView.vue";
 import NotFound from "../views/NotFoundView.vue";
 import UserProfile from "../views/ProfileView.vue";
+import ChatView from "../views/ChatView.vue";
+import NotificationView from "../views/NotificationView.vue";
 import AboutView from "../views/AboutView.vue";
 import communityView from "../views/communityView.vue";
 import PostView from "../views/PostView.vue";
@@ -47,6 +49,18 @@ const routes = [
     name: "post",
     component: PostView,
     meta: { requiresUnauth: true, title: "Foxi Sphere | Post" },
+  },
+  {
+    path: "/chat",
+    name: "chat",
+    component: ChatView,
+    meta: { requiresUnauth: true, title: "Foxi Sphere | Chat" },
+  },
+  {
+    path: "/notification",
+    name: "notification",
+    component: NotificationView,
+    meta: { requiresUnauth: true, title: "Foxi Sphere | Notification" },
   },
   {
     path: "/community",

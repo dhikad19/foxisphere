@@ -12,11 +12,6 @@
                 mdi-open-in-new
               </v-icon>
             </div>
-            <div class="chat-btn" @click="handleMinimize()">
-              <v-icon size="17">
-                mdi-minus
-              </v-icon>
-            </div>
             <div class="chat-btn" @click="handleClose()">
               <v-icon size="17">
                 mdi-close
@@ -192,13 +187,8 @@
                     </div>
                     <div v-else style="word-wrap: break-word; width: 100%">
                       <div class="chat-bubles_same-person">
-                        <div style="height: 100%" class="d-flex align-start">
-                          <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
-                        </div>
                         <div class="d-flex justify-space-between align-start" style="width: 100%; height: 100%">
-                          <p class="chat-same__user">
-                            {{ item.message }} 
-                          </p>
+                          <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
                           <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
                             <template v-slot:activator="{ props }">
                               <div 
@@ -253,6 +243,9 @@
                             </div>
                           </v-menu>
                         </div>
+                        <p class="chat-same__user">
+                          {{ item.message }} 
+                        </p>
                       </div>
                       <div v-if="item.reaction.length > 0" class="d-flex align-center mt-2" style="margin-left: 54px; flex-wrap: wrap">
                         <div v-for="(reactionList, k) in item.reaction" :key="k">
@@ -332,17 +325,6 @@
         </div>
       </div>
     </div>
-    <div class="chat-wrapper__variant" v-else-if="variant == 'minimize'">
-      <div 
-        @click="handleMaximize()"
-        class="chat-box__variant"
-      >
-        <p>Chat</p>
-      </div>
-    </div>
-    <div class="chat-wrapper-mobile">
-      <ChatMobile />
-    </div>
   </div>
 </template>
 
@@ -353,7 +335,6 @@
 
 <script>
 import Input from './Input/index.vue'
-import ChatMobile from './Mobile/index.vue'
 export default {
   name: 'ChatComponents',
   data() {
@@ -437,7 +418,7 @@ export default {
       ],
       messages: [
         {
-          message: "Halo kawan!",
+          message: "Halo kawan! ",
           image: 'https://randomuser.me/api/portraits/men/82.jpg',
           isSending: false,
           user: "Farhan",
@@ -650,8 +631,7 @@ export default {
     }
   },
   components: {
-    Input,
-    ChatMobile
+    Input
   },
   props: {
     handleCloseChat: {
@@ -748,16 +728,6 @@ export default {
       this.chatList[index].active = true;
       this.isChatActive = true
     },
-
-    handleMaximize() {
-      this.variant = 'full'
-      localStorage.setItem('variant', 'full')
-    },
-
-    handleMinimize() {
-      this.variant = 'minimize'
-      localStorage.setItem('variant', 'minimize')
-    }
   },
 
   watch: {

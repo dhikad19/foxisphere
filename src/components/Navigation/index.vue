@@ -293,11 +293,11 @@
           :fixed="windowWidth <= '1080' ? false : true"
           v-model="drawer"
           :rail="rail"
-          :width="windowWidth <= '1080' ? 900 : 270"
+          width="270"
           :permanent="windowWidth <= '1080' ? false : true"
           :temporary="windowWidth <= '1080' ? true : false"
           @click="rail = false"
-      >
+        >
         <div style="margin-top: 0px;">
           <!-- <v-list-item
             prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"

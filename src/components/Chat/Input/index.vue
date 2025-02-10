@@ -20,8 +20,11 @@
         </template>
       </v-textarea>
       <div class="send-btn ml-2" @click="onSendMessage">
-        <v-img src="assets/send.png" max-height="15" min-width="15">
-        </v-img>
+        <v-icon class="ml-1" :color="message == '' ? 'grey' : '#ff7800'">
+          mdi-send
+        </v-icon>
+        <!-- <v-img src="assets/send.png" max-height="15" min-width="15">
+        </v-img> -->
       </div>
     </div>
   </v-container>

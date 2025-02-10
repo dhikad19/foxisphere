@@ -228,6 +228,7 @@ button {
 
 .chat-bubles_same-person {
   display: flex;
+  flex-direction: column;
   word-wrap: break-word;
   width: 100%;
   align-items: start;
@@ -235,14 +236,10 @@ button {
 }
 
 .chat-time__same-user {
-  display: flex;
-  align-items: start;
-  height: 100%;
-  margin-right: 7px;
-  margin-top: 2px;
   font-size: 11px;
-  color: transparent;
+  color: black;
   min-width: 48px;
+  margin-left: 54px;
 }
 
 .reaction-box {
@@ -265,7 +262,7 @@ button {
 }
 
 .chat-data__box {
-  height: calc(100vh - 300px);
+  height: calc(100vh - 230px);
   scrollbar-width: thin;
   overflow-y: auto;
   overflow-x: hidden;
@@ -276,7 +273,8 @@ button {
   word-wrap: break-word;
   width: 100%;
   margin-bottom: 3px;
-  max-width: 210px;
+  margin-left: 54px;
+  max-width: 255px;
 }
 
 .chat-user__name {
@@ -290,7 +288,7 @@ button {
 
 .send-btn {
   border-radius: 50%;
-  background-color: rgba(128, 128, 128, 0.185);
+  // background-color: rgba(128, 128, 128, 0.185);
   height: 37px;
   display: flex;
   align-items: center;

@@ -5,7 +5,7 @@
         <div class="chat-box__content-mobile" v-if="windowWidth <= '768'">
           <div class="chat-list" v-if="!isChatActiveMobile">
             <div style="padding: 10px;">
-              <div class="discover d-flex" style="width: 100%">
+              <div class="discover d-flex align-center" style="width: 100%">
                 <div class="chat-list__box-content justify-start" style="width: 100%; padding: 7px">
                   <v-icon size="18" class="mr-2">
                     mdi-account-plus-outline
@@ -14,6 +14,7 @@
                     Cari Teman Baru
                   </p>
                 </div>
+                
               </div>
               <div class="chat-list__box" v-for="(item, i) in chatList" :key="i" @click="setActiveChat(i)">
                 <div 
@@ -75,7 +76,11 @@
             <div class="chat-list__content-mobile">
               <div v-if="isChatActiveMobile">
                 <div class="chat-top__title">
-                  <p>Agus</p>
+                  <p 
+                    v-if="chatListSelected.type == 'team' || chatListSelected.type == 'guild'"
+                    > {{chatListSelected.teamName}}
+                  </p>
+                  <p v-else>{{chatListSelected.name}}</p>
                   <div class="chat-btn" @click="handleClose()">
                     <v-icon size="17">
                       mdi-close
@@ -183,18 +188,15 @@
                               </div>
                             </v-menu>
                           </div>
-                          <p style="font-size: 13px; margin-top: 4px; width: 65%; word-wrap: break-word;">
+                          <p class="chat-user">
                             {{ item.message }}
                           </p>
                         </div>
                       </div>
                       <div v-else style="word-wrap: break-word; width: 100%">
                         <div class="chat-bubles_same-person">
-                          <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
-                          <div class="d-flex justify-space-between align-center" style="width: 100%">
-                            <p class="chat-same__user">
-                              {{ item.message }} 
-                            </p>
+                          <div class="d-flex justify-space-between align-start" style="width: 100%; margin-bottom: 5px">
+                            <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
                             <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
                               <template v-slot:activator="{ props }">
                                 <div 
@@ -249,6 +251,9 @@
                               </div>
                             </v-menu>
                           </div>
+                          <p class="chat-same__user">
+                            {{ item.message }} 
+                          </p>
                         </div>
                         <div v-if="item.reaction.length > 0" class="d-flex align-center mt-2" style="margin-left: 54px; flex-wrap: wrap">
                           <div v-for="(reactionList, k) in item.reaction" :key="k">
@@ -377,14 +382,18 @@
             </div>
           </div>
           <div class="chat-list__content">
-            <div v-if="isChatActiveMobile">
+            <div v-if="isChatActive">
               <div class="chat-top__title">
-                <p>Agus</p>
-                <div class="chat-btn" @click="handleClose()">
+                <p 
+                  v-if="chatListSelected.type == 'team' || chatListSelected.type == 'guild'"
+                  > {{chatListSelected.teamName}}                  
+                </p>
+                <p v-else>{{chatListSelected.name}}</p>
+                <!-- <div class="chat-btn" @click="handleClose()">
                   <v-icon size="17">
                     mdi-close
                   </v-icon>
-                </div>
+                </div> -->
               </div>
               <div class="chat-content__box">
                 <div class="chat-data__box">
@@ -487,18 +496,15 @@
                             </div>
                           </v-menu>
                         </div>
-                        <p style="font-size: 13px; margin-top: 4px; width: 65%; word-wrap: break-word;">
+                        <p class="chat-user">
                           {{ item.message }}
                         </p>
                       </div>
                     </div>
                     <div v-else style="word-wrap: break-word; width: 100%">
                       <div class="chat-bubles_same-person">
-                        <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
-                        <div class="d-flex justify-space-between align-center" style="width: 100%">
-                          <p class="chat-same__user">
-                            {{ item.message }} 
-                          </p>
+                        <div class="d-flex justify-space-between align-start" style="width: 100%; height: 100%">
+                          <p class="chat-time__same-user" style="margin-bottom: 1px"> {{ formatTime(item.time) }} </p>
                           <v-menu v-model="item.isMenuActive" location="start" :close-on-content-click="false" offset="10">
                             <template v-slot:activator="{ props }">
                               <div 
@@ -553,6 +559,9 @@
                             </div>
                           </v-menu>
                         </div>
+                        <p class="chat-same__user">
+                          {{ item.message }} 
+                        </p>
                       </div>
                       <div v-if="item.reaction.length > 0" class="d-flex align-center mt-2" style="margin-left: 54px; flex-wrap: wrap">
                         <div v-for="(reactionList, k) in item.reaction" :key="k">
@@ -631,6 +640,7 @@ export default {
       expandReaction: false,
       isChatActive: false,
       isChatActiveMobile: false,
+      chatListSelected: null,
       friendList: [
         {
           name: 'Agus',
@@ -739,7 +749,6 @@ export default {
           reaction: []
         },
       ],
-      variant: null,
       chatList: [
         {
           teamName: 'Team Kucing',
@@ -1025,20 +1034,12 @@ export default {
       this.chatList.forEach((item) => {
         item.active = false;
       });
-      this.chatList[index].active = true;
+      this.chatListSelected = this.chatList[index]
+      this.chatList[index].active = true
       this.isChatActive = true
       this.isChatActiveMobile = true
+      console.log(this.chatList[index])
     },
-
-    handleMaximize() {
-      this.variant = 'full'
-      localStorage.setItem('variant', 'full')
-    },
-
-    handleMinimize() {
-      this.variant = 'minimize'
-      localStorage.setItem('variant', 'minimize')
-    }
   },
 
   beforeUnmount() {
@@ -1049,10 +1050,11 @@ export default {
     windowWidth(val) {
       if (val >= '768') {
         this.isChatActiveMobile = false
-        this.isChatActive = false
         this.chatList.forEach((item) => {
           item.active = false;
         })
+      } else {
+        this.isChatActive = false
       }
     },
     emoticonMenu() {
@@ -1070,10 +1072,6 @@ export default {
 
   created() {
     window.addEventListener('resize', this.updateWindowWidth);
-    const chatStatus = localStorage.getItem('variant')
-    if (chatStatus) {
-      this.variant = chatStatus
-    }
   }
 }
 </script>
