@@ -1,18 +1,18 @@
 <template>
   <div class="chat-container">
     <Navigation />
-    <ChatComponent />
+    <NotificationComponent />
   </div>
 </template>
 
 <script>
-import ChatComponent from '@/components/Chat/Mobile/index.vue'
+import NotificationComponent from '@/components/Notification/index.vue'
 import Navigation from '@/components/Navigation/index.vue'
 
 export default {
   name: 'PostView',
   components: {
-    ChatComponent,
+    NotificationComponent,
     Navigation,
   }
 }
