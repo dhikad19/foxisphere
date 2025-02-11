@@ -13,6 +13,7 @@
                   </v-img>
                 </div>
                 <v-img
+                  @click="handleHome()"
                   src="images/icon/foxon.png"
                   style="margin-bottom: 2px;"
                   class="app-bar-logo__mobile"
@@ -21,6 +22,7 @@
               </div>
               <div class="dekstop-left-navigation">
                 <v-img
+                  @click="handleHome()"
                   src="assets/header-new.png"
                   style="margin-bottom: 2px;"
                   class="app-bar-logo"
@@ -40,9 +42,10 @@
                   </p>
                 </div>
                 <div class="btn-header" v-else>
-                  <v-icon size="26">mdi-plus</v-icon>
+                  <v-icon size="24">mdi-plus</v-icon>
                 </div>
                 <v-menu v-if="windowWidth >= '1280'" offset="14" :close-on-content-click="false">
+                  
                   <template v-slot:activator="{ props }">
                     <div class="btn-header ml-2" v-bind="props">
                       <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
@@ -51,123 +54,16 @@
                       <v-icon size="24" v-else>mdi-bell-outline</v-icon>
                     </div>
                   </template>
-                  <v-card width="380" style="border-radius: 6px">
-                    <div class="notification-container">
-                      <div class="notification-content__top pa-3 mt-1 d-flex align-center justify-space-between" style="width: 100%">
-                        <p style="font-size: 15px; color: #4f4f4f; font-weight: 500">Notifikasi</p>
-                        <div class="d-flex align-center" style="cursor: pointer">
-                          <v-icon class="mr-2" color="#ff7800" size="18">
-                            mdi-check-all
-                          </v-icon>
-                          <p style="font-size: 14px; color: #ff7800; font-weight: 500">Tandai semua sebagai dibaca</p>
-                        </div>
-                      </div>
-                      <v-divider></v-divider>
-                      <div style="margin-bottom: 0px" class="notification-content align-center d-flex justify-space-between pl-3 pr-3 pt-3 mt-1">
-                        <div class="notification-content__tab d-flex">
-                          <div class="tab-content" v-for="(item, i) in tabContent" :key="i">
-                            <div class="tab-toolbar d-flex align-center" @click="handleTab(i)" :class="item.active ? 'tab-active' : 'tab'">
-                              <p 
-                              style="user-select: none"
-                                :class="item.active ? 'tab-title__active' : 'tab-title'" 
-                                class="mb-3"
-                              >
-                                {{ item.name }}
-                              </p>
-                              <div class="mb-3" v-if="item.content.length > 0" :class="item.active ? 'tab-box__active' : 'tab-box'">
-                                <p style="user-select: none">
-                                  {{ item.content.length }}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <v-icon size="18" class="mb-4" color="#585858" style="cursor: pointer">
-                          mdi-cog-outline
-                        </v-icon>
-                      </div>
-                      <v-divider></v-divider>
-                      <div>
-                        <div v-if="tabActive == 'inbox'">
-                          <div  class="pa-3">
-                            <div class="list-container" v-for="(item, i) in listInbox.slice(0, 5)" :key="i">
-                              <InboxList 
-                                :date="item.date" 
-                                :description="item.description" 
-                                :image="item.image" 
-                                :read="item.read"
-                                :title="item.title"
-                                :type="item.type"
-                                :user="item.user"
-                                :community="item.community"
-                              />
-                            </div>
-                          </div>
-                          <div v-if="listInbox.length > 5">
-                            <v-divider></v-divider>
-                            <div class="pa-3">
-                              <v-btn 
-                                color="#ff7800" 
-                                block 
-                                variant="flat" 
-                                style="text-transform: capitalize; letter-spacing: normal"
-                              >
-                                Lihat Semua
-                              </v-btn>
-                            </div>
-                          </div>
-                        </div>
-                        <div v-else>
-                          <div  class="pa-3">
-                            <div class="list-container" v-for="(item, i) in listTeam.slice(0, 5)" :key="i">
-                              <TeamList 
-                                :team="item.team"
-                                :date="item.date" 
-                                :description="item.description" 
-                                :image="item.image" 
-                                :read="item.read"
-                                :game="item.game"
-                                :team-name="item.teamName"
-                                :type="item.type"
-                                :user="item.user"
-                                :community="item.community"
-                              />
-                            </div>
-                          </div>
-                          <div v-if="listTeam.length > 5">
-                            <v-divider></v-divider>
-                            <div class="pa-3">
-                              <v-btn 
-                                color="#ff7800" 
-                                block 
-                                variant="flat" 
-                                style="text-transform: capitalize; letter-spacing: normal"
-                              >
-                                Lihat Semua
-                              </v-btn>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </v-card>
-                  <!-- <v-list>
-                    <v-list-item
-                      v-for="(item, index) in items"
-                      :key="index"
-                      :value="index"
-                    >
-                      <v-list-item-title>{{ item.title }}</v-list-item-title>
-                    </v-list-item>
-                  </v-list> -->
+                  
+                  <NotificationComponent />
                 </v-menu>
-                <div v-else class="btn-header ml-1">
-                  <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
-                    <v-icon size="22">mdi-bell-outline</v-icon>
+                <div v-else class="btn-header ml-1" @click="handleNotification()">
+                  <v-badge dot color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
+                    <v-icon size="24">mdi-bell-outline</v-icon>
                   </v-badge>
-                  <v-icon v-else size="22" >mdi-bell-outline</v-icon>
+                  <v-icon v-else size="24" >mdi-bell-outline</v-icon>
                 </div>
-                <div v-if="windowWidth <= '1280'" class="btn-header ml-1" @click="handleChat()">
+                <div v-if="windowWidth <= '1280'" class="btn-header ml-1" @click="handleChatMobile()">
                   <v-icon size="24">mdi-chat-processing-outline</v-icon>
                 </div>
                 <div v-else class="btn-header ml-2" @click="handleChat()">
@@ -180,16 +76,14 @@
                   <template v-slot:activator="{ props }">
                     <div class="btn-header ml-2" v-bind="props">
                       <v-avatar size="30">
-                        <v-img 
-                            src="https://randomuser.me/api/portraits/men/82.jpg" 
-                          >
-                          </v-img>
+                        <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
+                        </v-img>
                       </v-avatar>
                     </div>
                   </template>
                   <v-card width="300" style="border-radius: 6px">
-                    <div class="profile-container pa-3">
-                      <div class="profile-list__user mb-3">
+                    <div class="profile-container pa-3" >
+                      <div class="profile-list__user mb-3" @click="handleProfile()">
                         <v-avatar size="35" class="mr-2">
                           <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
                         </v-img>
@@ -256,7 +150,7 @@
                   </v-card>
                 </v-menu>
                 <div v-else class="btn-header ml-1">
-                  <v-avatar size="30">
+                  <v-avatar size="30" @click="handleProfile()">
                     <v-img 
                         src="https://randomuser.me/api/portraits/men/82.jpg" 
                       >
@@ -441,8 +335,7 @@
 <script>
 import SearchComponent from '../Search/index.vue'
 import ChatComponent from '../Chat/index.vue'
-import InboxList from '../Notification/List/Inbox/index.vue'
-import TeamList from '../Notification/List/Team/index.vue'
+import NotificationComponent from '../Notification/index.vue'
 export default {
   name: 'BarComponents',
   data() {
@@ -741,8 +634,7 @@ export default {
     components: {
       SearchComponent,
       ChatComponent,
-      InboxList,
-      TeamList
+      NotificationComponent
     },
     computed: {
     // Computed property to determine if the screen is a desktop
@@ -751,12 +643,30 @@ export default {
       },
     },
     methods: {
+      handleProfile() {
+        this.$router.push('/profile')
+      },
+
+      handleHome() {
+        this.$router.push('/')
+      },
+
+      handleChatMobile() {
+        this.$router.push('/chat')
+      },
+
+      handleNotification() {
+        this.$router.push('/notification')
+      },
+
       handleDrawer() {
         this.drawer = !this.drawer
       },
+
       updateWindowWidth() {
         this.windowWidth = window.innerWidth;
       },
+
       handleChat() {
         this.chatActive = !this.chatActive
         if (this.chatActive) {
@@ -767,6 +677,7 @@ export default {
           localStorage.setItem('variant', 'null')
         }
       },
+
       handleTab(index) {
         this.tabContent.forEach((tab, i) => {
         tab.active = i === index;

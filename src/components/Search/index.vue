@@ -2,14 +2,14 @@
   <div class="search-container">
     <div class="search-btn" @click="overlaySearch()">
       <v-icon color="#4f4f4f" style="font-size: 20px" class="mr-4 ml-2"> mdi-magnify </v-icon>
-      <p class="search-text">Search...</p>
+      <p class="search-text">Cari...</p>
     </div>
     <v-overlay
       style="width: 100%"
       v-model="overlay"
       :opacity="0.7"
       class="d-flex justify-center">
-      <v-card class="search-card" variant="text" color="white">
+      <v-card class="search-card" color="#e8e8e8">
         <div style="width: 100%">
           <v-text-field
             variant="solo"

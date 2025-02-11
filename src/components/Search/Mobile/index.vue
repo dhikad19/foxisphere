@@ -2,7 +2,7 @@
   <div class="search-container">
     <div class="search-btn" @click="overlaySearch()">
       <v-icon color="#4f4f4f" style="font-size: 20px" class="mr-4 ml-2"> mdi-magnify </v-icon>
-      <p class="search-text">Search...</p>
+      <p class="search-text">Cari...</p>
     </div>
     <v-overlay
       style="width: 100%"
