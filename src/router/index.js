@@ -8,7 +8,8 @@ import UserProfile from "../views/ProfileView.vue";
 import ChatView from "../views/ChatView.vue";
 import NotificationView from "../views/NotificationView.vue";
 import AboutView from "../views/AboutView.vue";
-import communityView from "../views/communityView.vue";
+import ProfileView from "../views/ProfileView.vue";
+import CommunityView from "../views/CommunityView.vue";
 import PostView from "../views/PostView.vue";
 
 const routes = [
@@ -63,9 +64,15 @@ const routes = [
     meta: { requiresUnauth: true, title: "Foxi Sphere | Notification" },
   },
   {
+    path: "/profile",
+    name: "profile",
+    component: ProfileView,
+    meta: { requiresUnauth: true, title: "Foxi Sphere | Profile" },
+  },
+  {
     path: "/community",
     name: "community",
-    component: communityView,
+    component: CommunityView,
     meta: { requiresUnauth: true, title: "Foxi Sphere | Community" },
   },
   {

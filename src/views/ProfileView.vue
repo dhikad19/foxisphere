@@ -1,17 +1,34 @@
 <template>
-  <div class="profile-container">
-    <!-- <ProfileComponent /> -->
-     <h1>Hello Profile</h1>
+  <div class="profile-container d-flex">
+    <Navigation />
+    <div class="content-container pa-3">
+      <ProfileComponent />
+    </div>
   </div>
 </template>
 
 <script>
-// import ProfileComponent from '@/components/Profile/index.vue'
+import ProfileComponent from '@/components/Profile/index.vue'
+import Navigation from '@/components/Navigation/index.vue'
 
 export default {
-  name: 'ProfileView',
-  // components: {
-  //   ProfileComponent
-  // }
+  name: 'PostView',
+  components: {
+    ProfileComponent,
+    Navigation,
+  }
 }
 </script>
+
+<style scoped lang="scss">
+.content-container {
+  position: relative;
+  margin-top: 75px !important;
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 100%;
+  @media screen and (max-width: 1280px) {
+    margin-top: 65px !important;
+  }
+}
+</style>
