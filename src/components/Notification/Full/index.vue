@@ -1,8 +1,7 @@
 <template>
-<div>
-  <v-card width="380" style="border-radius: 6px">
+  <div class="notification-container__full">
     <div class="notification-container">
-      <div class="notification-content__top pa-3 mt-1 d-flex align-center justify-space-between" style="width: 100%">
+      <!-- <div class="notification-content__top pa-3 mt-1 d-flex align-center justify-space-between" style="width: 100%">
         <p style="font-size: 15px; color: #4f4f4f; font-weight: 500">Notifikasi</p>
         <div class="d-flex align-center" style="cursor: pointer">
           <v-icon class="mr-2" color="#ff7800" size="18">
@@ -11,8 +10,8 @@
           <p style="font-size: 14px; color: #ff7800; font-weight: 500">Tandai semua sebagai dibaca</p>
         </div>
       </div>
-      <v-divider></v-divider>
-      <div style="margin-bottom: 0px" class="notification-content align-center d-flex justify-space-between pl-3 pr-3 pt-3 mt-1">
+      <v-divider></v-divider> -->
+      <div style="margin-bottom: 0px" class="notification-content align-center d-flex justify-space-between">
         <div class="notification-content__tab d-flex">
           <div class="tab-content" v-for="(item, i) in tabContent" :key="i">
             <div class="tab-toolbar d-flex align-center" @click="handleTab(i)" :class="item.active ? 'tab-active' : 'tab'">
@@ -32,11 +31,11 @@
           </div>
         </div>
       </div>
-      <v-divider></v-divider>
+      <!-- <v-divider></v-divider> -->
       <div>
         <div v-if="tabActive == 'inbox'">
-          <div  class="pa-3">
-            <div class="list-container" v-for="(item, i) in listInbox.slice(0, 5)" :key="i">
+          <div  class="pt-3">
+            <div class="list-container" v-for="(item, i) in listInbox" :key="i">
               <InboxList 
                 :date="item.date" 
                 :description="item.description" 
@@ -49,23 +48,10 @@
               />
             </div>
           </div>
-          <div v-if="listInbox.length > 5">
-            <v-divider></v-divider>
-            <div class="pa-3">
-              <v-btn 
-                color="#ff7800" 
-                block 
-                variant="flat" 
-                style="text-transform: capitalize; letter-spacing: normal"
-              >
-                Lihat Semua
-              </v-btn>
-            </div>
-          </div>
         </div>
         <div v-else>
-          <div  class="pa-3">
-            <div class="list-container" v-for="(item, i) in listTeam.slice(0, 5)" :key="i">
+          <div  class="pt-3">
+            <div class="list-container" v-for="(item, i) in listTeam" :key="i">
               <TeamList 
                 :team="item.team"
                 :date="item.date" 
@@ -80,29 +66,15 @@
               />
             </div>
           </div>
-          <div v-if="listTeam.length > 5">
-            <v-divider></v-divider>
-            <div class="pa-3">
-              <v-btn 
-                color="#ff7800" 
-                block 
-                variant="flat" 
-                style="text-transform: capitalize; letter-spacing: normal"
-              >
-                Lihat Semua
-              </v-btn>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-  </v-card>
-</div>
+  </div>
 </template>
 
 <script>
-import InboxList from './List/Inbox/index.vue'
-import TeamList from './List/Team/index.vue'
+import InboxList from '../List/Inbox/index.vue'
+import TeamList from '../List/Team/index.vue'
 export default {
   data() {
     return {
@@ -342,6 +314,10 @@ export default {
             image: 'https://randomuser.me/api/portraits/men/85.jpg',
             read: true,
             teamName: 'only test purpose only test purpose only',
+            game: {
+              gameImage: '',
+              gameName: 'PUBG',
+            },
             user: 'Test only',
             team: [
               {
@@ -407,5 +383,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use './style.scss'
+@use '../style.scss';
 </style>
