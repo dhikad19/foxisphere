@@ -1,0 +1,151 @@
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profile-banner {
+  background-color: #4f4f4f;
+  min-height: 150px;
+  width: 100%;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.profile-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  max-height: 110px;
+  min-height: 110px;
+  min-width: 110px;
+  border-radius: 50%;
+  margin-top: -50px;
+  margin-bottom: -50px;
+  margin-right: 10px;
+}
+
+.profile-bottom-content {
+  display: flex;
+  padding-left: 50px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border: 1px solid #e0e0e0;
+  padding-bottom: 20px;
+}
+
+.profile-name {
+  font-weight: 700;
+  font-size: 24px;
+  color: #4f4f4f;
+  line-height: normal;
+}
+
+.profile-username {
+  line-height: normal;
+  color: #4f4f4f;
+  margin-top: 2px;
+  font-size: 14px;
+}
+
+.profile-badge {
+  background-color: #4f4f4f17;
+  color: #4f4f4f;
+  padding: 3px 6px 3px 6px;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.game-list-title {
+  font-size: 13px;
+  color: #4f4f4f;
+}
+
+.profile-game-icon {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 2px;
+  margin-right: 7px;
+}
+
+.bookmark-icon {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.profile-edit-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 8px 4px 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  &:hover {
+    background-color: #e0e0e0;
+  }
+}
+
+.profile-info {
+  width: 100%;
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.right-profile-content {
+  padding: 13px;
+  border-radius: 6px;
+  background-color: #e0e0e0;
+}
+
+.profile-description {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.left-profile {
+  padding-right: 15px;
+}
+
+.right-profile {
+  padding-left: 15px;
+}
+
+.tab {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #4f4f4f18;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 3px;
+}
+
+.tab-list__active {
+  background-color: white;
+  padding: 3px 6px 3px 6px;
+  display: flex;
+  color: #4f4f4f;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.tab-list {
+  padding: 3px 6px 3px 6px;
+  display: flex;
+  color: #4f4f4f;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
