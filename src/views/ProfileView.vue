@@ -1,7 +1,7 @@
 <template>
   <div class="profile-container d-flex">
     <Navigation />
-    <div class="content-container pa-3">
+    <div class="content-container">
       <ProfileComponent />
     </div>
   </div>
@@ -27,8 +27,13 @@ export default {
   max-width: 1080px;
   margin: 0 auto;
   width: 100%;
+  padding: 12px;
   @media screen and (max-width: 1280px) {
     margin-top: 65px !important;
+  }
+  @media screen and (max-width: 600px) {
+    overflow: hidden;
+    padding: 0px;
   }
 }
 </style>
