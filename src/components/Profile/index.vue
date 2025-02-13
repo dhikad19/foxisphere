@@ -35,9 +35,7 @@
                   </div>
                 </div>
                 <div class="bookmark-icon mr-3">
-                  <v-icon color="#4f4f4f">
-                    mdi-bookmark-outline
-                  </v-icon>
+                  <v-img src="/images/icon/bookmark.png" max-height="20px" min-height="20px" max-width="20px" min-width="20px"></v-img>
                 </div>
               </div>
             </div>
@@ -60,7 +58,10 @@
               <div style="width: 100%" class="d-flex align-start justify-space-between">
                 <div class="ml-3">
                   <p class="profile-name">Dwi Andika</p>
-                  <p class="profile-username mt-1">@dikad19</p>
+                  <div class="d-flex align-center mt-1">
+                    <p class="profile-username">@dikad19</p>
+                    <v-img style="margin-bottom: 2px" src='/images/icon/check.png' max-height="16px" max-width="16px" min-width="16px"></v-img>
+                  </div>
                 </div>
                 <div class="profile-edit-button mr-3">
                   <v-img class="mr-2" src="/images/icon/edit.png" max-height="18px" min-width="18px"></v-img>
@@ -69,53 +70,86 @@
               </div>
             </div>
 
-            <div style="width: 100%" class="ml-6 mt-2">
-              <p class="game-list-title mt-3">Memainkan atau mengikuti group:</p>
-              <div class="d-flex align-center justify-space-between mt-1">
-                <div class="profile-game-list d-flex">
-                  <div class="profile-game-icon" v-for="(item, i) in gameList.slice(0, 5)" :key="i">
-                    <v-img :src='item.gameIcon' height max-height="25px" min-width="25px"></v-img>
-                  </div>
-                  <div class="profile-game-plus" v-if="gameList.length > 5">
-                    <p class="plus-game-list">
-                      +{{gameList.length - 5}}
-                    </p>
-                  </div>
-                </div>
-                <div class="bookmark-icon mr-6">
-                  <v-icon color="#4f4f4f">
-                    mdi-bookmark-outline
-                  </v-icon>
-                </div>
-              </div>
-            </div>
-            
-            <div class="mt-10" style="width: 100%">
-              <v-divider class="mb-2"></v-divider>
-              <div class="profile-info pl-8 pr-8 mb-2" style="text-align: center">
-                <div>
-                  <p><b>{{accountInfo.post}}</b></p>
-                  Postingan
-                </div>
-                
-                <div>
-                  <p><b>{{accountInfo.folowers}}</b></p>
-                  Pengikut
-                </div>
-                
-                <div>
-                  <p><b>{{accountInfo.folowing}}</b></p>
-                  Diikuti
-                </div>
-                
-                <div>
-                  <p><b>{{accountInfo.upvote}}</b></p>
-                  Upvote
-                </div>
-              </div>
-              <v-divider></v-divider>
+            <div class="profile-badge mt-3">
+              Foxon Legends
             </div>
 
+            <div class="social-list">
+              <div class="profile-social-icon">
+                <v-icon color="#4f4f4f" size="19">mdi-instagram</v-icon>
+              </div>
+              <div class="profile-social-icon">
+                <v-icon color="#4f4f4f" size="19">mdi-facebook</v-icon>
+              </div>
+              <div class="profile-social-icon">
+                <v-icon color="#4f4f4f" size="19">mdi-discord</v-icon>
+              </div>
+              <div class="profile-social-icon">
+                <v-icon color="#4f4f4f" size="19">mdi-youtube</v-icon>
+              </div>
+              <div class="profile-social-icon">
+                <v-icon color="#4f4f4f" size="19">mdi-twitter</v-icon>
+              </div>
+            </div>
+            <div 
+            @click="expandMenu = !expandMenu" 
+            class="profile-details-btn pt-3 pb-3"
+            :style="expandMenu ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : 'border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;'"
+            >
+              <p class="pl-3">
+                Detail Profil
+              </p>
+              <v-icon class="pr-4" v-if="expandMenu">mdi-chevron-up</v-icon>
+              <v-icon class="pr-4" v-else>mdi-chevron-down</v-icon>
+            </div>
+
+            <v-expand-transition>
+              <v-card flat v-show="expandMenu" style="width: 100%; background-color: #4f4f4f0a; 'border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;'">
+                <v-divider class="mb-3"></v-divider>
+                <div style="width: 100%">
+                  <p class="game-list-title ml-3">Memainkan atau mengikuti group:</p>
+                  <div class="d-flex align-center justify-space-between mt-1">
+                    <div class="profile-game-list d-flex ml-3">
+                      <div class="profile-game-icon" v-for="(item, i) in gameList.slice(0, 5)" :key="i">
+                        <v-img :src='item.gameIcon' height max-height="25px" min-width="25px"></v-img>
+                      </div>
+                      <div class="profile-game-plus" v-if="gameList.length > 5">
+                        <p class="plus-game-list" style="font-weight: 500">
+                          +{{gameList.length - 5}}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="bookmark-icon mr-3">
+                      <v-img src="/images/icon/bookmark.png" max-height="20px" min-height="20px" max-width="20px" min-width="20px"></v-img>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mt-5 pl-3 pr-3 pb-3" style="width: 100%">
+                  <div class="profile-info pt-2 pb-2 pl-8 pr-8 mb-2" style="text-align: center">
+                    <div>
+                      <p><b>{{accountInfo.post}}</b></p>
+                      Postingan
+                    </div>
+                    <v-divider vertical></v-divider>
+                    <div>
+                      <p><b>{{accountInfo.folowers}}</b></p>
+                      Pengikut
+                    </div>
+                    <v-divider vertical></v-divider>
+                    <div>
+                      <p><b>{{accountInfo.folowing}}</b></p>
+                      Diikuti
+                    </div>
+                    <v-divider vertical></v-divider>
+                    <div>
+                      <p><b>{{accountInfo.upvote}}</b></p>
+                      Suka
+                    </div>
+                  </div>
+                </div>
+              </v-card>
+            </v-expand-transition>
           </div>
         </div>
 
@@ -139,8 +173,21 @@
               :key="item"
               :value="item.tabValue"
             >
-              <div>
-                {{ item.tabName }}
+              <div v-if="item.tabValue == 'overview'">
+                <div class="overview">
+                  <div class="d-flex align-center justify-space-between mb-3" style="width: 100%">
+                    <b>Bio</b>
+                    <div class="">
+                      <v-img class="mr-2" src="/images/icon/edit.png" max-height="18px" max-width="18px" min-width="18px"></v-img>
+                    </div>
+                  </div>
+                  <div class="bio-message">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Accusantium vero maiores recusandae eveniet quos assumenda odit nobis, 
+                    illo impedit neque, modi libero totam, 
+                    adipisci quas eligendi consectetur sit. Officiis, ipsum.
+                  </div>
+                </div>
               </div>
             </v-tabs-window-item>
           </v-tabs-window>
@@ -175,7 +222,7 @@
                   <p class="mb-1">
                     <b>{{accountInfo.upvote}}</b>
                   </p>
-                  Upvote
+                  Suka
                 </div>
               </v-col>
             </v-row>
@@ -223,6 +270,7 @@ export default {
           gameId: ''
         },
       ],
+      expandMenu: false,
       accountInfo: {
         post: 85,
         folowing: 100,

@@ -31,9 +31,5 @@ export default {
   @media screen and (max-width: 1280px) {
     margin-top: 65px !important;
   }
-  @media screen and (max-width: 600px) {
-    overflow: hidden;
-    padding: 0px;
-  }
 }
 </style>
