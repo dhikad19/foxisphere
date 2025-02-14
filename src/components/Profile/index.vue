@@ -27,17 +27,42 @@
                 Foxon Legends
               </div>
 
-              <p class="game-list-title mt-3">Memainkan atau mengikuti group:</p>
-              <div class="d-flex align-center justify-space-between mt-1">
-                <div class="profile-game-list d-flex">
-                  <div class="profile-game-icon" v-for="(item, i) in gameList" :key="i">
-                    <v-img :src='item.gameIcon' height max-height="25px" min-width="25px"></v-img>
-                  </div>
+              <!-- <div class="social-list">
+                <div class="profile-social-icon">
+                  <v-icon color="#4f4f4f" size="19">mdi-instagram</v-icon>
                 </div>
-                <div class="bookmark-icon mr-3">
-                  <v-img src="/images/icon/bookmark.png" max-height="20px" min-height="20px" max-width="20px" min-width="20px"></v-img>
+                <div class="profile-social-icon">
+                  <v-icon color="#4f4f4f" size="19">mdi-facebook</v-icon>
                 </div>
-              </div>
+                <div class="profile-social-icon">
+                  <v-icon color="#4f4f4f" size="19">mdi-discord</v-icon>
+                </div>
+                <div class="profile-social-icon">
+                  <v-icon color="#4f4f4f" size="19">mdi-youtube</v-icon>
+                </div>
+                <div class="profile-social-icon">
+                  <v-icon color="#4f4f4f" size="19">mdi-twitter</v-icon>
+                </div>
+              </div> -->
+
+              <!-- <div class="pr-3">
+                <div 
+                  @click="expandMenu = !expandMenu" 
+                  class="profile-details-btn pt-3 pb-3"
+                  :style="expandMenu ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : 'border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;'"
+                >
+                  <p class="pl-3">
+                    Detail Profil
+                  </p>
+                  <v-icon class="pr-4" v-if="expandMenu">mdi-chevron-up</v-icon>
+                  <v-icon class="pr-4" v-else>mdi-chevron-down</v-icon>
+                </div>
+
+                <v-expand-transition>
+                  
+                </v-expand-transition>
+              </div> -->
+
             </div>
           </div>
         </div>
@@ -92,9 +117,9 @@
               </div>
             </div>
             <div 
-            @click="expandMenu = !expandMenu" 
-            class="profile-details-btn pt-3 pb-3"
-            :style="expandMenu ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : 'border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;'"
+              @click="expandMenu = !expandMenu" 
+              class="profile-details-btn pt-3 pb-3"
+              :style="expandMenu ? 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;' : 'border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;'"
             >
               <p class="pl-3">
                 Detail Profil
@@ -174,60 +199,82 @@
               :value="item.tabValue"
             >
               <div v-if="item.tabValue == 'overview'">
-                <div class="overview">
-                  <div class="d-flex align-center justify-space-between mb-3" style="width: 100%">
-                    <b>Bio</b>
-                    <div class="">
-                      <v-img class="mr-2" src="/images/icon/edit.png" max-height="18px" max-width="18px" min-width="18px"></v-img>
-                    </div>
-                  </div>
-                  <div class="bio-message">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Accusantium vero maiores recusandae eveniet quos assumenda odit nobis, 
-                    illo impedit neque, modi libero totam, 
-                    adipisci quas eligendi consectetur sit. Officiis, ipsum.
-                  </div>
-                </div>
+                
               </div>
             </v-tabs-window-item>
           </v-tabs-window>
         </div>
       </v-col>
       <v-col md="4" sm="12" class="right-profile">
-        <div class="right-profile-content">
-          <div class="profile-info">
-            <v-row dense>
-              <v-col cols="6">
-                <div>
-                  <p class="mb-1">
-                    <b>{{accountInfo.post}}</b> 
-                  </p>
-                  Postingan
-                </div>
-                <div class="pt-4">
-                  <p class="mb-1">
-                    <b>{{accountInfo.folowers}}</b>
-                  </p>
-                  Pengikut
-                </div>
-              </v-col>
-              <v-col cols="6">
-                <div>
-                  <p class="mb-1">
-                    <b>{{accountInfo.folowing}}</b>
-                  </p>
-                  Diikuti
-                </div>
-                <div class="pt-4">
-                  <p class="mb-1">
-                    <b>{{accountInfo.upvote}}</b>
-                  </p>
-                  Suka
-                </div>
-              </v-col>
-            </v-row>
+        <v-card class="bottom-details-content" flat>
+          <div class="pa-3">
+            <div class="d-flex align-center justify-space-between mb-3" style="width: 100%">
+              <b style="font-size: 14px">Motto</b>
+              <div class="bookmark-icon">
+                <v-img src="/images/icon/edit.png" max-height="18px" max-width="18px" min-width="18px"></v-img>
+              </div>
+            </div>
+            <div class="bio-message">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+              Accusantium vero maiores recusandae eveniet quos assumenda odit nobis, 
+              illo impedit neque, modi libero totam, 
+              adipisci quas eligendi consectetur sit. Officiis, ipsum.
+            </div>
           </div>
-        </div>
+          <div class="pl-3 pr-3">
+            <v-divider></v-divider>
+          </div>
+
+          <div class="mt-4 pl-3 pr-3 pb-3" style="width: 100%">
+            <div class="profile-info pt-2 pb-2 pl-4 pr-4 mb-1" style="text-align: center">
+              <v-row dense>
+                <v-col cols="3">
+                  <p><b>{{accountInfo.post}}</b></p>
+                  Postingan
+                </v-col>
+                <v-col cols="3">
+                  <p><b>{{accountInfo.folowers}}</b></p>
+                  Pengikut
+                </v-col>
+                <v-col cols="3">
+                  <p><b>{{accountInfo.folowing}}</b></p>
+                  Diikuti
+                </v-col>
+                <v-col cols="3">
+                  <p><b>{{accountInfo.upvote}}</b></p>
+                  Suka
+                </v-col>
+              </v-row>
+            </div>
+          </div>
+          <div class="pl-3 pr-3">
+            <v-divider></v-divider>
+          </div>
+          <div style="width: 100%" class="mt-3 mb-4">
+            <b class="ml-3" style="font-size: 14px">Memainkan</b>
+            <div class="d-flex align-center justify-space-between mt-3">
+              <div class="profile-game-list d-flex ml-3">
+                <div class="profile-game-icon" v-for="(item, i) in gameList.slice(0, 5)" :key="i">
+                  <v-img :src='item.gameIcon' height max-height="25px" min-width="25px"></v-img>
+                </div>
+                <div class="profile-game-plus" v-if="gameList.length > 5">
+                  <p class="plus-game-list" style="font-weight: 500">
+                    +{{gameList.length - 5}}
+                  </p>
+                </div>
+              </div>
+              <!-- <div class="bookmark-icon mr-3">
+                <v-img src="/images/icon/bookmark.png" max-height="20px" min-height="20px" max-width="20px" min-width="20px"></v-img>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="pl-3 pr-3">
+            <v-divider></v-divider>
+          </div>
+          
+        </v-card>
+
       </v-col>
     </v-row>
   </div>
@@ -280,11 +327,11 @@ export default {
       tab: 'overview',
       tabList: [
         {
-          tabName: 'Tinjauan',
+          tabName: 'Postingan',
           tabValue: 'overview'
         },
         {
-          tabName: 'Grup',
+          tabName: 'Komentar',
           tabValue: 'group'
         },
         {
