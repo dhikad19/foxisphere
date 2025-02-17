@@ -68,7 +68,6 @@
   padding-bottom: 5px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  border: 1px solid #e0e0e0;
   background-color: #ffffff;
   font-size: 14px;
   font-weight: 500;
@@ -82,7 +81,7 @@
 .bottom-details-content {
   width: 100%;
   border-radius: 6px;
-  border: 1px solid #e0e0e0;
+  background-color: #4f4f4f07;
 }
 
 .profile-avatar {
@@ -139,7 +138,7 @@
   color: #4f4f4f;
   line-height: normal;
   @media screen and (max-width: 960px) {
-    font-size: 20px;
+    font-size: 19px;
   }
 }
 
@@ -169,21 +168,48 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  width: 100%;
 }
 
 .profile-social-icon {
   border: 1px solid #e0e0e0;
-  border-radius: 50%;
+  color: #4f4f4f;
+  border-radius: 16px;
   height: 30px;
   min-height: 30px;
-  max-height: 30px;
-  width: 30px;
-  min-width: 30px;
-  max-width: 30px;
+  padding-left: 8px;
+  padding-right: 8px;
+  display: inline-block;
   display: flex;
+  font-size: 13px;
   align-items: center;
   justify-content: center;
+}
+
+.social-media-text {
+  text-overflow: ellipsis;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.social-media-text-plus {
+  text-overflow: ellipsis;
+  color: #ff7800;
+  font-weight: 500;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.social-media-text-title {
+  font-weight: 500;
+  font-size: 15px;
 }
 
 .profile-game-icon {

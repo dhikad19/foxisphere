@@ -36,6 +36,15 @@
             <v-col cols="6" sm="6" md="6" lg="3" class="d-flex flex-row-reverse align-center">
               <div v-if="hasLoggedIn" class="d-flex align-center">
                 <div class="btn-header__create" v-if="windowWidth > '1080'">
+                  <v-icon size="30">mdi-magnify</v-icon>
+                  <p class="ml-2">
+                    Posting
+                  </p>
+                </div>
+                <div class="btn-header" v-else>
+                  <v-icon size="24">mdi-magnify</v-icon>
+                </div>
+                <div class="btn-header__create" v-if="windowWidth > '1080'">
                   <v-icon size="30">mdi-plus</v-icon>
                   <p class="ml-2">
                     Posting

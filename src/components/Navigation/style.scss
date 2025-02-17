@@ -1,5 +1,5 @@
 .app-bar-container {
-  border-bottom: 1px solid #e4e4e4; /* Custom border to simulate a line */
+  border-bottom: 1px solid #e4e4e4;
 }
 
 .app-bar-logo {
@@ -24,6 +24,12 @@
   @media screen and (max-width: 1200px) {
     padding-left: 10px;
     padding-right: 10px;
+  }
+}
+
+.v-layout {
+  @media screen and (max-width: 1080px) {
+    z-index: auto !important;
   }
 }
 

@@ -81,41 +81,90 @@
 
             <div class="profile-description">
               <div style="width: 100%" class="d-flex align-start justify-space-between">
-                <div class="ml-3">
+                <div>
                   <p class="profile-name">Dwi Andika</p>
                   <div class="d-flex align-center mt-1">
                     <p class="profile-username">@dikad19</p>
                     <v-img style="margin-bottom: 2px" src='/images/icon/check.png' max-height="16px" max-width="16px" min-width="16px"></v-img>
                   </div>
                 </div>
-                <div class="profile-edit-button mr-3">
+                <div class="profile-edit-button">
                   <v-img class="mr-2" src="/images/icon/edit.png" max-height="18px" min-width="18px"></v-img>
                   Edit Profil
                 </div>
               </div>
             </div>
 
-            <div class="profile-badge mt-3">
-              Foxon Legends
+            <div class="mt-3 d-flex align-start justify-space-between" style="width: 100%">
+              <v-icon color="transparent">
+                mdi-link-variant
+              </v-icon>
+              <div class="profile-badge">
+                Foxon Legends
+              </div>
+              <div class="bookmark-icon" @click="sheet = true"> 
+                <v-icon color="#4f4f4f" size="15">
+                  mdi-link-variant
+                </v-icon>
+              </div>
             </div>
 
-            <div class="social-list">
+            <!-- <div class="social-list">
               <div class="profile-social-icon">
-                <v-icon color="#4f4f4f" size="19">mdi-instagram</v-icon>
+                <v-icon class="mr-1" size="19">mdi-instagram</v-icon>
+                @dikad19
               </div>
               <div class="profile-social-icon">
-                <v-icon color="#4f4f4f" size="19">mdi-facebook</v-icon>
+                <v-icon class="mr-1" size="19">mdi-facebook</v-icon>
               </div>
               <div class="profile-social-icon">
-                <v-icon color="#4f4f4f" size="19">mdi-discord</v-icon>
+                <v-icon class="mr-1" size="19">mdi-discord</v-icon>
               </div>
               <div class="profile-social-icon">
-                <v-icon color="#4f4f4f" size="19">mdi-youtube</v-icon>
+                <v-icon class="mr-1" size="19">mdi-youtube</v-icon>
               </div>
               <div class="profile-social-icon">
-                <v-icon color="#4f4f4f" size="19">mdi-twitter</v-icon>
+                <v-icon class="mr-1" size="19">mdi-twitter</v-icon>
               </div>
-            </div>
+            </div> -->
+            <v-bottom-sheet v-model="sheet">
+              <v-card
+                class="text-center"
+                height="100%"
+              >
+                <div class="mt-5 mb-3 d-flex align-start justify-space-between">
+                  <v-icon size="17" class="ml-3" color="transparent">mdi-close</v-icon>
+                  <p class="social-media-text-title">Tautan Media Sosial</p>
+                  <v-icon @click="sheet = false" size="17" class="mr-3" color="#4f4f4f" >mdi-close</v-icon>
+                </div>
+                <div class="social-list mb-7">
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-instagram</v-icon>
+                    <p class="social-media-text">@dikad19</p>
+                  </div>
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-facebook</v-icon>
+                    <p class="social-media-text">@dikad19</p>
+                  </div>
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-discord</v-icon>
+                    <p class="social-media-text">@dikad19</p>
+                  </div>
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-youtube</v-icon>
+                    <p class="social-media-text">@dikad19</p>
+                  </div>
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-twitter</v-icon>
+                    <p class="social-media-text">dikad19dikad19@dikad19</p>
+                  </div>
+                  <div class="profile-social-icon">
+                    <v-icon color="#ff7800" class="mr-1" size="19">mdi-plus</v-icon>
+                    <p class="social-media-text-plus">Tambah Tautan</p>
+                  </div>
+                </div>
+              </v-card>
+            </v-bottom-sheet>
             <div 
               @click="expandMenu = !expandMenu" 
               class="profile-details-btn pt-3 pb-3"
@@ -131,7 +180,25 @@
             <v-expand-transition>
               <v-card flat v-show="expandMenu" style="width: 100%; background-color: #4f4f4f0a; 'border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;'">
                 <v-divider class="mb-3"></v-divider>
-                <div style="width: 100%">
+                <!-- <div class="social-list">
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-instagram</v-icon>
+                    @dikad19
+                  </div>
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-facebook</v-icon>
+                  </div>
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-discord</v-icon>
+                  </div>
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-youtube</v-icon>
+                  </div>
+                  <div class="profile-social-icon">
+                    <v-icon class="mr-1" size="19">mdi-twitter</v-icon>
+                  </div>
+                </div> -->
+                <div style="width: 100%; margin-top: -1px">
                   <p class="game-list-title ml-3">Memainkan atau mengikuti group:</p>
                   <div class="d-flex align-center justify-space-between mt-1">
                     <div class="profile-game-list d-flex ml-3">
@@ -180,6 +247,7 @@
 
         <div class="profile-tab">
           <v-tabs
+            grow
             v-model="tab"
             bg-color="transparent"
           >
@@ -214,15 +282,17 @@
                 <v-img src="/images/icon/edit.png" max-height="18px" max-width="18px" min-width="18px"></v-img>
               </div>
             </div>
+
             <div class="bio-message">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. 
               Accusantium vero maiores recusandae eveniet quos assumenda odit nobis, 
               illo impedit neque, modi libero totam, 
               adipisci quas eligendi consectetur sit. Officiis, ipsum.
             </div>
-          </div>
-          <div class="pl-3 pr-3">
+
             <v-divider></v-divider>
+
+
           </div>
 
           <div class="mt-4 pl-3 pr-3 pb-3" style="width: 100%">
@@ -317,6 +387,7 @@ export default {
           gameId: ''
         },
       ],
+      sheet: false,
       expandMenu: false,
       accountInfo: {
         post: 85,

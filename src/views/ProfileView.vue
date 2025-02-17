@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-container d-flex">
+  <div class="profile-container">
     <Navigation />
     <div class="content-container">
       <ProfileComponent />
@@ -21,6 +21,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.profile-container {
+  display: flex;
+  @media screen and (max-width: 1080px) {
+    display: unset;
+  }
+}
+
 .content-container {
   position: relative;
   margin-top: 75px !important;
@@ -30,6 +37,9 @@ export default {
   padding: 12px;
   @media screen and (max-width: 1280px) {
     margin-top: 65px !important;
+  }
+  @media screen and (max-width: 1080px) {
+    margin-top: -92.2vh !important;
   }
 }
 </style>

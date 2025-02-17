@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex">
+  <div class="home-container">
     <!-- <HeaderBar />
     <Hero />
     <Timeline />
@@ -13,6 +13,13 @@
 </template>
 
 <style scoped lang="scss">
+.home-container {
+  display: flex;
+  @media screen and (max-width: 1080px) {
+    display: unset;
+  }
+}
+
 .content-container {
   position: relative;
   margin-top: 75px !important;
@@ -21,6 +28,9 @@
   width: 100%;
   @media screen and (max-width: 1280px) {
     margin-top: 65px !important;
+  }
+  @media screen and (max-width: 1080px) {
+    margin-top: -92.2vh !important;
   }
 }
 </style>
