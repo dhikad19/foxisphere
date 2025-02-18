@@ -9,6 +9,7 @@
     <div class="content-container pa-3">
       <HeroVariant />
     </div>
+    <BottomNavigation active="home" />
   </div>
 </template>
 
@@ -38,6 +39,7 @@
 <script>
   // import Bar from '@/components/Bar/index.vue'
   import Navigation from '@/components/Navigation/index.vue'
+  import BottomNavigation from '@/components/Navigation/Bottom/index.vue'
   import HeroVariant from '@/components/Hero/Variant/index.vue'
 // import Hero from '@/components/Hero/index.vue'
 // import HeaderBar from '@/components/Header/index.vue'
@@ -48,7 +50,8 @@ export default {
   components: {
     // Bar,
     Navigation,
-    HeroVariant
+    HeroVariant,
+    BottomNavigation
     // HeaderBar,
     // Hero,
     // Footer,

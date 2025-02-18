@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-container">
     <v-app>
-      <v-app-bar elevation="0" height="65" class="app-bar-container">
+      <v-app-bar elevation="0" :height="windowWidth >= '1280' ? 65 : 55" class="app-bar-container">
         <div class="app-bar-content">
           <v-row dense>
             <v-col cols="6" sm="6" md="6" lg="3">
@@ -14,28 +14,26 @@
                 </div>
                 <v-img
                   @click="handleHome()"
-                  src="images/icon/foxon.png"
-                  style="margin-bottom: 2px;"
-                  class="app-bar-logo__mobile"
-                  :class="isActive || scrollPosition >= heightBarAnchor ? 'img-active' : 'img-nonactive'">
-                </v-img>
-              </div>
-              <div class="dekstop-left-navigation">
-                <v-img
-                  @click="handleHome()"
                   src="assets/header-new.png"
                   style="margin-bottom: 2px;"
                   class="app-bar-logo"
-                  :class="isActive || scrollPosition >= heightBarAnchor ? 'img-active' : 'img-nonactive'">
+                  >
                 </v-img>
               </div>
+              <v-img
+                @click="handleHome()"
+                src="assets/header-new.png"
+                style="margin-bottom: 2px;"
+                class="app-bar-logo dekstop-left-navigation"
+              >
+            </v-img>
             </v-col>
             <v-col md="6" v-if="windowWidth >= '1280'" class="d-flex justify-center align-center">
               <SearchComponent class="search" />
             </v-col>
             <v-col cols="6" sm="6" md="6" lg="3" class="d-flex flex-row-reverse align-center">
               <div v-if="hasLoggedIn" class="d-flex align-center">
-                <div class="btn-header__create" v-if="windowWidth > '1080'">
+                <!-- <div class="btn-header__create" v-if="windowWidth > '1080'">
                   <v-icon size="30">mdi-magnify</v-icon>
                   <p class="ml-2">
                     Posting
@@ -43,15 +41,12 @@
                 </div>
                 <div class="btn-header" v-else>
                   <v-icon size="24">mdi-magnify</v-icon>
-                </div>
+                </div> -->
                 <div class="btn-header__create" v-if="windowWidth > '1080'">
                   <v-icon size="30">mdi-plus</v-icon>
                   <p class="ml-2">
                     Posting
                   </p>
-                </div>
-                <div class="btn-header" v-else>
-                  <v-icon size="24">mdi-plus</v-icon>
                 </div>
                 <v-menu v-if="windowWidth >= '1280'" offset="14" :close-on-content-click="false">
                   
@@ -72,10 +67,7 @@
                   </v-badge>
                   <v-icon v-else size="24" >mdi-bell-outline</v-icon>
                 </div>
-                <div v-if="windowWidth <= '1280'" class="btn-header ml-1" @click="handleChatMobile()">
-                  <v-icon size="24">mdi-chat-processing-outline</v-icon>
-                </div>
-                <div v-else class="btn-header ml-2" @click="handleChat()">
+                <div v-if="windowWidth >= '1280'" class="btn-header ml-2" @click="handleChat()">
                   <v-badge color="#ff7800" :content="messageCounter" v-if="messageCounter > 0">
                     <v-icon size="24">mdi-chat-processing-outline</v-icon>
                   </v-badge>
@@ -158,14 +150,6 @@
                     </div>
                   </v-card>
                 </v-menu>
-                <div v-else class="btn-header ml-1">
-                  <v-avatar size="30" @click="handleProfile()">
-                    <v-img 
-                        src="https://randomuser.me/api/portraits/men/82.jpg" 
-                      >
-                      </v-img>
-                  </v-avatar>
-                </div>
               </div>
               <div v-else>
                 <v-btn

@@ -15,6 +15,12 @@
   width: 100%;
 }
 
+.search-wrapper {
+  background-color: #e8e8e8;
+  margin-bottom: 15px;
+  border-radius: 6px;
+}
+
 .search-text {
   margin-right: 100px;
   font-size: 15px;
@@ -35,7 +41,8 @@
 .card-search {
   background-color: white;
   width: 100%;
-  margin-top: 1px;
+  height: calc(100vh - 200px);
+  overflow: auto;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }
@@ -51,30 +58,11 @@
 }
 
 .search-item {
-  padding: 10px;
+  padding: 10px 0px 10px 0px;
   cursor: pointer;
   transition: 0.2s;
   border-radius: 6px;
-
-  &:hover {
-    background-color: #ff770025;
-  }
 }
 
 .search-item__container {
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }

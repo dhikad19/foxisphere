@@ -1,22 +1,22 @@
 <template>
-  <div class="profile-container">
+  <div class="search-container">
     <Navigation />
     <div class="content-container">
-      <ProfileComponent />
+      <SearchComponent />
     </div>
-    <BottomNavigation active="profile" />
+    <BottomNavigation active="search" />
   </div>
 </template>
 
 <script>
-import ProfileComponent from '@/components/Profile/index.vue'
+import SearchComponent from '@/components/Search/Page/index.vue'
 import Navigation from '@/components/Navigation/index.vue'
 import BottomNavigation from '@/components/Navigation/Bottom/index.vue'
 
 export default {
   name: 'PostView',
   components: {
-    ProfileComponent,
+    SearchComponent,
     Navigation,
     BottomNavigation
   }
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.profile-container {
+.search-container {
   display: flex;
   @media screen and (max-width: 1080px) {
     display: unset;

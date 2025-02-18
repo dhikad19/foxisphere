@@ -6,12 +6,11 @@
   max-height: 90px;
   min-width: 120px;
   max-width: 120px;
-}
-
-.app-bar-logo__mobile {
-  max-height: 30px;
-  min-width: 30px;
-  max-width: 30px;
+  @media screen and (max-width: 1080px) {
+    max-height: 80px;
+    min-width: 80px;
+    max-width: 80px;
+  }
 }
 
 .app-bar-content {

@@ -1,8 +1,5 @@
 <template>
   <div class="hero-variant-container">
-    <div class="search-mobile">
-      <SearchComponent class="mb-3" />
-    </div>
     <div class="hero-variant-wrapper">
       <v-row dense>
         <v-col cols="12" md="8" style="height: 100%" class="left-class">
@@ -74,7 +71,6 @@
 </style>
 
 <script>
-import SearchComponent from '../../../components/Search/Mobile/index.vue'
 export default {
   name: 'HeroVariantComponent',
   data() {
@@ -135,10 +131,6 @@ export default {
         },
       ],
     }
-  },
-
-  components: {
-    SearchComponent
   },
 
   mounted() {

@@ -6,6 +6,7 @@ import WriteView from "../views/WriteView.vue";
 import NotFound from "../views/NotFoundView.vue";
 import UserProfile from "../views/ProfileView.vue";
 import ChatView from "../views/ChatView.vue";
+import SearchView from "../views/SearchView.vue";
 import NotificationView from "../views/NotificationView.vue";
 import AboutView from "../views/AboutView.vue";
 import ProfileView from "../views/ProfileView.vue";
@@ -56,6 +57,12 @@ const routes = [
     name: "chat",
     component: ChatView,
     meta: { requiresUnauth: true, title: "Foxi Sphere | Chat" },
+  },
+  {
+    path: "/search",
+    name: "search",
+    component: SearchView,
+    meta: { requiresUnauth: true, title: "Foxi Sphere | Search" },
   },
   {
     path: "/notification",
