@@ -1,177 +1,178 @@
 <template>
   <div class="navigation-container">
     <v-app>
-      <v-app-bar elevation="0" :height="windowWidth >= '1280' ? 65 : 55" class="app-bar-container">
+      <v-app-bar elevation="0" :height="windowWidth >= '768' ? 65 : 55" class="app-bar-container">
         <div class="app-bar-content">
-          <v-row dense>
-            <v-col cols="6" sm="6" md="6" lg="3">
-              <div class="mobile-left-navigation">
-                <div @click="handleDrawer()" class="btn-drawer">
-                  <v-img src="/images/icon/menu.png" height="18" width="18" v-if="!drawer">
-                  </v-img>
-                  <v-img src="/images/icon/cross.png" height="15" width="15" v-else>
-                  </v-img>
-                </div>
-                <v-img
-                  @click="handleHome()"
-                  src="assets/header-new.png"
-                  style="margin-bottom: 2px;"
-                  class="app-bar-logo"
-                  >
-                </v-img>
+          <div class="pr-12">
+            <div class="mobile-left-navigation">
+              <div @click="handleDrawer()" class="btn-drawer">
+                <v-icon color="#4f4f4f" v-if="!drawer">
+                  mdi-menu
+                </v-icon>
+                <v-icon color="#4f4f4f" v-else>
+                  mdi-close
+                </v-icon>
+                
               </div>
               <v-img
                 @click="handleHome()"
                 src="assets/header-new.png"
-                style="margin-bottom: 2px;"
-                class="app-bar-logo dekstop-left-navigation"
-              >
+                style="margin-bottom: 5px;"
+                class="app-bar-logo"
+                >
+              </v-img>
+            </div>
+            <v-img
+              @click="handleHome()"
+              src="assets/header-new.png"
+              style="margin-bottom: 2px;"
+              class="app-bar-logo dekstop-left-navigation"
+            >
             </v-img>
-            </v-col>
-            <v-col md="6" v-if="windowWidth >= '1280'" class="d-flex justify-center align-center">
-              <SearchComponent class="search" />
-            </v-col>
-            <v-col cols="6" sm="6" md="6" lg="3" class="d-flex flex-row-reverse align-center">
-              <div v-if="hasLoggedIn" class="d-flex align-center">
-                <!-- <div class="btn-header__create" v-if="windowWidth > '1080'">
-                  <v-icon size="30">mdi-magnify</v-icon>
-                  <p class="ml-2">
-                    Posting
-                  </p>
-                </div>
-                <div class="btn-header" v-else>
-                  <v-icon size="24">mdi-magnify</v-icon>
-                </div> -->
-                <div class="btn-header__create" v-if="windowWidth > '1080'">
-                  <v-icon size="30">mdi-plus</v-icon>
-                  <p class="ml-2">
-                    Posting
-                  </p>
-                </div>
-                <v-menu v-if="windowWidth >= '1280'" offset="14" :close-on-content-click="false">
-                  
-                  <template v-slot:activator="{ props }">
-                    <div class="btn-header ml-2" v-bind="props">
-                      <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
-                        <v-icon size="24">mdi-bell-outline</v-icon>
-                      </v-badge>
-                      <v-icon size="24" v-else>mdi-bell-outline</v-icon>
-                    </div>
-                  </template>
-                  
-                  <NotificationComponent />
-                </v-menu>
-                <div v-else class="btn-header ml-1" @click="handleNotification()">
-                  <v-badge dot color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
-                    <v-icon size="24">mdi-bell-outline</v-icon>
-                  </v-badge>
-                  <v-icon v-else size="24" >mdi-bell-outline</v-icon>
-                </div>
-                <div v-if="windowWidth >= '1280'" class="btn-header ml-2" @click="handleChat()">
-                  <v-badge color="#ff7800" :content="messageCounter" v-if="messageCounter > 0">
-                    <v-icon size="24">mdi-chat-processing-outline</v-icon>
-                  </v-badge>
-                  <v-icon v-else size="24">mdi-chat-processing-outline</v-icon>
-                </div>
-                <v-menu offset="14" v-if="windowWidth >= '1280'" :close-on-content-click="false">
-                  <template v-slot:activator="{ props }">
-                    <div class="btn-header ml-2" v-bind="props">
-                      <v-avatar size="30">
-                        <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
-                        </v-img>
-                      </v-avatar>
-                    </div>
-                  </template>
-                  <v-card width="300" style="border-radius: 6px">
-                    <div class="profile-container pa-3" >
-                      <div class="profile-list__user mb-3" @click="handleProfile()">
-                        <v-avatar size="35" class="mr-2">
-                          <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
-                        </v-img>
-                        </v-avatar>
-                        <div>
-                          <p class="username">@dikad19</p>
-                          <p class="email">dwiandika01@gmail.com</p>
-                        </div>
-                      </div>
-                      
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-trophy-outline
-                        </v-icon>
-                        <p>Pencapaian</p>
-                      </div>
-                      <div class="profile-list__dark-mode">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-weather-night
-                        </v-icon>
-                        <div style="width: 100%" class="d-flex align-center justify-space-between">
-                          <p>Mode Gelap</p>
-                          <v-switch
-                            v-model="darkMode"
-                            color="#ff7800"
-                            hide-details
-                            inset
-                          ></v-switch>
-                        </div>
-                      </div>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-cog-outline
-                        </v-icon>
-                        <p>Pengaturan</p>
-                      </div>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-cursor-default-click-outline
-                        </v-icon>
-                        <p>Beriklan di <b style="color: #ff7800"> Foxon</b></p>
-                      </div>
-                      <v-divider class="mt-3 mb-3"></v-divider>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-headset
-                        </v-icon>
-                        <p>Dukungan</p>
-                      </div>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-help-circle-outline
-                        </v-icon>
-                        <p>Pusat Bantuan</p>
-                      </div>
-                      <v-divider class="mt-3 mb-3"></v-divider>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-logout
-                        </v-icon>
-                        <p>Keluar</p>
-                      </div>
-                    </div>
-                  </v-card>
-                </v-menu>
+          </div>
+          <div class="search">
+            <SearchComponent />
+          </div>
+          <div>
+            <div v-if="hasLoggedIn" class="d-flex align-center">
+              <div class="btn-header__create" v-if="windowWidth > '768'">
+                <v-icon size="24">mdi-magnify</v-icon>
               </div>
-              <div v-else>
+              <div class="btn-header__create" v-if="windowWidth > '768'">
+                <v-icon size="24">mdi-plus</v-icon>
+                <p class="ml-2">
+                  Posting
+                </p>
+              </div>
+              <v-menu v-if="windowWidth >= '768'" offset="14" :close-on-content-click="false">
+                
+                <template v-slot:activator="{ props }">
+                  <div class="btn-header ml-2" v-bind="props">
+                    <div class="d-flex" v-if="notificationCounter > 0">
+                      <v-img src="/images/icon/bell.png" min-height="20" min-width="20"></v-img>
+                      <div class="badge-container">
+                        {{notificationCounter}}
+                      </div>
+                    </div>
+                    <v-img v-else src="/images/icon/bell.png" height="20" max-width="20"></v-img>
+                  </div>
+                </template>
+                
+                <NotificationComponent />
+              </v-menu>
+              <div v-else class="btn-header ml-1" @click="handleNotification()">
+                <div class="d-flex" v-if="notificationCounter > 0">
+                  <v-img src="/images/icon/bell.png" min-height="20" min-width="20"></v-img>
+                  <div class="badge-container">
+                    {{notificationCounter}}
+                  </div>
+                </div>
+                <v-img v-else src="/images/icon/bell.png" height="20" max-width="20"></v-img>
+              </div>
+              <div v-if="windowWidth >= '768'" class="btn-header ml-2" @click="handleChat()">
+                <v-badge color="#ff7800" :content="messageCounter" v-if="messageCounter > 0">
+                  <v-icon size="24">mdi-chat-processing-outline</v-icon>
+                </v-badge>
+                <v-icon v-else size="24">mdi-chat-processing-outline</v-icon>
+              </div>
+              <v-menu offset="14" v-if="windowWidth >= '768'" :close-on-content-click="false">
+                <template v-slot:activator="{ props }">
+                  <div class="btn-header ml-2" v-bind="props">
+                    <v-avatar size="30">
+                      <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
+                      </v-img>
+                    </v-avatar>
+                  </div>
+                </template>
+                <v-card width="300" style="border-radius: 6px">
+                  <div class="profile-container pa-3" >
+                    <div class="profile-list__user mb-3" @click="handleProfile()">
+                      <v-avatar size="35" class="mr-2">
+                        <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
+                      </v-img>
+                      </v-avatar>
+                      <div>
+                        <p class="username">@dikad19</p>
+                        <p class="email">dwiandika01@gmail.com</p>
+                      </div>
+                    </div>
+                    
+                    <div class="profile-list">
+                      <v-icon size="23" color="#4f4f4f">
+                        mdi-trophy-outline
+                      </v-icon>
+                      <p>Pencapaian</p>
+                    </div>
+                    <div class="profile-list__dark-mode">
+                      <v-icon size="23" color="#4f4f4f">
+                        mdi-weather-night
+                      </v-icon>
+                      <div style="width: 100%" class="d-flex align-center justify-space-between">
+                        <p>Mode Gelap</p>
+                        <v-switch
+                          v-model="darkMode"
+                          color="#ff7800"
+                          hide-details
+                          inset
+                        ></v-switch>
+                      </div>
+                    </div>
+                    <div class="profile-list">
+                      <v-icon size="23" color="#4f4f4f">
+                        mdi-cog-outline
+                      </v-icon>
+                      <p>Pengaturan</p>
+                    </div>
+                    <div class="profile-list">
+                      <v-icon size="23" color="#4f4f4f">
+                        mdi-cursor-default-click-outline
+                      </v-icon>
+                      <p>Beriklan di <b style="color: #ff7800"> Foxon</b></p>
+                    </div>
+                    <v-divider class="mt-3 mb-3"></v-divider>
+                    <div class="profile-list">
+                      <v-icon size="23" color="#4f4f4f">
+                        mdi-headset
+                      </v-icon>
+                      <p>Dukungan</p>
+                    </div>
+                    <div class="profile-list">
+                      <v-icon size="23" color="#4f4f4f">
+                        mdi-help-circle-outline
+                      </v-icon>
+                      <p>Pusat Bantuan</p>
+                    </div>
+                    <v-divider class="mt-3 mb-3"></v-divider>
+                    <div class="profile-list">
+                      <v-icon size="23" color="#4f4f4f">
+                        mdi-logout
+                      </v-icon>
+                      <p>Keluar</p>
+                    </div>
+                  </div>
+                </v-card>
+              </v-menu>
+            </div>
+            <div v-else>
+              <v-btn
+                variant="outlined"
+                style="text-transform: capitalize; letter-spacing: normal"
+                color="#FF7800"
+                class="ml-2"
+                @click="signIn()"
+                >Masuk</v-btn
+              >
+              <template v-if="$vuetify.display.mdAndUp">
                 <v-btn
-                  variant="outlined"
+                  @click="signUp()"
+                  variant="flat"
                   style="text-transform: capitalize; letter-spacing: normal"
                   color="#FF7800"
-                  class="ml-2"
-                  @click="signIn()"
-                  >Masuk</v-btn
+                  >Daftar</v-btn
                 >
-                <template v-if="$vuetify.display.mdAndUp">
-                  <v-btn
-                    @click="signUp()"
-                    variant="flat"
-                    style="text-transform: capitalize; letter-spacing: normal"
-                    color="#FF7800"
-                    >Daftar</v-btn
-                  >
-                </template>
-              </div>
-            </v-col>
-          </v-row>
+              </template>
+            </div>
+          </div>
         </div>
       </v-app-bar>
       <v-layout>
@@ -180,6 +181,7 @@
           :fixed="windowWidth <= '1080' ? false : true"
           v-model="drawer"
           :rail="rail"
+          class="navigation-drawer-content"
           width="270"
           :permanent="windowWidth <= '1080' ? false : true"
           :temporary="windowWidth <= '1080' ? true : false"
@@ -297,7 +299,7 @@
           </v-list>
         </div>
         </v-navigation-drawer>
-      <v-main></v-main>
+        <v-main></v-main>
       </v-layout>
     </v-app>
     <ChatComponent :handle-close-chat="handleChat" v-if="chatActive" />

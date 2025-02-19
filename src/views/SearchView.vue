@@ -1,30 +1,27 @@
 <template>
-  <div class="search-container">
+  <div class="search-containers">
     <Navigation />
     <div class="content-container">
       <SearchComponent />
     </div>
-    <BottomNavigation active="search" />
   </div>
 </template>
 
 <script>
 import SearchComponent from '@/components/Search/Page/index.vue'
 import Navigation from '@/components/Navigation/index.vue'
-import BottomNavigation from '@/components/Navigation/Bottom/index.vue'
 
 export default {
   name: 'PostView',
   components: {
     SearchComponent,
-    Navigation,
-    BottomNavigation
+    Navigation
   }
 }
 </script>
 
 <style scoped lang="scss">
-.search-container {
+.search-containers {
   display: flex;
   @media screen and (max-width: 1080px) {
     display: unset;
@@ -33,7 +30,7 @@ export default {
 
 .content-container {
   position: relative;
-  margin-top: 75px !important;
+  margin-top: 50px !important;
   max-width: 1080px;
   margin: 0 auto;
   width: 100%;
@@ -42,7 +39,8 @@ export default {
     margin-top: 65px !important;
   }
   @media screen and (max-width: 1080px) {
-    margin-top: -92.2vh !important;
+    margin-top: -93.3vh !important;
+    padding: 0px;
   }
 }
 </style>

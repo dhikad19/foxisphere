@@ -4,7 +4,7 @@
     <div class="content-container">
       <ProfileComponent />
     </div>
-    <BottomNavigation active="profile" />
+    <BottomNavigation class="bottom-navigation" active="profile" />
   </div>
 </template>
 
@@ -24,6 +24,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.bottom-navigation {
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: unset;
+  }
+}
+
 .profile-container {
   display: flex;
   @media screen and (max-width: 1080px) {
@@ -42,7 +49,7 @@ export default {
     margin-top: 65px !important;
   }
   @media screen and (max-width: 1080px) {
-    margin-top: -92.2vh !important;
+    margin-top: -93.8vh !important;
   }
 }
 </style>
