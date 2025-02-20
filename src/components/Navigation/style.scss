@@ -17,9 +17,6 @@
   padding-left: 20px;
   padding-right: 20px;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   @media screen and (max-width: 768px) {
     padding-left: 10px;
     padding-right: 10px;
@@ -33,7 +30,7 @@
 }
 
 .navigation-drawer-content {
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 768px) {
     margin-top: -8px;
     height: calc(100vh - 55px) !important;
   }
@@ -59,11 +56,75 @@
   }
 }
 
+.btn-header__notification {
+  height: 40px;
+  min-width: 40px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background-color: #4f4f4f31;
+  }
+  @media screen and (max-width: 1280px) {
+    height: 35px;
+    min-width: 35px;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  @media screen and (max-width: 1080px) {
+    display: flex;
+  }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.btn-header__notification-desktop {
+  height: 40px;
+  min-width: 40px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background-color: #4f4f4f31;
+  }
+  @media screen and (max-width: 1280px) {
+    height: 35px;
+    min-width: 35px;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  @media screen and (max-width: 1080px) {
+    display: none;
+  }
+}
+
+.btn-search {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.search-component {
+  margin-top: 2px;
+  @media screen and (max-width: 1080px) {
+    display: none;
+  }
+}
+
 .btn-header__create {
   height: 40px;
   width: 100%;
-  padding-left: 8px;
-  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 4px;
+  background-color: #f7f7f7;
+  max-width: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,6 +165,8 @@
 
 .search {
   width: 100%;
+  margin: 0 auto;
+  padding-left: 40px;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -114,16 +177,17 @@
   z-index: 1;
   border: 2px solid #fff;
   color: #ffffff;
-  padding: 3px;
+  padding: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   font-size: 12px;
-  margin-top: -5px;
-  margin-left: -10px;
-  max-height: 18px;
-  min-width: 18px;
+  margin-top: -2px;
+  margin-left: -9px;
+  margin-right: -4px;
+  max-height: 12px;
+  min-width: 12px;
 }
 
 .tab-box {

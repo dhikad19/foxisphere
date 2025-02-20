@@ -36,10 +36,10 @@ export default {
   width: 100%;
   padding: 12px;
   @media screen and (max-width: 1280px) {
-    margin-top: 65px !important;
+    margin-top: 50px !important;
   }
   @media screen and (max-width: 1080px) {
-    margin-top: -93.3vh !important;
+    margin-top: -93.5vh !important;
     padding: 0px;
   }
 }

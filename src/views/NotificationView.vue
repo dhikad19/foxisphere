@@ -1,5 +1,5 @@
 <template>
-  <div class="notification-container d-flex">
+  <div class="notification-container">
     <Navigation />
     <div class="content-container pa-3">
       <NotificationComponent />
@@ -21,14 +21,27 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.notification-container {
+  display: flex;
+  @media screen and (max-width: 1080px) {
+    display: unset;
+  }
+}
+
 .content-container {
   position: relative;
-  margin-top: 75px !important;
+  margin-top: 65px !important;
   max-width: 1080px;
   margin: 0 auto;
   width: 100%;
   @media screen and (max-width: 1280px) {
     margin-top: 65px !important;
+  }
+  @media screen and (max-width: 1080px) {
+    margin-top: -92vh !important;
+  }
+  @media screen and (max-width: 768px) {
+    margin-top: -93.5vh !important;
   }
 }
 </style>

@@ -30,7 +30,7 @@
 
 .content-container {
   position: relative;
-  margin-top: 75px !important;
+  margin-top: 70px !important;
   max-width: 1080px;
   margin: 0 auto;
   width: 100%;
@@ -38,7 +38,10 @@
     margin-top: 65px !important;
   }
   @media screen and (max-width: 1080px) {
-    margin-top: -93.8vh !important;
+    margin-top: -92vh !important;
+  }
+  @media screen and (max-width: 768px) {
+    margin-top: -93.5vh !important;
   }
 }
 </style>
