@@ -3,7 +3,20 @@
     <div class="chat-mobile-wrapper">
       <div class="chat-mobile-box">
         <div class="chat-box__content-mobile" v-if="windowWidth <= '768'">
+          <div class="chat-top__title" v-if="!isChatActiveMobile">
+            <div class="chat-btn">
+              <v-icon 
+                @click="goBack()" 
+                size="22" 
+                color="#6f6f6f"
+              >
+                mdi-arrow-left
+              </v-icon>
+            </div>  
+            <p>Chat</p>
+          </div>
           <div class="chat-list" v-if="!isChatActiveMobile">
+            
             <div style="padding: 10px;">
               <div class="discover d-flex align-center" style="width: 100%">
                 <div class="chat-list__box-content justify-start" style="width: 100%; padding: 7px">
@@ -76,19 +89,19 @@
             <div class="chat-list__content-mobile">
               <div v-if="isChatActiveMobile">
                 <div class="chat-top__title">
+                  <div class="chat-btn" @click="handleClose()">
+                    <v-icon size="22" color="#4f4f4f">
+                      mdi-arrow-left
+                    </v-icon>
+                  </div>
                   <p 
                     v-if="chatListSelected.type == 'team' || chatListSelected.type == 'guild'"
                     > {{chatListSelected.teamName}}
                   </p>
                   <p v-else>{{chatListSelected.name}}</p>
-                  <div class="chat-btn" @click="handleClose()">
-                    <v-icon size="17">
-                      mdi-close
-                    </v-icon>
-                  </div>
                 </div>
                 <div class="chat-content__box">
-                  <div class="chat-data__box">
+                  <div class="chat-data__box" ref="chatContainer">
                     <div 
                       class="chat-bubbles" 
                       @mouseenter="onHover(i)" 
@@ -714,8 +727,7 @@ export default {
         { title: 'Click Me' },
         { title: 'Click Me 2' },
       ],
-      messages: [
-        {
+      messages: [{
           message: "Halo kawan!",
           image: 'https://randomuser.me/api/portraits/men/82.jpg',
           isSending: false,
@@ -747,9 +759,182 @@ export default {
           isMenuActive: false,
           time: new Date(),
           reaction: []
-        },
-      ],
+        },],
       chatList: [
+        {
+          teamName: 'Team Kucing',
+          game: {
+              gameImage: '',
+              gameName: 'Zenless Zone Zero',
+            },
+          active: false,
+            photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          team: [
+              {
+                name: 'Agus',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Firman',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Nugie',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Budi',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Agil',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Mio',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+            ],
+            latestChat: {
+              read: false,
+              time: '08:40',
+              chat: 'kocak',
+              username: '@rigen',
+            },
+          type: 'team'
+        },
+        {
+          name: 'Agus',
+          active: false,
+          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          latestChat: {
+            read: true,
+            time: '07:00',
+            chat: 'hi',
+            personChat: 'user'
+          },
+          type: 'personal'
+        },
+        {
+          guildName: 'Guild Arancar',
+          game: {
+              gameImage: '',
+              gameName: 'Zenless Zone Zero',
+            },
+          active: false,
+            photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          team: [
+              {
+                name: 'Agus',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Firman',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Nugie',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Budi',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Agil',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Mio',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+            ],
+          latestChat: {
+            read: false,
+            time: '08:40',
+            chat: 'lol',
+            username: '@dikad19',
+          },
+          type: 'guild'
+        },
+        {
+          name: 'Mukti',
+          active: false,
+          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          latestChat: {
+            read: true,
+            time: '07:00',
+            chat: 'hi',
+            personChat: 'user'
+          },
+          type: 'personal'
+        },
+        {
+          name: 'Rigen',
+          active: false,
+          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          latestChat: {
+            read: false,
+            time: '12:10',
+            chat: 'hahaha',
+            personChat: 'person'
+          },
+          type: 'personal'
+        },
+        {
+          name: 'Hifdzi',
+          active: false,
+          photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          latestChat: {
+            read: false,
+            time: '13:55',
+            chat: 'wkwkwk',
+            personChat: 'person'
+          },
+          type: 'personal'
+        },
+        {
+          teamName: 'Team Kambing',
+          game: {
+              gameImage: '',
+              gameName: 'Zenless Zone Zero',
+            },
+          active: false,
+            photo: 'https://randomuser.me/api/portraits/men/85.jpg',
+          team: [
+              {
+                name: 'Agus',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Firman',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Nugie',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Budi',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Agil',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+              {
+                name: 'Mio',
+                image: 'https://randomuser.me/api/portraits/men/85.jpg'
+              },
+            ],
+            latestChat: {
+            read: false,
+            time: '08:40',
+            chat: 'XD',
+            username: '@kintam',
+          },
+          type: 'team'
+        },
         {
           teamName: 'Team Kucing',
           game: {
@@ -937,7 +1122,21 @@ export default {
       required: true,
     },
   },
+  updated() {
+    this.goToBottom();
+  },
   methods: {
+    goToBottom() {
+      const chatContainer = this.$refs.chatContainer;
+      if (chatContainer) {
+        chatContainer.scrollTop = chatContainer.scrollHeight; // langsung set ke bawah
+      }
+    },
+
+    goBack() {
+      this.$router.go(-1)
+    },
+
     handleClose() {
       this.chatList.forEach((item) => {
         item.active = false;
@@ -1038,7 +1237,6 @@ export default {
       this.chatList[index].active = true
       this.isChatActive = true
       this.isChatActiveMobile = true
-      console.log(this.chatList[index])
     },
   },
 
@@ -1072,6 +1270,7 @@ export default {
 
   created() {
     window.addEventListener('resize', this.updateWindowWidth);
+    this.goToBottom();
   }
 }
 </script>

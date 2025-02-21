@@ -6,6 +6,7 @@
   padding-bottom: 6px;
   padding-left: 7px;
   max-width: 580px;
+  min-height: 40px;
   padding-right: 7px;
   color: #4f4f4f;
   border-radius: 6px;
@@ -27,7 +28,7 @@
 }
 
 .search-card {
-  width: 600px;
+  width: 100%;
   margin-top: 15px;
   @media screen and (max-width: 960px) {
     max-width: 95vw;

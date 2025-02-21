@@ -7,10 +7,10 @@
     <v-overlay
       style="width: 100%"
       v-model="overlay"
-      :opacity="0.7"
+      :opacity="0"
       class="d-flex justify-center">
-      <v-card class="search-card" color="#e8e8e8">
-        <div style="width: 100%">
+      <v-card class="search-card" flat color="#e8e8e8">
+        <div style="width: 100%; display: flex; flex-direction: column">
           <v-text-field
             variant="solo"
             autofocus
@@ -22,10 +22,10 @@
             hide-details
             clearable>
           </v-text-field>
-          <v-card
-            v-if="search != ''"
+          <div
+            v-if="search != '' && search != null"
             class="pb-3 card-search"
-            variant="text">
+            >
 
             <div class="search-item__container pt-3">
               <div class="pl-3 pr-3" v-if="filteredResources[0]?.filteredData.length != 0">
@@ -81,7 +81,7 @@
                 </p>
               </v-btn>
             </div>
-          </v-card>
+          </div>
         </div>
       </v-card>
     </v-overlay>
@@ -194,4 +194,11 @@
 
 <style lang="scss" scoped>
   @import "./style.scss";
+</style>
+
+<style>
+.v-overlay__content {
+  width: 100% !important;
+  max-width: 580px;
+}
 </style>

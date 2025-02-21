@@ -49,13 +49,7 @@
                 <div v-if="windowWidth <= '1080'" class="btn-header btn-search ml-2" @click="handleChat()">
                   <v-icon size="24" color="#4f4f4f">mdi-magnify</v-icon>
                 </div>
-                <div class="btn-header__notification ml-2" @click="handleNotification()">
-                  <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
-                    <v-icon size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
-                  </v-badge>
-                  <v-icon v-else size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
-                </div>
-                <v-menu v-if="windowWidth >= '768'" offset="14" :close-on-content-click="false">
+                <v-menu v-if="windowWidth > '1080'" offset="14" :close-on-content-click="false">
                   <template v-slot:activator="{ props }">
                     <div class="btn-header__notification-desktop ml-2" v-bind="props">
                       <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
@@ -66,20 +60,26 @@
                   </template>
                   <NotificationComponent />
                 </v-menu>
-                <div v-else class="btn-header ml-1 mt-1">
+                <div class="btn-header btn-search ml-2" @click="handleNotification()" v-else-if="windowWidth <= '1080'">
+                  <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
+                    <v-icon size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
+                  </v-badge>
+                  <v-icon v-else size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
+                </div>
+                <div v-if="windowWidth <= '768'" class="btn-header ml-1 mt-1">
                   <div @click="handleNotification()" class="d-flex" style="margin-right: -8px" v-if="notificationCounter > 0">
                     <v-icon size="24" color="#4f4f4f" style="margin-right: -4px">mdi-bell-outline</v-icon>
                     <div class="badge-container"></div>
                   </div>
                   <v-icon @click="handleNotification()" v-else size="24" color="#4f4f4f" style="margin-right: -16px">mdi-bell-outline</v-icon>
                 </div>
-                <div v-if="windowWidth >= '768'" class="btn-header ml-2" @click="handleChat()">
+                <div v-if="windowWidth > '768'" class="btn-header ml-2" @click="handleChat()">
                   <v-badge color="#ff7800" :content="messageCounter" v-if="messageCounter > 0">
                     <v-icon size="24" color="#4f4f4f">mdi-chat-processing-outline</v-icon>
                   </v-badge>
                   <v-icon v-else size="24" color="#4f4f4f">mdi-chat-processing-outline</v-icon>
                 </div>
-                <v-menu offset="14" v-if="windowWidth >= '768'" :close-on-content-click="false">
+                <v-menu offset="14" v-if="windowWidth > '768'" :close-on-content-click="false">
                   <template v-slot:activator="{ props }">
                     <div class="btn-header ml-2" v-bind="props">
                       <v-avatar size="30">
