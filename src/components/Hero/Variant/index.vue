@@ -2,64 +2,27 @@
   <div class="hero-variant-container">
     <div class="hero-variant-wrapper">
       <v-row dense>
-        <v-col cols="12" md="8" style="height: 100%" class="left-class">
-          <v-carousel
-            height="100%"
-            interval="7000"
-            :show-arrows="false"
-            :cycle="cycleMode"
-            v-model="model"
-            hide-delimiters
-            >
-            <v-carousel-item v-for="(slide, i) in banner" :key="i">
-              <v-card variant="flat">
-                <v-img :src="slide.image" height="auto"></v-img>
-              </v-card>
-            </v-carousel-item>
-          </v-carousel>
-          <div class="carousel-controller">
-            <div style="gap: 6px;" class="carousel-container d-flex align-center justify-center">
-              <div class="carousel-wrapper"  v-for="(item, i) in banner" :key="i">
-                
-                <div @click="model = i" v-if="model == i" class="progress-container">
-                  <div class="progress-bar" :style="{ width: progressWidth + '%' }"></div>
-                </div>
-                <div v-else @click="model = i" class="dot">
-                </div>
-
-              </div>
-            </div>
-          </div>
+        <v-col cols="12" class="desktop-carousel">
+          <Carousel :itemsToShow="1.3" :pauseAutoplayOnHover="true" :wrapAround="true" :autoplay="8000">
+            <Slide v-for="(slide, i) in banner" :key="i">
+              <img :src="slide.image" style="width: 100%; object-fit: contain;" />
+            </Slide>
+            <template #addons>
+              <Navigation />
+              <Pagination />
+            </template>
+          </Carousel>
         </v-col>
-        <v-col cols="12" md="4" style="height: 100%" class="right-class">
-          <v-row dense>
-            <v-col cols="12" sm="6" md="12">
-              <div class="top-games">
-                <div class="title-section d-flex align-center">
-                  <p class="mr-2">Top Games</p>
-                  <v-icon color="white">
-                    mdi-crown-outline
-                  </v-icon>
-                </div>
-                <div class="list-section">
-                  
-                </div>
-              </div>
-            </v-col>
-            <v-col cols="12" sm="6" md="12">
-              <div class="top-guild">
-                <div class="title-section d-flex align-center">
-                  <p class="mr-2">Top Guild</p>
-                  <v-icon color="white">
-                    mdi-crown-outline
-                  </v-icon>
-                </div>
-                <div class="list-section">
-
-                </div>
-              </div>
-            </v-col>
-          </v-row>
+        <v-col cols="12" class="mobile-carousel">
+          <Carousel :itemsToShow="1" :pauseAutoplayOnHover="true" :wrapAround="true" :autoplay="8000">
+            <Slide v-for="(slide, i) in banner" :key="i">
+              <img :src="slide.image" style="width: 100%; object-fit: contain;" />
+            </Slide>
+            <template #addons>
+              <Navigation />
+              <Pagination />
+            </template>
+          </Carousel>
         </v-col>
       </v-row>
     </div>
@@ -69,8 +32,88 @@
 <style lang="scss" scoped>
 @use './style.scss';
 </style>
+<style>
+:root {
+  --carousel-transition: 300ms;
+  --carousel-opacity-inactive: 0.7;
+  --carousel-opacity-active: 1;
+  --carousel-opacity-near: 0.4;
+}
+
+.carousel__pagination-button {
+  height: 8px;
+  width: 8px;
+  border-radius: 5px;
+  background-color: white;
+}
+.carousel__pagination-button--active {
+  background-color: #ff7800;
+}
+
+.carousel__next,
+.carousel__prev {
+  background: rgba(0, 0, 0, 0.534);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  color: white;
+  
+  margin: 10px;
+  margin-top: 0px;
+}
+
+.carousel__viewport {
+  perspective: 2000px;
+}
+
+.carousel__track {
+  transform-style: preserve-3d;
+}
+
+.carousel__slide--sliding {
+  transition: opacity var(--carousel-transition),
+    transform var(--carousel-transition);
+}
+
+.carousel.is-dragging .carousel__slide {
+  transition: opacity var(--carousel-transition),
+    transform var(--carousel-transition);
+}
+
+.carousel__slide {
+  opacity: var(--carousel-opacity-inactive);
+  transform: translateX(5px) rotateY(-12deg) scale(0.9);
+}
+
+.carousel__slide--active {
+  opacity: var(--carousel-opacity-active);
+  transform: rotateY(0) scale(1.10);
+  height: 100%;
+  width: 100%;
+  @media screen and (max-width: 768px) {
+    transform: rotateY(0) scale(1);
+  }
+}
+
+.carousel__slide--next {
+  opacity: var(--carousel-opacity-near);
+  transform: rotateY(10deg) scale(0.90);
+}
+
+.carousel__slide--prev {
+  opacity: var(--carousel-opacity-near);
+  transform: rotateY(-10deg) scale(0.90);
+}
+
+.carousel__slide--next ~ .carousel__slide {
+  opacity: var(--carousel-opacity-inactive);
+  transform: translateX(-10px) rotateY(12deg) scale(0.9);
+}
+</style>
 
 <script>
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel';
 export default {
   name: 'HeroVariantComponent',
   data() {
@@ -165,6 +208,17 @@ export default {
       clearInterval(this.progressInterval); // Clear any existing intervals
       this.progressWidth = 0 // Reset the width
     }
+  },
+
+  components: {
+    Carousel,
+    Slide,
+    Navigation,
+    Pagination
+  },
+
+  created() {
+    console.log('im called')
   },
 
   watch: {

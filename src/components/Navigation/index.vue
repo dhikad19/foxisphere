@@ -1,7 +1,11 @@
 <template>
   <div class="navigation-container">
     <v-app>
-      <v-app-bar elevation="0" :height="windowWidth >= '768' ? 65 : 55" class="app-bar-container">
+      <v-app-bar 
+      elevation="0" 
+      :class="windowWidth < '768' && drawer ? 'drawer-active' : 'app-bar-container'" 
+      :height="windowWidth >= '768' ? 65 : 55" 
+      class="app-bar-container">
         <div class="app-bar-content">
           <v-row dense>
             <v-col :cols="windowWidth <= '1080' ? '6' : '3'">
@@ -49,7 +53,27 @@
                 <div v-if="windowWidth <= '1080'" class="btn-header btn-search ml-2" @click="handleChat()">
                   <v-icon size="24" color="#4f4f4f">mdi-magnify</v-icon>
                 </div>
-                <v-menu v-if="windowWidth > '1080'" offset="14" :close-on-content-click="false">
+
+                <Dropdown v-if="windowWidth > '1080'">
+                  <!-- trigger element -->
+                  <template #trigger>
+                    <div class="btn-header__notification-desktop ml-2">
+                      <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
+                        <v-icon size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
+                      </v-badge>
+                      <v-icon v-else size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
+                    </div>
+                  </template>
+                  <!-- contents display in dropdown -->
+                  <DropdownContent 
+                    :border="false"
+                    rounded="small"
+                  >
+                    <NotificationComponent />
+                  </DropdownContent>
+                </Dropdown>
+                
+                <!-- <v-menu v-if="windowWidth > '1080'" offset="14" :close-on-content-click="false">
                   <template v-slot:activator="{ props }">
                     <div class="btn-header__notification-desktop ml-2" v-bind="props">
                       <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
@@ -59,13 +83,15 @@
                     </div>
                   </template>
                   <NotificationComponent />
-                </v-menu>
+                </v-menu> -->
+                
                 <div class="btn-header btn-search ml-2" @click="handleNotification()" v-else-if="windowWidth <= '1080'">
                   <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
                     <v-icon size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
                   </v-badge>
                   <v-icon v-else size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
                 </div>
+
                 <div v-if="windowWidth <= '768'" class="btn-header ml-1 mt-1">
                   <div @click="handleNotification()" class="d-flex" style="margin-right: -8px" v-if="notificationCounter > 0">
                     <v-icon size="24" color="#4f4f4f" style="margin-right: -4px">mdi-bell-outline</v-icon>
@@ -73,13 +99,100 @@
                   </div>
                   <v-icon @click="handleNotification()" v-else size="24" color="#4f4f4f" style="margin-right: -16px">mdi-bell-outline</v-icon>
                 </div>
+
                 <div v-if="windowWidth > '768'" class="btn-header ml-2" @click="handleChat()">
                   <v-badge color="#ff7800" :content="messageCounter" v-if="messageCounter > 0">
                     <v-icon size="24" color="#4f4f4f">mdi-chat-processing-outline</v-icon>
                   </v-badge>
                   <v-icon v-else size="24" color="#4f4f4f">mdi-chat-processing-outline</v-icon>
                 </div>
-                <v-menu offset="14" v-if="windowWidth > '768'" :close-on-content-click="false">
+
+                <Dropdown v-if="windowWidth > '768'">
+                  <!-- trigger element -->
+                  <template #trigger>
+                    <div class="btn-header ml-2">
+                      <v-avatar size="30">
+                        <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
+                        </v-img>
+                      </v-avatar>
+                    </div>
+                  </template>
+                  <!-- contents display in dropdown -->
+                  <DropdownContent 
+                    :border="false"
+                    rounded="small"
+                  >
+                    <v-card width="300" style="border-radius: 6px">
+                      <div class="profile-container pa-3" >
+                        <div class="profile-list__user mb-3" @click="handleProfile()">
+                          <v-avatar size="35" class="mr-2">
+                            <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
+                          </v-img>
+                          </v-avatar>
+                          <div>
+                            <p class="username">@dikad19</p>
+                            <p class="email">dwiandika01@gmail.com</p>
+                          </div>
+                        </div>
+                        
+                        <div class="profile-list">
+                          <v-icon size="23" color="#4f4f4f">
+                            mdi-trophy-outline
+                          </v-icon>
+                          <p>Pencapaian</p>
+                        </div>
+                        <div class="profile-list__dark-mode">
+                          <v-icon size="23" color="#4f4f4f">
+                            mdi-weather-night
+                          </v-icon>
+                          <div style="width: 100%" class="d-flex align-center justify-space-between">
+                            <p>Mode Gelap</p>
+                            <v-switch
+                              v-model="darkMode"
+                              color="#ff7800"
+                              hide-details
+                              inset
+                            ></v-switch>
+                          </div>
+                        </div>
+                        <div class="profile-list">
+                          <v-icon size="23" color="#4f4f4f">
+                            mdi-cog-outline
+                          </v-icon>
+                          <p>Pengaturan</p>
+                        </div>
+                        <div class="profile-list">
+                          <v-icon size="23" color="#4f4f4f">
+                            mdi-cursor-default-click-outline
+                          </v-icon>
+                          <p>Beriklan di <b style="color: #ff7800"> Foxon</b></p>
+                        </div>
+                        <v-divider class="mt-3 mb-3"></v-divider>
+                        <div class="profile-list">
+                          <v-icon size="23" color="#4f4f4f">
+                            mdi-headset
+                          </v-icon>
+                          <p>Dukungan</p>
+                        </div>
+                        <div class="profile-list">
+                          <v-icon size="23" color="#4f4f4f">
+                            mdi-help-circle-outline
+                          </v-icon>
+                          <p>Pusat Bantuan</p>
+                        </div>
+                        <v-divider class="mt-3 mb-3"></v-divider>
+                        <div class="profile-list">
+                          <v-icon size="23" color="#4f4f4f">
+                            mdi-logout
+                          </v-icon>
+                          <p>Keluar</p>
+                        </div>
+                      </div>
+                    </v-card>
+                  </DropdownContent>
+                </Dropdown>
+
+                <!-- <v-menu offset="14" v-if="windowWidth > '768'" :close-on-content-click="false">
                   <template v-slot:activator="{ props }">
                     <div class="btn-header ml-2" v-bind="props">
                       <v-avatar size="30">
@@ -155,7 +268,7 @@
                       </div>
                     </div>
                   </v-card>
-                </v-menu>
+                </v-menu> -->
               </div>
               <div v-else>
                 <v-btn
@@ -336,6 +449,7 @@
 import SearchComponent from '../Search/index.vue'
 import ChatComponent from '../Chat/index.vue'
 import NotificationComponent from '../Notification/index.vue'
+import { Dropdown, DropdownContent } from 'v-dropdown'
 export default {
   name: 'BarComponents',
   data() {
@@ -634,7 +748,10 @@ export default {
     components: {
       SearchComponent,
       ChatComponent,
-      NotificationComponent
+      NotificationComponent,
+      Dropdown, 
+      DropdownContent
+      // DropdownTrigger
     },
     computed: {
     // Computed property to determine if the screen is a desktop

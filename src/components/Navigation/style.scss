@@ -2,6 +2,10 @@
   border-bottom: 1px solid #e4e4e4;
 }
 
+.drawer-active {
+  border-bottom: none;
+}
+
 .app-bar-logo {
   max-height: 90px;
   min-width: 120px;
