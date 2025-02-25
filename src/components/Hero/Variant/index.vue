@@ -3,9 +3,9 @@
     <div class="hero-variant-wrapper">
       <v-row dense>
         <v-col cols="12" class="desktop-carousel">
-          <Carousel :itemsToShow="1.3" :pauseAutoplayOnHover="true" :wrapAround="true" :autoplay="8000">
+          <Carousel :itemsToShow="1.2" :pauseAutoplayOnHover="true" :wrapAround="true" :autoplay="8000">
             <Slide v-for="(slide, i) in banner" :key="i">
-              <img :src="slide.image" style="width: 100%; object-fit: contain;" />
+              <img :src="slide.image" />
             </Slide>
             <template #addons>
               <Navigation />
@@ -16,7 +16,7 @@
         <v-col cols="12" class="mobile-carousel">
           <Carousel :itemsToShow="1" :pauseAutoplayOnHover="true" :wrapAround="true" :autoplay="8000">
             <Slide v-for="(slide, i) in banner" :key="i">
-              <img :src="slide.image" style="width: 100%; object-fit: contain;" />
+              <img :src="slide.image" />
             </Slide>
             <template #addons>
               <Navigation />
@@ -87,22 +87,19 @@
 
 .carousel__slide--active {
   opacity: var(--carousel-opacity-active);
-  transform: rotateY(0) scale(1.10);
+  transform: rotateY(0) scale(1);
   height: 100%;
   width: 100%;
-  @media screen and (max-width: 768px) {
-    transform: rotateY(0) scale(1);
-  }
 }
 
 .carousel__slide--next {
   opacity: var(--carousel-opacity-near);
-  transform: rotateY(10deg) scale(0.90);
+  transform: rotateY(10deg) scale(1);
 }
 
 .carousel__slide--prev {
   opacity: var(--carousel-opacity-near);
-  transform: rotateY(-10deg) scale(0.90);
+  transform: rotateY(-10deg) scale(1);
 }
 
 .carousel__slide--next ~ .carousel__slide {

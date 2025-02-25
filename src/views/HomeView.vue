@@ -8,12 +8,23 @@
     <Navigation />
     <div class="content-container pa-3">
       <HeroVariant />
+      <div class="d-flex mt-10">
+        <div class="content-right-container">
+          <GameGrid />
+          <GameList />
+        </div>
+        <Aside />
+      </div>
     </div>
     <BottomNavigation class="bottom-navigation" active="home" />
   </div>
 </template>
 
 <style scoped lang="scss">
+.content-right-container {
+  width: 100%;
+}
+
 .bottom-navigation {
   display: none;
   @media screen and (max-width: 768px) {
@@ -51,6 +62,9 @@
   import Navigation from '@/components/Navigation/index.vue'
   import BottomNavigation from '@/components/Navigation/Bottom/index.vue'
   import HeroVariant from '@/components/Hero/Variant/index.vue'
+  import GameGrid from '@/components/Game/Grid/index.vue'
+  import GameList from '@/components/Game/List/index.vue'
+  import Aside from '@/components/Aside/index.vue'
 // import Hero from '@/components/Hero/index.vue'
 // import HeaderBar from '@/components/Header/index.vue'
 // import Timeline from '@/components/Timeline/index.vue'
@@ -61,7 +75,10 @@ export default {
     // Bar,
     Navigation,
     HeroVariant,
-    BottomNavigation
+    BottomNavigation,
+    GameGrid,
+    GameList,
+    Aside
     // HeaderBar,
     // Hero,
     // Footer,
