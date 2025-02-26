@@ -12,6 +12,7 @@
         <div class="content-right-container">
           <GameGrid />
           <GameList />
+          <Blog />
         </div>
         <Aside />
       </div>
@@ -64,6 +65,7 @@
   import HeroVariant from '@/components/Hero/Variant/index.vue'
   import GameGrid from '@/components/Game/Grid/index.vue'
   import GameList from '@/components/Game/List/index.vue'
+  import Blog from '@/components/Blog/index.vue'
   import Aside from '@/components/Aside/index.vue'
 // import Hero from '@/components/Hero/index.vue'
 // import HeaderBar from '@/components/Header/index.vue'
@@ -78,6 +80,7 @@ export default {
     BottomNavigation,
     GameGrid,
     GameList,
+    Blog,
     Aside
     // HeaderBar,
     // Hero,
