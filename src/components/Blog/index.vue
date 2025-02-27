@@ -6,7 +6,7 @@
     <v-row dense>
       <v-col cols="12">
         <div class="blog-card">
-          <v-img :src="blogList[0].image" style="border-radius: 6px"></v-img>
+          <v-img class="blog-image" :src="blogList[0].image" style="border-radius: 6px"></v-img>
           <div class="blog-description">
             <div class="d-flex align-center">
               <div class="d-flex align-center">
@@ -29,7 +29,7 @@
       </v-col>
       <v-col cols="12" md="6" v-for="(item, i) in blogList.slice(1, 3)" :key="i">
         <div class="blog-card">
-          <v-img :src="item.image" style="border-radius: 6px"></v-img>
+          <v-img :src="item.image" class="blog-image" style="border-radius: 6px"></v-img>
           <div class="blog-description">
             <div class="d-flex align-center">
               <div class="d-flex align-center">
