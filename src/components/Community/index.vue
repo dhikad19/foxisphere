@@ -1,153 +1,67 @@
 <template>
   <div class="community-container">
-    <div class="community-wrapper">
-      <div class="mr-12 community-sidebar__sticky">
-        <div style="margin-right: 10px;">
-          <div style="width: 100%;" v-for="item in 6" :key="item" >
-            <v-card color="green" width="100%" class="mb-10" height="300">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro fugiat in, reprehenderit unde tempora non, sed ducimus placeat atque eligendi aspernatur cum odit, nihil ex beatae dicta? Officiis necessitatibus iure aliquam perspiciatis vitae praesentium molestiae suscipit, id similique qui a!</p>
-            </v-card>
+    <h1 class="community-title">
+      Komunitas
+    </h1>
+    <v-row dense>
+      <v-col md="4" cols="12">
+        <div class="community-card">
+          <p class="support-text">
+            Gabung ke komunitas atau Discord channel di bawah
+          </p>
+          <div class="d-flex align-center mt-4" style="gap: 10px">
+            <div class="community">
+              <p>Komunitas</p>
+            </div>
+            <div class="discord">
+              <v-icon>
+                mdi-discord
+              </v-icon>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="community-content">
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-        <h1>vtest aja test aja test aja test aja test aja test 
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja test aja test aja test aja test
-          aja test aja test aja test aja test aja test aja 
-          test aja test aja 
-          </h1>
-      </div>
-      <div class="ml-12 community-sidebar__sticky">
-        <div style="margin-right: 10px;">
-          <div style="width: 100%; " v-for="item in 6" :key="item" >
-            <v-card color="green" width="100%" class="mb-10" height="300">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro fugiat in, reprehenderit unde tempora non, sed ducimus placeat atque eligendi aspernatur cum odit, nihil ex beatae dicta? Officiis necessitatibus iure aliquam perspiciatis vitae praesentium molestiae suscipit, id similique qui a!</p>
-            </v-card>
+      </v-col>
+      <v-col md="8" cols="12">
+        <div class="support-card">
+          <p class="support-text">
+            Jika kalian suka dengan apa yang kami kerjakan, kalian bisa support lewat
+            <span class="ko-fi">Ko-Fi</span> atau <span class="trakteer">Trakteer</span> di bawah.
+          </p>
+          <div class="d-flex align-center mt-4" style="gap: 10px">
+            <div class="community-card__ko-fi">
+              <v-row dense>
+                <v-col cols="2">
+                  <v-img min-width="32" max-width="32" height="32" src="https://res.cloudinary.com/dqaylwrrx/image/upload/v1740638595/Support/Ko-fi_COIN_xdh7a0.gif"></v-img>
+                </v-col>
+                <v-col cols="10">
+                  <div class="mt-1">
+                    <b class="mb-0">
+                      Ko-fi
+                    </b>
+                  </div>
+                </v-col>
+              </v-row>
+              
+              
+            </div>
+            <div class="community-card__trakteer">
+              <v-row dense>
+                <v-col cols="2">
+                  <v-img min-width="32" max-width="32" height="32" src="https://res.cloudinary.com/dqaylwrrx/image/upload/v1740640011/Support/trakteer-logo_bwxs8t.png"></v-img>
+                </v-col>
+                <v-col cols="10">
+                  <div class="mt-1">
+                    <b class="mb-0">
+                      Trakteer
+                    </b>
+                  </div>
+                </v-col>
+              </v-row>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </v-col>
+    </v-row>
   </div>
 </template>
 

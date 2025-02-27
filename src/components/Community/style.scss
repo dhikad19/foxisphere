@@ -1,40 +1,90 @@
 .community-container {
+  margin-top: 30px;
+}
+
+.community-title {
+  line-height: normal;
+  color: #4f4f4f;
+  margin-bottom: 12px;
+  font-size: 24px;
+}
+
+.support-text {
+  line-height: normal;
+  font-size: 15px;
+}
+
+.community-card {
+  background-color: #ff7800;
+  padding: 20px;
+  border-radius: 6px;
+  color: white;
+  font-size: 15px;
+  line-height: normal;
+}
+
+.community-card__ko-fi {
+  background-color: #ff5a16;
+  overflow: hidden;
   width: 100%;
+  border: solid 2px transparent;
+  font-weight: 500;
+  height: 45px;
+  max-height: 45px;
+  font-size: 15px;
+  border-radius: 6px;
+  height: 100%;
+  color: white;
+}
+
+.community-card__trakteer {
+  background-color: #ffffff;
+  color: #e50027;
+  width: 100%;
+  border: solid 2px #e50027;
+  font-weight: 500;
+  height: 45px;
+  max-height: 45px;
+  font-size: 15px;
+  border-radius: 6px;
   height: 100%;
 }
 
-.community-wrapper {
-  max-width: 1300px;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 80px;
-  padding-bottom: 80px;
-  padding-left: 20px;
-  padding-right: 20px;
+.ko-fi {
+  color: #ff5a16;
+  font-weight: 500;
+}
+
+.trakteer {
+  color: #e50027;
+  font-weight: 500;
+}
+
+.support-card {
+  color: #4f4f4f;
+  padding: 20px;
+  background-color: #e0e0e052;
+  border-radius: 6px;
+}
+
+.discord {
+  height: 44px;
+  min-width: 44px;
   display: flex;
-  @media screen and (max-width: 960px) {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 50px;
-  }
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  background-color: #7085d3;
 }
-
-.community-content {
-  // width: 100%;
-  max-width: 400px;
-}
-
-.community-sidebar__sticky {
-  position: sticky;
-  top: 95px;
-  max-height: calc(100vh - 95px);
-  max-width: 400px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  scrollbar-width: thin;
-  &:hover {
-    scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
-  }
+.community {
+  width: 100%;
+  height: 44px;
+  background-color: white;
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #ff7800;
+  border-radius: 6px;
 }
