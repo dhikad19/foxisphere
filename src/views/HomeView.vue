@@ -13,6 +13,7 @@
           <GameGrid />
           <GameList />
           <Blog />
+          <Community />
         </div>
         <Aside />
       </div>
@@ -66,6 +67,7 @@
   import GameGrid from '@/components/Game/Grid/index.vue'
   import GameList from '@/components/Game/List/index.vue'
   import Blog from '@/components/Blog/index.vue'
+  import Community from '@/components/Community/index.vue'
   import Aside from '@/components/Aside/index.vue'
 // import Hero from '@/components/Hero/index.vue'
 // import HeaderBar from '@/components/Header/index.vue'
@@ -81,6 +83,7 @@ export default {
     GameGrid,
     GameList,
     Blog,
+    Community,
     Aside
     // HeaderBar,
     // Hero,

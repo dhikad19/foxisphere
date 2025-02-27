@@ -98,6 +98,12 @@ export default {
 }
 </script>
 
+<style>
+.v-row--dense > [class*=v-col-] {
+  padding: 8px !important;
+}
+</style>
+
 <style lang="scss" scoped>
 @use '../style.scss';
 </style>
