@@ -1,6 +1,44 @@
-.aside-wrapper {
-  min-width: 280px;
-  height: 800px;
-  background-color: #ff7800;
+.aside-container {
+  height: 100%;
   margin-top: 42px;
+  position: sticky;
+  top: 80px;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  line-height: normal;
+}
+
+.list {
+  user-select: none;
+  margin-bottom: 2px;
+  &:hover {
+    color: #000000;
+    cursor: pointer;
+  }
+}
+
+.aside-wrapper {
+  width: 280px;
+  height: 100%;
+  background-color: #f0f0f0;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  max-height: 91.2vh;
+  overflow: auto;
+  scrollbar-width: thin;
+  padding: 20px;
+  scrollbar-color: transparent transparent;
+  &:hover {
+    scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+  }
+}
+
+.aside-content {
 }
