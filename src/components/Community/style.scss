@@ -11,7 +11,7 @@
 
 .support-text {
   line-height: normal;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .community-card {
@@ -24,10 +24,10 @@
 }
 
 .community-card__ko-fi {
-  background-color: #ff5a16;
+  background-color: #e3d6c6;
   overflow: hidden;
   width: 100%;
-  border: solid 2px transparent;
+  border: solid 2px #e3d6c6;
   font-weight: 500;
   height: 45px;
   max-height: 45px;
@@ -51,7 +51,7 @@
 }
 
 .ko-fi {
-  color: #ff5a16;
+  color: #72a5f2;
   font-weight: 500;
 }
 
@@ -63,7 +63,7 @@
 .support-card {
   color: #4f4f4f;
   padding: 20px;
-  background-color: #e0e0e052;
+  background-color: #f4efe7;
   border-radius: 6px;
 }
 
@@ -76,6 +76,7 @@
   justify-content: center;
   background-color: #7085d3;
 }
+
 .community {
   width: 100%;
   height: 44px;

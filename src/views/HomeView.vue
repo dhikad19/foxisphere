@@ -10,7 +10,7 @@
       <HeroVariant />
       <div class="d-flex mt-10">
         <div class="content-right-container">
-          <GameGrid />
+          <!-- <GameGrid /> -->
           <GameList />
           <Blog />
           <Community />
@@ -64,7 +64,7 @@
   import Navigation from '@/components/Navigation/index.vue'
   import BottomNavigation from '@/components/Navigation/Bottom/index.vue'
   import HeroVariant from '@/components/Hero/Variant/index.vue'
-  import GameGrid from '@/components/Game/Grid/index.vue'
+  // import GameGrid from '@/components/Game/Grid/index.vue'
   import GameList from '@/components/Game/List/index.vue'
   import Blog from '@/components/Blog/index.vue'
   import Community from '@/components/Community/index.vue'
@@ -72,7 +72,6 @@
 // import Hero from '@/components/Hero/index.vue'
 // import HeaderBar from '@/components/Header/index.vue'
 // import Timeline from '@/components/Timeline/index.vue'
-// import Footer from '@/components/Footer/index.vue'
 export default {
   name: 'HomeView',
   components: {
@@ -80,14 +79,13 @@ export default {
     Navigation,
     HeroVariant,
     BottomNavigation,
-    GameGrid,
+    // GameGrid,
     GameList,
     Blog,
     Community,
-    Aside
+    Aside,
     // HeaderBar,
     // Hero,
-    // Footer,
     // Timeline
   }
 }

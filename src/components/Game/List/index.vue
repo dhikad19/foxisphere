@@ -1,6 +1,6 @@
 <template>
   <div class="game-list-container">
-    <h1 class="game-title">Game Lainnya</h1>
+    <h1 class="game-title">Daftar Game</h1>
     <v-row dense>
       <v-col cols="12" md="3" v-for="(item, i) in gameList" :key="i">
         <div class="game-card">
