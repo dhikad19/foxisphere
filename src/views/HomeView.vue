@@ -13,10 +13,11 @@
           <!-- <GameGrid /> -->
           <GameList />
           <Blog />
-          <Community />
+          <Timeline />
         </div>
         <Aside />
       </div>
+      <Community />
     </div>
     <BottomNavigation class="bottom-navigation" active="home" />
   </div>
@@ -71,7 +72,7 @@
   import Aside from '@/components/Aside/index.vue'
 // import Hero from '@/components/Hero/index.vue'
 // import HeaderBar from '@/components/Header/index.vue'
-// import Timeline from '@/components/Timeline/index.vue'
+import Timeline from '@/components/Timeline/index.vue'
 export default {
   name: 'HomeView',
   components: {
@@ -86,7 +87,7 @@ export default {
     Aside,
     // HeaderBar,
     // Hero,
-    // Timeline
+    Timeline
   }
 }
 </script>

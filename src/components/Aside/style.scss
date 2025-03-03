@@ -27,7 +27,7 @@
 .aside-wrapper {
   width: 280px;
   height: 100%;
-  background-color: #f0f0f0;
+  background-color: #f7f7f7;
   margin-bottom: 4px;
   border-radius: 6px;
   max-height: 91.2vh;
@@ -41,4 +41,95 @@
 }
 
 .aside-content {
+}
+
+.community-background-image {
+  padding: 2px;
+  background-color: #ffffff;
+  height: 35px;
+  width: 35px;
+}
+
+.following {
+  font-weight: 500;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid #ff7800;
+  display: inline-block;
+  cursor: pointer;
+  height: 100%;
+  font-size: 12px;
+  color: #4f4f4f;
+  border-radius: 20px;
+  padding: 4px 13px 4px 13px;
+}
+
+.follow {
+  background-color: #ff7800;
+  color: white;
+  border: 1px solid #ff7800;
+  display: inline-block;
+  cursor: pointer;
+  height: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  user-select: none;
+  border-radius: 20px;
+  padding: 4px 13px 4px 13px;
+}
+
+.see-more {
+  font-size: 13px;
+  margin-top: 20px;
+  cursor: pointer;
+  user-select: none;
+  color: #4f4f4f;
+  &:hover {
+    color: #ff7800;
+  }
+}
+
+.community-description {
+  font-size: 13px;
+  line-height: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.community-title {
+  font-size: 14px;
+  max-width: 100px;
+  margin-bottom: 1px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slogan {
+  line-height: normal;
+  font-size: 16px;
+  color: #4f4f4f;
+  font-weight: 500;
+}
+
+.social-btn {
+  cursor: pointer;
+  border-radius: 15px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.footer-link {
+  color: #4f4f4f;
+  cursor: pointer;
+  font-size: 13px;
+  margin-right: 6px;
+  user-select: none;
+  &:hover {
+    color: #ff7800;
+  }
 }

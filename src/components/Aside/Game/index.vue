@@ -1,7 +1,7 @@
 <template>
   <div class="game-comtainer">
     <div class="title mb-3">
-      <p>Top Game</p>
+      <p>Game Terpopuler</p>
     </div>
     
     <div v-for="(item, i) in gameList.slice(0, 5)" :key="i">

@@ -1,6 +1,6 @@
 <template>
   <div class="card-container">
-    <v-card variant="flat" class="card-content mb-5" style="width: 100%; height: 100%; cursor: pointer">
+    <v-card variant="flat" class="card-content mb-5 pa-0" style="width: 100%; height: 100%; cursor: pointer">
       <v-row dense style="height: 100%;" class="desktop">
         <v-col cols="8" class="pr-6">
           <div class="left-content">
@@ -12,8 +12,8 @@
               <h1 class="blog-title">{{title}}</h1>
               <p class="blog-subtitle">{{subTitle}}</p>
             </div>
-            <v-row dense class="mt-1">
-              <v-col cols="8">
+            <div class="d-flex justify-space-between" style="width: 100%">
+              <div>
                 <div class="d-flex align-center mt-3">
                   <p class="card-categories mr-1">Ditulis oleh</p>
                   <p class="card-categories mr-1"><b style="color: black">{{writters}}</b></p>
@@ -21,8 +21,8 @@
                 <div>
                   <p style="font-size: 13px; color: gray">{{formatDate(date)}}</p>
                 </div>
-              </v-col>
-              <v-col cols="4">
+              </div>
+              <div>
                 <div class="d-flex flex-row-reverse align-center mt-7">
                   <div class="d-flex align-center mr-3">
                     <v-icon color="grey" size="18" class="mr-1">mdi-comment-outline</v-icon>
@@ -33,8 +33,8 @@
                     <p style="font-size: 14px; margin-top: 0px; color: gray">{{like}}</p>
                   </div>
                 </div>
-              </v-col>
-            </v-row>
+              </div>
+            </div>
           </div>
         </v-col>
         <v-col cols="4">

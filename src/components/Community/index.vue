@@ -4,10 +4,10 @@
       Komunitas
     </h1>
     <v-row dense>
-      <v-col md="4" cols="12">
+      <v-col md="5" cols="12">
         <div class="community-card">
           <p class="support-text">
-            Gabung ke komunitas atau Discord channel di bawah
+            Gabung ke komunitas kami atau channel Discord di bawah ini untuk mendapatkan info terbaru.
           </p>
           <div class="d-flex align-center mt-4" style="gap: 10px">
             <div class="community">
@@ -21,7 +21,7 @@
           </div>
         </div>
       </v-col>
-      <v-col md="8" cols="12">
+      <v-col md="7" cols="12">
         <div class="support-card">
           <p class="support-text">
             Jika kalian suka dengan apa yang kami kerjakan, kalian bisa support lewat
@@ -31,7 +31,11 @@
             <div class="community-card__ko-fi">
               <v-row dense>
                 <v-col cols="2">
-                  <v-img min-width="32" max-width="32" height="32" src="https://res.cloudinary.com/dqaylwrrx/image/upload/v1740638595/Support/Ko-fi_COIN_xdh7a0.gif"></v-img>
+                  <v-img 
+                    min-width="32" 
+                    max-width="32" 
+                    height="32" 
+                    src="https://res.cloudinary.com/dqaylwrrx/image/upload/v1740638595/Support/Ko-fi_COIN_xdh7a0.gif"></v-img>
                 </v-col>
                 <v-col cols="10">
                   <div class="mt-1">
@@ -41,13 +45,17 @@
                   </div>
                 </v-col>
               </v-row>
-              
-              
             </div>
             <div class="community-card__trakteer">
               <v-row dense>
                 <v-col cols="2">
-                  <v-img min-width="32" max-width="32" height="32" src="https://res.cloudinary.com/dqaylwrrx/image/upload/v1740640011/Support/trakteer-logo_bwxs8t.png"></v-img>
+                  <v-img 
+                    min-width="32" 
+                    max-width="32" 
+                    style="filter: brightness(0) invert(1);"
+                    height="32" 
+                    src="https://res.cloudinary.com/dqaylwrrx/image/upload/v1740640011/Support/trakteer-logo_bwxs8t.png">
+                  </v-img>
                 </v-col>
                 <v-col cols="10">
                   <div class="mt-1">

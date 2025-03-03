@@ -1,124 +1,23 @@
 .timeline-container {
-  width: 100%;
-  height: 100%;
+  margin-top: 30px;
 }
 
-.timeline-wrapper {
-  max-width: 1300px;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  @media screen and (max-width: 960px) {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 50px;
-  }
-}
-
-.scroller-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.arrow {
-  background-color: transparent;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.scroller {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  width: 100%; /* Adjust the width to control the visible area */
-  padding: 10px;
-  position: relative;
-}
-
-.scroller-item {
-  padding: 6px;
-  user-select: none;
-  border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.055);
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 8px;
-  margin-right: 6px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: normal;
-}
-
-.scroller-item__active {
-  padding: 6px;
-  user-select: none;
-  border-radius: 20px;
-  color: #ff7800;
-  background-color: rgba(255, 119, 0, 0.1019607843);
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 8px;
-  margin-right: 6px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: normal;
-}
-
-.left-arrow,
-.right-arrow {
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.scroller::-webkit-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  display: none;
-}
-
-.left-container {
-  padding-right: 30px;
-  @media screen and (max-width: 960px) {
-    padding-left: 4px;
-    padding-right: 6px;
-  }
-}
-
-.right-container {
-  padding-left: 50px;
-  @media screen and (max-width: 960px) {
-    padding-right: 5px;
-    padding-left: 4px;
-  }
-}
-
-.right-content {
-  width: 100%;
-  border-radius: 6px;
-  padding: 10px;
+.timeline-title {
+  line-height: normal;
   color: #4f4f4f;
-  background-color: rgba(0, 0, 0, 0.102);
-}
-
-.right-content__flat {
-  width: 100%;
-  border-radius: 6px;
-}
-
-.quote {
-  padding: 10px;
-  border-left: 3px solid #ff7700;
-  background-color: #ff77002f;
+  font-size: 24px;
 }
 
 span {
   color: #ff7700;
+}
+
+.see-all {
+  color: #ff7800;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.arrow-more {
+  cursor: pointer;
 }

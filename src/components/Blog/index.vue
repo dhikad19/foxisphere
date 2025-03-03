@@ -1,8 +1,14 @@
 <template>
   <div class="blog-container">
-    <h1 class="blog-title">
-      Blog
-    </h1>
+    <div class="d-flex justify-space-between align-end mb-3">
+      <h1 class="blog-title">
+        Blog
+      </h1>
+      <div class="d-flex align-center arrow-more">
+        <p class="see-all">Lihat semua</p>
+        <v-icon class="ml-2" color="#ff7800" size="18">mdi-arrow-right</v-icon>
+      </div>
+    </div>
     <v-row dense>
       <v-col cols="12">
         <div class="blog-card">

@@ -32,20 +32,24 @@
   height: 45px;
   max-height: 45px;
   font-size: 15px;
+  cursor: pointer;
+  user-select: none;
   border-radius: 6px;
   height: 100%;
   color: white;
 }
 
 .community-card__trakteer {
-  background-color: #ffffff;
-  color: #e50027;
+  background-color: #e50027;
+  color: #fff;
   width: 100%;
   border: solid 2px #e50027;
   font-weight: 500;
   height: 45px;
   max-height: 45px;
   font-size: 15px;
+  cursor: pointer;
+  user-select: none;
   border-radius: 6px;
   height: 100%;
 }
@@ -63,7 +67,7 @@
 .support-card {
   color: #4f4f4f;
   padding: 20px;
-  background-color: #f4efe7;
+  background-color: #f7f7f7;
   border-radius: 6px;
 }
 
