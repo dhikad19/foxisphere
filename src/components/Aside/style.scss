@@ -4,7 +4,6 @@
   position: sticky;
   top: 80px;
   font-size: 14px;
-  color: #4f4f4f;
 }
 
 .title {
@@ -28,9 +27,27 @@
   width: 280px;
   height: 100%;
   background-color: #f7f7f7;
+  color: #4f4f4f;
   margin-bottom: 4px;
   border-radius: 6px;
   max-height: 91.2vh;
+  overflow: auto;
+  scrollbar-width: thin;
+  padding: 20px;
+  scrollbar-color: transparent transparent;
+  &:hover {
+    scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+  }
+}
+
+.aside-wrapper-dark {
+  width: 280px;
+  height: 100%;
+  background-color: #141414;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  max-height: 91.2vh;
+  color: #fff8ea;
   overflow: auto;
   scrollbar-width: thin;
   padding: 20px;

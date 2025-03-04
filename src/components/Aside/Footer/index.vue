@@ -3,8 +3,12 @@
     <v-row dense>
       <v-col cols="12">
         <v-img max-width="100" class="mb-3" src="assets/header-new.png"></v-img>
-        <p class="slogan mb-1">A Place for Gamers to Connect, Share, and Grow.</p>
-        <p><b style="color: #ff7800">© Foxon</b>, {{new Date().getFullYear()}}</p>
+        <p class="slogan mb-1">
+          A Place for Gamers to Connect, Share, and Grow.
+        </p>
+        <p>
+          <b style="color: #ff7800">© Foxon</b>, {{ new Date().getFullYear() }}
+        </p>
       </v-col>
       <v-col cols="12" class="mt-2">
         <div class="d-flex">
@@ -19,15 +23,9 @@
           </div>
         </div>
         <div class="d-flex mt-2">
-          <p class="footer-link">
-            Tentang
-          </p>
-          <p class="footer-link">
-            Blog
-          </p>
-          <p class="footer-link">
-            Kontak
-          </p>
+          <p class="footer-link">Tentang</p>
+          <p class="footer-link">Blog</p>
+          <p class="footer-link">Kontak</p>
         </div>
       </v-col>
     </v-row>
@@ -35,11 +33,11 @@
 </template>
 
 <script>
-export default {
-  name: 'FooterComponent'
-}
+  export default {
+    name: "FooterComponent",
+  };
 </script>
 
 <style lang="scss" scoped>
-@use '../style.scss';
+  @use "../style.scss";
 </style>
