@@ -15,12 +15,6 @@
   </div>
 </template>
 
-<style>
-.theme--light.v-divider {
-  border-color: white !important; 
-}
-</style>
-
 <style lang="scss" scoped>
   @use "./style.scss";
 </style>
