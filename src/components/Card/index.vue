@@ -1,16 +1,38 @@
 <template>
   <div class="card-container">
-    <v-card variant="flat" class="card-content mb-5 pa-0" style="width: 100%; height: 100%; cursor: pointer">
-      <v-row dense style="height: 100%;" class="desktop">
+    <v-card 
+      :color="themeState.isDarkMode ? '#141414' : '#f7f7f7'" 
+      variant="flat" 
+      class="card-content mb-5 pa-3" 
+      style="width: 100%; height: 100%; cursor: pointer"
+    >
+      <v-row 
+        dense 
+        style="height: 100%;" 
+        class="desktop"
+      >
         <v-col cols="8" class="pr-6">
           <div class="left-content">
             <div>
               <div class="d-flex align-center">
-                <p class="categories-content mr-2">{{categories}}</p>
-                <p class="reads">{{read}}</p>
+                <v-img style="margin-top: -10px" class="mr-2" height="35" max-width="35" :src="gameImage"></v-img>
+                <p :class="{'background-dark': themeState.isDarkMode}" 
+                  class="categories-content">
+                  {{game}}
+                </p>
               </div>
-              <h1 class="blog-title">{{title}}</h1>
-              <p class="blog-subtitle">{{subTitle}}</p>
+              <h1 
+                :class="{'title-dark': themeState.isDarkMode}" 
+                class="blog-title"
+              >
+                {{title}}
+              </h1>
+              <p 
+                :class="{'subtitle-dark': themeState.isDarkMode}" 
+                class="blog-subtitle"
+              >
+                {{subTitle}}
+              </p>
             </div>
             <div class="d-flex justify-space-between" style="width: 100%">
               <div>
@@ -49,8 +71,18 @@
                 <p class="categories-content mr-2">{{categories}}</p>
                 <p class="reads">{{read}}</p>
               </div>
-              <h1 class="blog-title">{{title}}</h1>
-              <p class="blog-subtitle">{{subTitle}}</p>
+              <h1 
+                :class="{'title-dark': themeState.isDarkMode}" 
+                class="blog-title"
+              >
+                {{title}}
+              </h1>
+              <p 
+                :class="{'subtitle-dark': themeState.isDarkMode}" 
+                class="blog-subtitle"
+              >
+                {{subTitle}}
+              </p>
             </div>
           </div>
         </v-col>
@@ -83,14 +115,19 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-divider class="mt-5"></v-divider>
     </v-card>
   </div>
 </template>
 
 <script>
+import { themeState } from "../../theme";
 export default {
   name: 'CardComponents',
+  data() {
+    return {
+      themeState
+    }
+  },
   methods: {
     formatDate(date) {
       const parsedDate = new Date(date);
@@ -118,7 +155,11 @@ export default {
       type: String,
       required: true
     },
-    categories: {
+    game: {
+      type: String,
+      required: true
+    },
+    gameImage: {
       type: String,
       required: true
     },

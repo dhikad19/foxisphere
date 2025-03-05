@@ -1,7 +1,7 @@
 <template>
   <div class="blog-container">
     <div class="d-flex justify-space-between align-end mb-3">
-      <h1 class="blog-title">
+      <h1 :class="{'title-dark': themeState.isDarkMode}" class="blog-title">
         Blog
       </h1>
       <div class="d-flex align-center arrow-more">
@@ -21,8 +21,19 @@
               </div>
               <!-- <p>{{blogList[0].date}}</p> -->
             </div>
-            <p class="content-title">{{blogList[0].title}}</p>
-            <p class="content-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, commodi quo? Voluptatibus quaerat repellat ea in, labore reiciendis quia quae qui!</p>
+            <p 
+              :class="{'title-dark': themeState.isDarkMode}" 
+              class="content-title"
+            >
+              {{blogList[0].title}}
+            </p>
+            <p
+              :class="{'subtitle-dark': themeState.isDarkMode}" 
+              class="content-description"
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, 
+              commodi quo? Voluptatibus quaerat repellat ea in, labore reiciendis quia quae qui!
+            </p>
             <div class="d-flex align-center justify-space-between mt-2">
               <div class="d-flex align-center">
                 <p class="author-name">{{blogList[0].author.name}}</p>
@@ -44,8 +55,19 @@
               </div>
               <!-- <p>{{item.date}}</p> -->
             </div>
-            <p class="content-title">{{item.title}}</p>
-            <p class="content-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, commodi quo? Voluptatibus quaerat repellat ea in, labore reiciendis quia quae qui!</p>
+            <p 
+              :class="{'title-dark': themeState.isDarkMode}" 
+              class="content-title"
+            >
+              {{item.title}}
+            </p>
+            <p 
+              :class="{'subtitle-dark': themeState.isDarkMode}" 
+              class="content-description"
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, 
+              commodi quo? Voluptatibus quaerat repellat ea in, labore reiciendis quia quae qui!
+            </p>
             <div class="d-flex align-center justify-space-between mt-2">
               <div class="d-flex align-center">
                 <p class="author-name">{{item.author.name}}</p>
@@ -61,10 +83,12 @@
 </template>
 
 <script>
+import { themeState } from "../../theme";
 export default {
   name: 'BlogComponent',
   data() {
     return {
+      themeState,
       blogList: [
         {
           id: '1',

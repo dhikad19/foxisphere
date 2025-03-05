@@ -5,7 +5,7 @@ import { loadFonts } from "./plugins/webfontloader";
 import vue3GoogleLogin from "vue3-google-login";
 import router from "./router";
 import store from "./router";
-import "./styles/style.scss";
+import "../src/assets/styles.scss";
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 loadFonts();

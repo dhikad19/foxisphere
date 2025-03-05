@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col cols="12">
         <v-img max-width="100" class="mb-3" src="assets/header-new.png"></v-img>
-        <p class="slogan mb-1">
+        <p :class="{'title-dark': themeState.isDarkMode}" class="slogan mb-1">
           A Place for Gamers to Connect, Share, and Grow.
         </p>
         <p>
@@ -23,9 +23,9 @@
           </div>
         </div>
         <div class="d-flex mt-2">
-          <p class="footer-link">Tentang</p>
-          <p class="footer-link">Blog</p>
-          <p class="footer-link">Kontak</p>
+          <p :class="{'title-dark': themeState.isDarkMode}" class="footer-link">Tentang</p>
+          <p :class="{'title-dark': themeState.isDarkMode}" class="footer-link">Blog</p>
+          <p :class="{'title-dark': themeState.isDarkMode}" class="footer-link">Kontak</p>
         </div>
       </v-col>
     </v-row>
@@ -33,8 +33,15 @@
 </template>
 
 <script>
-  export default {
-    name: "FooterComponent",
+import { themeState } from "../../../theme";
+  
+export default {
+  name: "FooterComponent",
+  data() {
+    return {
+      themeState
+    }
+  }
   };
 </script>
 

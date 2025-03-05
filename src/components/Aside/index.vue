@@ -1,7 +1,9 @@
 <template>
   <div class="aside-container ml-8 mr-1">
-    <div
-      :class="themeState.isDarkMode ? 'aside-wrapper-dark' : 'aside-wrapper'">
+    <div 
+      :class="{'background-dark title-dark': themeState.isDarkMode}"
+      class="aside-wrapper"
+    >
       <div class="aside-content">
         <GameRank class="mb-5" />
         <v-divider></v-divider>
@@ -12,6 +14,12 @@
     </div>
   </div>
 </template>
+
+<style>
+.theme--light.v-divider {
+  border-color: white !important; 
+}
+</style>
 
 <style lang="scss" scoped>
   @use "./style.scss";

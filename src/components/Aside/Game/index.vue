@@ -1,20 +1,25 @@
 <template>
   <div class="game-comtainer">
     <div class="title mb-3">
-      <p>Game Terpopuler</p>
+      <p>Game Populer</p>
     </div>
     
     <div v-for="(item, i) in gameList.slice(0, 5)" :key="i">
-      <p class="list"><span style="color: #ff7800">#{{i + 1}}</span> {{item.name}}</p>
+      <p :class="themeState.isDarkMode ? 'list-dark' : 'list'">
+        <span style="color: #ff7800">#{{i + 1}}</span> 
+        {{item.name}}
+      </p>
     </div>
   </div>
 </template>
 
 <script>
+import { themeState } from "../../../theme";
 export default {
   name: 'GameComponent',
   data() {
     return {
+      themeState,
       gameList: [
         {
           id: '1',

@@ -1,7 +1,7 @@
 <template>
   <div class="timeline-container">
     <div class="d-flex justify-space-between align-end mb-3">
-      <h1 class="timeline-title">
+      <h1 class="timeline-title" :class="{'title-dark': themeState.isDarkMode}">
         Timeline
       </h1>
       <div class="d-flex align-center arrow-more">
@@ -15,7 +15,8 @@
         :subTitle="item.subTitle" 
         :image="item.image" 
         :like="item.like" 
-        :categories="item.categories"
+        :game="item.game.name"
+        :gameImage="item.game.image"
         :writters="item.writters"
         :writtersImage="item.writtersImage"
         :read="item.read" 
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import { themeState } from "../../theme";
 import Card from '@/components/Card/index.vue'
 export default {
   name: 'TimelineComponents',
@@ -37,6 +39,7 @@ export default {
 
   data() {
     return {
+      themeState,
       blogData: [
         {
           title: 'Masa Depan Teknologi AI',
@@ -46,7 +49,10 @@ export default {
           like: 30,
           read: '5 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '10-10-2024',
           comments: 8,
           content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Vivamus maximus interdum tincidunt. Aenean in nisi a arcu hendrerit dapibus. Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat.'
@@ -59,7 +65,10 @@ export default {
           like: 40,
           read: '4 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '11-10-2024',
           comments: 12,
           content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Aenean in nisi a arcu hendrerit dapibus. Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat.'
@@ -72,7 +81,10 @@ export default {
           like: 25,
           read: '3 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '12-10-2024',
           comments: 10,
           content: 'Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Quisque fringilla feugiat risus at volutpat.'
@@ -85,7 +97,10 @@ export default {
           like: 35,
           read: '6 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '13-4-2024',
           comments: 15,
           content: 'Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor.'
@@ -98,7 +113,10 @@ export default {
           like: 25,
           read: '3 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '12-10-2024',
           comments: 10,
           content: 'Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Quisque fringilla feugiat risus at volutpat.'
@@ -111,7 +129,10 @@ export default {
           like: 35,
           read: '6 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '13-4-2024',
           comments: 15,
           content: 'Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor.'
@@ -124,7 +145,10 @@ export default {
           like: 50,
           read: '4 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '14-6-2024',
           comments: 20,
           content: 'Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Aenean in nisi a arcu hendrerit dapibus. Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat.'
@@ -137,7 +161,10 @@ export default {
           like: 25,
           read: '3 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '12-10-2024',
           comments: 10,
           content: 'Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Quisque fringilla feugiat risus at volutpat.'
@@ -150,7 +177,10 @@ export default {
           like: 35,
           read: '6 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '13-4-2024',
           comments: 15,
           content: 'Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus maximus interdum tincidunt. Nulla condimentum orci non felis tincidunt, at dapibus orci tempor.'
@@ -163,7 +193,10 @@ export default {
           like: 50,
           read: '4 Menit baca',
           writters: 'Dwi Andika',
-          categories: 'Teknologi',
+          game: {
+            image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png',
+            name: 'Honkai: Star Rails'
+          },
           date: '14-6-2024',
           comments: 20,
           content: 'Nulla condimentum orci non felis tincidunt, at dapibus orci tempor. Aenean in nisi a arcu hendrerit dapibus. Quisque fringilla feugiat risus at volutpat. Integer tempor, sapien at fermentum cursus, magna urna interdum lorem, nec vestibulum urna neque et felis. Sed ultricies sapien ac velit facilisis, in dignissim leo volutpat.'

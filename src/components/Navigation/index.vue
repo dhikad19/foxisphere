@@ -4,9 +4,11 @@
       <v-app-bar
         elevation="0"
         :color="themeState.isDarkMode ? '#222223' : 'white'"
-        :class="
-          windowWidth < '768' && drawer ? 'drawer-active' : 'app-bar-container'
-        "
+        :class="{
+          'drawer-active': windowWidth < 768 && drawer,
+          'app-bar-container': !(windowWidth < 768 && drawer),
+          'app-bar-container-dark': themeState.isDarkMode // Add your second condition or class here
+        }"
         :height="windowWidth >= '768' ? 65 : 55"
         class="app-bar-container">
         <div class="app-bar-content">
@@ -51,28 +53,29 @@
                   <v-icon size="24" color="#4f4f4f">mdi-magnify</v-icon>
                 </div>
 
-                <Dropdown block v-if="windowWidth > '1080'">
-                  <!-- trigger element -->
-                  <template #trigger>
-                    <div class="btn-header__notification-desktop ml-2">
-                      <v-badge
-                        color="#ff7800"
-                        :content="notificationCounter"
-                        v-if="notificationCounter > 0">
-                        <v-icon size="24" color="#4f4f4f"
-                          >mdi-bell-outline</v-icon
-                        >
-                      </v-badge>
-                      <v-icon v-else size="24" color="#4f4f4f"
+                <div v-if="windowWidth > '1080'" ref="dropdownContainer">
+                  <div 
+                    class="btn-header__notification-desktop ml-2" 
+                    @click="toggleNotificationDropdown()"
+                  >
+                    <v-badge
+                      color="#ff7800"
+                      :content="notificationCounter"
+                      v-if="notificationCounter > 0">
+                      <v-icon size="24" color="#4f4f4f"
                         >mdi-bell-outline</v-icon
                       >
-                    </div>
-                  </template>
-                  <!-- contents display in dropdown -->
-                  <DropdownContent :border="false" rounded="small">
-                    <NotificationComponent />
-                  </DropdownContent>
-                </Dropdown>
+                    </v-badge>
+                    <v-icon v-else size="24" color="#4f4f4f"
+                      >mdi-bell-outline</v-icon
+                    >
+                  </div>
+
+                  <NotificationComponent 
+                    v-if="isDropdownNotificationOpen" 
+                    class="dropdown-notification" 
+                  />
+                </div>
 
                 <!-- <v-menu v-if="windowWidth > '1080'" offset="14" :close-on-content-click="false">
                   <template v-slot:activator="{ props }">
@@ -141,6 +144,7 @@
 
                 <div
                   class="btn-header ml-2"
+                  v-if="windowWidth > '768'"
                   @click="toggleDropdown()"
                   ref="dropdownButton">
                   <v-avatar size="30">
@@ -328,6 +332,7 @@
           v-model="drawer"
           :color="themeState.isDarkMode ? '#222223' : 'white'"
           :rail="rail"
+          :style="themeState.isDarkMode ? 'border-right: 1px solid #5e5e5e;' : 'border-right: 1px solid #e4e4e4;'"
           class="navigation-drawer-content"
           width="270"
           :permanent="windowWidth <= '1080' ? false : true"
@@ -735,8 +740,18 @@
   .dropdown {
     position: fixed;
     z-index: 999 !important;
-    top: 60px; /* Position below the button */
+    top: 65px; /* Position below the button */
     right: 122px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px; /* Adjust width as needed */
+  }
+
+  .dropdown-notification {
+    position: fixed;
+    z-index: 999 !important;
+    top: 65px; /* Position below the button */
+    right: 300px;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 200px; /* Adjust width as needed */
@@ -766,7 +781,6 @@
   import SearchComponent from "../Search/index.vue";
   import ChatComponent from "../Chat/index.vue";
   import NotificationComponent from "../Notification/index.vue";
-  import { Dropdown, DropdownContent } from "v-dropdown";
   import { themeState } from "../../theme";
   export default {
     name: "BarComponents",
@@ -774,6 +788,7 @@
       return {
         themeState,
         isDropdownOpen: false,
+        isDropdownNotificationOpen: false,
         tabActive: "inbox",
         chatActive: null,
         tabContent: [
@@ -1074,9 +1089,7 @@
     components: {
       SearchComponent,
       ChatComponent,
-      NotificationComponent,
-      Dropdown,
-      DropdownContent,
+      NotificationComponent
       // DropdownTrigger
     },
     computed: {
@@ -1090,9 +1103,13 @@
         this.isDropdownOpen = !this.isDropdownOpen;
       },
 
+      toggleNotificationDropdown() {
+        this.isDropdownNotificationOpen = !this.isDropdownNotificationOpen
+      },
+
       closeDropdownIfClickedOutside(event) {
-        const dropdown = this.$refs.dropdown;
-        const dropdownButton = this.$refs.dropdownButton;
+        const dropdown = this.$refs.dropdown
+        const dropdownButton = this.$refs.dropdownButton
 
         // Check if the click is outside of both the dropdown and the button
         if (
@@ -1101,7 +1118,15 @@
           dropdownButton &&
           !dropdownButton.contains(event.target)
         ) {
-          this.isDropdownOpen = false;
+          this.isDropdownOpen = false
+        }
+      },
+
+      handleClickOutside(event) {
+      // Check if the click happened outside the dropdown
+        const dropdownContainer = this.$refs.dropdownContainer;
+        if (dropdownContainer && !dropdownContainer.contains(event.target)) {
+          this.isDropdownNotificationOpen = false // Close the dropdown
         }
       },
 
@@ -1159,9 +1184,11 @@
       // Remove the event listener when the component is destroyed
       window.removeEventListener("resize", this.updateWindowWidth);
       document.removeEventListener("click", this.closeDropdownIfClickedOutside);
+      document.removeEventListener('click', this.handleClickOutside);
     },
     created() {
       document.addEventListener("click", this.closeDropdownIfClickedOutside);
+      document.addEventListener('click', this.handleClickOutside);
       if (this.themeState.isDarkMode) {
         this.darkMode = true;
       } else {

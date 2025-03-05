@@ -1,0 +1,43 @@
+:root {
+  --background-color: #ffffff;
+  --background-dark-color: #252525;
+  --background-content-color: #f7f7f7;
+  --background-content-dark-color: #141414;
+  --text-color: #4f4f4f;
+  --text-light-color: #e4e1da;
+  --primary-color: #8d8b8b;
+  --primary-light-color: #c0bebc;
+  --secondary-color: #ff7800;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+p h1 {
+  line-height: normal;
+}
+
+.background-dark {
+  background-color: var(--background-content-dark-color) !important;
+}
+
+.background-light {
+  background-color: var(--background-content-color) !important;
+}
+
+.background-secondary {
+  background-color: var(--secondary-color) !important;
+  color: var(--background-color) !important;
+}
+
+.title-dark {
+  color: var(--text-light-color) !important;
+}
+
+.subtitle-dark {
+  color: var(--primary-light-color) !important;
+}

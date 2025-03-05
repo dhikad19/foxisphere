@@ -45,7 +45,7 @@
 
   /* Dark Mode Styles */
   body.dark-mode {
-    background-color: #222223;
+    background-color: #252525;
     color: white;
   }
 </style>

@@ -1,6 +1,11 @@
 <template>
   <div class="game-list-container">
-    <h1 class="game-title">Daftar Game</h1>
+    <h1 
+      :class="{'title-dark': themeState.isDarkMode}"
+      class="game-title"
+    >
+      Daftar Game
+    </h1>
     <v-row dense>
       <v-col cols="12" md="3" v-for="(item, i) in gameList" :key="i">
         <div class="game-card">
@@ -35,10 +40,11 @@
               contain>
             </v-img>
           </v-card>
-          <div class="image-title">
-            <p>
-              {{ item.name }}
-            </p>
+          <div 
+            :class="{'title-dark': themeState.isDarkMode}"
+            class="image-title"
+          >
+            <p>{{ item.name }}</p>
           </div>
         </div>
       </v-col>

@@ -24,7 +24,12 @@
       </div>
     </div>
 
-    <p class="see-more">Lihat lebih banyak komunitas</p>
+    <p 
+      :class="{'title-dark': themeState.isDarkMode}" 
+      class="see-more"
+    >
+      Lihat lebih banyak komunitas
+    </p>
   </div>
 </template>
 
@@ -33,10 +38,12 @@
 </style>
 
 <script>
+import { themeState } from "../../../theme";
 export default {
   name: 'CommunityComponent',
   data() {
     return {
+      themeState,
       communityList: [
         {
           name: 'Honkai Leak',
