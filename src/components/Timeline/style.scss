@@ -2,10 +2,22 @@
   margin-top: 30px;
 }
 
+.timeline-wrapper {
+  padding: 4px;
+  @media screen and (max-width: 960px) {
+    padding: 0px;
+  }
+}
+
 .timeline-title {
   line-height: normal;
   color: #4f4f4f;
   font-size: 24px;
+  margin-left: 3px;
+  @media screen and (max-width: 960px) {
+    font-size: 22px;
+    margin-left: 0px;
+  }
 }
 
 span {

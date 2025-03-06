@@ -7,7 +7,11 @@
 }
 
 .drawer-active {
-  border-bottom: none;
+  border-bottom: 1px solid transparent;
+}
+
+.drawer-active-dark {
+  border-bottom: 1px solid #4f4f4f;
 }
 
 .app-bar-logo {
@@ -43,8 +47,17 @@
 
 .navigation-drawer-content {
   @media screen and (max-width: 768px) {
+    border-top: #4f4f4f solid 1px;
+    margin-top: -9px;
+    height: calc(100vh - 50px) !important;
+  }
+}
+
+.navigation-drawer-content-dark {
+  @media screen and (max-width: 768px) {
+    border-top: #e4e4e4 solid 1px;
     margin-top: -8px;
-    height: calc(100vh - 55px) !important;
+    height: calc(100vh - 50px) !important;
   }
 }
 
@@ -64,6 +77,9 @@
     &:hover {
       background-color: transparent;
     }
+  }
+  @media screen and (max-width: 768px) {
+    margin-top: 0px;
   }
 }
 
@@ -161,19 +177,18 @@
 .badge-container {
   background-color: #ff7800;
   z-index: 1;
-  border: 2px solid #fff;
-  color: #ffffff;
+  border: 2px solid #e4e1da;
   padding: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   font-size: 12px;
-  margin-top: -2px;
   margin-left: -9px;
   margin-right: -4px;
-  max-height: 12px;
-  min-width: 12px;
+  margin-top: 1px;
+  max-height: 10px;
+  min-width: 10px;
 }
 
 .tab-box {
@@ -249,7 +264,6 @@
 }
 
 .profile-container {
-  color: #4f4f4f;
   cursor: pointer;
   padding: 12px;
   .username {
@@ -262,6 +276,10 @@
     font-size: 13px;
     line-height: normal;
   }
+}
+
+.profile-dropdown {
+  width: 300px;
 }
 
 .profile-list {

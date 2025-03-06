@@ -1,29 +1,39 @@
 <template>
-  <div class="home-container">
+  <div class="home-container" style="height: 100%">
     <!-- <HeaderBar />
     <Hero />
     <Timeline />
     <Footer /> -->
     <!-- <Bar /> -->
-    <Navigation />
-    <div class="content-container pa-3">
-      <HeroVariant />
-      <div class="d-flex mt-10">
-        <div class="content-right-container">
-          <!-- <GameGrid /> -->
-          <GameList />
-          <Blog />
-          <Timeline />
+    <v-layout>
+      <v-main>
+        <Navigation />
+        <div class="content-container pa-3" :class="{'background-body-dark': themeState.isDarkMode}">
+          <HeroVariant />
+          <div class="d-flex mt-10">
+            <div class="content-right-container">
+              <!-- <GameGrid /> -->
+              <GameList />
+              <Blog />
+              <Timeline />
+            </div>
+            <Aside class="aside" />
+          </div>
+          <Community />
         </div>
-        <Aside />
-      </div>
-      <Community />
-    </div>
-    <BottomNavigation class="bottom-navigation" active="home" />
+      </v-main>
+    </v-layout>
+    <!-- <BottomNavigation class="bottom-navigation" active="home" /> -->
   </div>
 </template>
 
 <style scoped lang="scss">
+.aside {
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
+}
+
 .content-right-container {
   width: 100%;
 }
@@ -36,34 +46,21 @@
 }
 
 .home-container {
-  display: flex;
-  @media screen and (max-width: 1080px) {
-    display: unset;
-  }
 }
 
 .content-container {
   position: relative;
-  margin-top: 70px !important;
   max-width: 1080px;
   margin: 0 auto;
   width: 100%;
-  @media screen and (max-width: 1280px) {
-    margin-top: 65px !important;
-  }
-  @media screen and (max-width: 1080px) {
-    margin-top: -92vh !important;
-  }
-  @media screen and (max-width: 768px) {
-    margin-top: -93.5vh !important;
-  }
 }
 </style>
 
 <script>
+  import { themeState } from "../theme";
   // import Bar from '@/components/Bar/index.vue'
   import Navigation from '@/components/Navigation/index.vue'
-  import BottomNavigation from '@/components/Navigation/Bottom/index.vue'
+  // import BottomNavigation from '@/components/Navigation/Bottom/index.vue'
   import HeroVariant from '@/components/Hero/Variant/index.vue'
   // import GameGrid from '@/components/Game/Grid/index.vue'
   import GameList from '@/components/Game/List/index.vue'
@@ -75,11 +72,16 @@
 import Timeline from '@/components/Timeline/index.vue'
 export default {
   name: 'HomeView',
+  data() {
+    return {
+      themeState
+    }
+  },
   components: {
     // Bar,
     Navigation,
     HeroVariant,
-    BottomNavigation,
+    // BottomNavigation,
     // GameGrid,
     GameList,
     Blog,

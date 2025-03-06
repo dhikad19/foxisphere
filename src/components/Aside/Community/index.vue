@@ -28,7 +28,7 @@
       :class="{'title-dark': themeState.isDarkMode}" 
       class="see-more"
     >
-      Lihat lebih banyak komunitas
+      Lihat komunitas lainnya
     </p>
   </div>
 </template>

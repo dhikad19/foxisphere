@@ -1,6 +1,6 @@
 <template>
 <div>
-  <v-card width="380" style="border-radius: 6px">
+  <v-card flat width="380" style="border-radius: 6px">
     <div class="notification-container">
       <div class="notification-content__top pa-3 mt-1 d-flex align-center justify-space-between" style="width: 100%">
         <p style="font-size: 15px; color: #4f4f4f; font-weight: 500">Notifikasi</p>

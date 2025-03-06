@@ -16,7 +16,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @use "./style.scss";
+  @import "./style.scss";
 </style>
 
 <script>

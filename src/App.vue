@@ -38,14 +38,11 @@
 <style>
   /* Default (Light) Mode Styles */
   body {
-    background-color: white;
-    color: black;
-    transition: background-color 0.3s, color 0.3s;
+    background-color: #ffffff;
   }
 
   /* Dark Mode Styles */
   body.dark-mode {
     background-color: #252525;
-    color: white;
   }
 </style>

@@ -7,12 +7,9 @@
       Daftar Game
     </h1>
     <v-row dense>
-      <v-col cols="12" md="3" v-for="(item, i) in gameList" :key="i">
+      <v-col cols="4" sm="3" v-for="(item, i) in gameList" :key="i">
         <div class="game-card">
-          <v-card
-            class="mx-auto"
-            :color="themeState.isDarkMode ? '#141414' : '#f0f0f0'"
-            flat>
+          <div class="mx-auto game-image-container" :class="{'background-dark': themeState.isDarkMode}">
             <v-img
               v-if="
                 item.name == 'Genshin Impact' ||
@@ -21,25 +18,23 @@
                 item.name == 'Reverse: 1999' ||
                 item.name == 'Brown Dust 2'
               "
-              class="game-image align-end"
+              class="game-image align-end list-image"
               :style="themeState.isDarkMode ? 'filter: invert(100%)' : ''"
-              height="120"
               :src="item.image"
               contain>
             </v-img>
             <v-img
               v-else
-              class="game-image align-end"
+              class="game-image align-end list-image"
               :style="
                 item.name == 'AFK Journey' && !themeState.isDarkMode
                   ? 'filter: grayscale(100%) brightness(0)'
                   : ''
               "
-              height="120"
               :src="item.image"
               contain>
             </v-img>
-          </v-card>
+          </div>
           <div 
             :class="{'title-dark': themeState.isDarkMode}"
             class="image-title"
@@ -141,6 +136,9 @@
 <style>
   .v-row--dense > [class*="v-col-"] {
     padding: 8px !important;
+    @media screen and (max-width: 960px) {
+      padding: 4px !important;
+    }
   }
 </style>
 

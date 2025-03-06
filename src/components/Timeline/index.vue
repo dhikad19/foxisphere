@@ -9,7 +9,7 @@
         <v-icon class="ml-2" color="#ff7800" size="18">mdi-arrow-right</v-icon>
       </div>
     </div>
-    <div v-for="(item, i) in blogData.slice(0, 4)" :key="i">
+    <div v-for="(item, i) in blogData.slice(0, 4)" :key="i" class="timeline-wrapper">
       <Card 
         :title="item.title" 
         :subTitle="item.subTitle" 

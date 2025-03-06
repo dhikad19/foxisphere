@@ -25,6 +25,10 @@ p h1 {
   background-color: var(--background-content-dark-color) !important;
 }
 
+.background-body-dark {
+  background-color: var(--background-dark-color) !important;
+}
+
 .background-light {
   background-color: var(--background-content-color) !important;
 }
@@ -40,4 +44,8 @@ p h1 {
 
 .subtitle-dark {
   color: var(--primary-light-color) !important;
+}
+
+.v-navigation-drawer__scrim {
+  position: fixed !important;
 }

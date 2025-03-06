@@ -1,57 +1,68 @@
 <template>
   <div class="navigation-container">
-    <v-app>
-      <v-app-bar
-        elevation="0"
-        :color="themeState.isDarkMode ? '#222223' : 'white'"
-        :class="{
-          'drawer-active': windowWidth < 768 && drawer,
-          'app-bar-container': !(windowWidth < 768 && drawer),
-          'app-bar-container-dark': themeState.isDarkMode // Add your second condition or class here
-        }"
-        :height="windowWidth >= '768' ? 65 : 55"
-        class="app-bar-container">
-        <div class="app-bar-content">
-          <v-row dense>
-            <v-col :cols="windowWidth <= '1080' ? '6' : '3'">
-              <div class="mobile-left-navigation">
-                <div @click="handleDrawer()" class="btn-drawer">
-                  <v-icon color="#4f4f4f" v-if="!drawer"> mdi-menu </v-icon>
-                  <v-icon color="#4f4f4f" v-else> mdi-close </v-icon>
-                </div>
-                <v-img
-                  @click="handleHome()"
-                  src="assets/header-new.png"
-                  style="margin-bottom: 5px"
-                  class="app-bar-logo">
-                </v-img>
+    <v-app-bar
+      elevation="0"
+      :color="themeState.isDarkMode ? '#222223' : 'white'"
+      :class="{
+        'drawer-active': windowWidth < 768 && drawer,
+        'drawer-active-dark': windowWidth < 768 && drawer && themeState.isDarkMode,
+        'app-bar-container': !windowWidth < 768 && drawer && !themeState.isDarkMode,
+        'app-bar-container-dark': themeState.isDarkMode
+      }"
+      :height="windowWidth >= '768' ? 65 : 55"
+      class="app-bar-container">
+        
+      <div class="app-bar-content">
+        <v-row dense>
+          <v-col :cols="windowWidth <= '1080' ? '6' : '3'">
+            <div class="mobile-left-navigation">
+              <div @click="handleDrawer()" class="btn-drawer">
+                <v-icon 
+                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'" 
+                  v-if="!drawer"> 
+                  mdi-menu 
+                </v-icon>
+                <v-icon 
+                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'" 
+                  v-else> 
+                  mdi-close 
+                </v-icon>
               </div>
+                
               <v-img
                 @click="handleHome()"
                 src="assets/header-new.png"
-                style="margin-bottom: 2px"
-                class="app-bar-logo dekstop-left-navigation">
+                style="margin-bottom: 5px"
+                class="app-bar-logo">
               </v-img>
-            </v-col>
-            <v-col cols="6" class="search-component">
-              <SearchComponent />
-            </v-col>
-            <v-col :cols="windowWidth <= '1080' ? '6' : '3'">
-              <div v-if="hasLoggedIn" class="d-flex align-center justify-end">
-                <!-- <div class="btn-header__create" v-if="windowWidth > '768'">
-                  <v-icon size="24" color="#4f4f4f">mdi-magnify</v-icon>
-                </div> -->
+            </div>
+            <v-img
+              @click="handleHome()"
+              src="assets/header-new.png"
+              style="margin-bottom: 2px"
+              class="app-bar-logo dekstop-left-navigation">
+            </v-img>
+          </v-col>
+          <v-col cols="6" class="search-component">
+            <SearchComponent />
+          </v-col>
+          <v-col :cols="windowWidth <= '1080' ? '6' : '3'">
+            <div v-if="hasLoggedIn" class="d-flex align-center justify-end">
 
-                <div class="btn-header__create ml-6" v-if="windowWidth > '768'">
-                  <v-icon size="24" color="#4f4f4f">mdi-plus</v-icon>
-                  <p class="ml-2">Posting</p>
-                </div>
-                <div
-                  v-if="windowWidth <= '1080'"
-                  class="btn-header btn-search ml-2"
-                  @click="handleChat()">
-                  <v-icon size="24" color="#4f4f4f">mdi-magnify</v-icon>
-                </div>
+              <div :class="{'background-dark title-dark': themeState.isDarkMode}" class="btn-header__create ml-6" v-if="windowWidth > '768'">
+                <v-icon size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">mdi-plus</v-icon>
+                <p class="ml-2">Posting</p>
+              </div>
+              <div
+                v-if="windowWidth <= '1080'"
+                class="btn-header btn-search ml-2"
+                @click="handleChat()">
+                <v-icon 
+                  size="24" 
+                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">
+                  mdi-magnify
+                </v-icon>
+              </div>
 
                 <div v-if="windowWidth > '1080'" ref="dropdownContainer">
                   <div 
@@ -62,13 +73,19 @@
                       color="#ff7800"
                       :content="notificationCounter"
                       v-if="notificationCounter > 0">
-                      <v-icon size="24" color="#4f4f4f"
-                        >mdi-bell-outline</v-icon
+                      <v-icon 
+                        size="24" 
+                        :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">
+                        mdi-bell-outline
+                      </v-icon
                       >
                     </v-badge>
-                    <v-icon v-else size="24" color="#4f4f4f"
-                      >mdi-bell-outline</v-icon
-                    >
+                    <v-icon 
+                      v-else 
+                      size="24" 
+                      :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">
+                      mdi-bell-outline
+                    </v-icon>
                   </div>
 
                   <NotificationComponent 
@@ -76,18 +93,6 @@
                     class="dropdown-notification" 
                   />
                 </div>
-
-                <!-- <v-menu v-if="windowWidth > '1080'" offset="14" :close-on-content-click="false">
-                  <template v-slot:activator="{ props }">
-                    <div class="btn-header__notification-desktop ml-2" v-bind="props">
-                      <v-badge color="#ff7800" :content="notificationCounter" v-if="notificationCounter > 0">
-                        <v-icon size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
-                      </v-badge>
-                      <v-icon v-else size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
-                    </div>
-                  </template>
-                  <NotificationComponent />
-                </v-menu> -->
 
                 <div
                   class="btn-header btn-search ml-2"
@@ -97,20 +102,20 @@
                     color="#ff7800"
                     :content="notificationCounter"
                     v-if="notificationCounter > 0">
-                    <v-icon size="24" color="#4f4f4f">mdi-bell-outline</v-icon>
+                    <v-icon size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">mdi-bell-outline</v-icon>
                   </v-badge>
-                  <v-icon v-else size="24" color="#4f4f4f"
+                  <v-icon v-else size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
                     >mdi-bell-outline</v-icon
                   >
                 </div>
 
-                <div v-if="windowWidth <= '768'" class="btn-header ml-1 mt-1">
+                <div v-if="windowWidth <= '768'" class="mt-1 mr-4">
                   <div
                     @click="handleNotification()"
                     class="d-flex"
                     style="margin-right: -8px"
                     v-if="notificationCounter > 0">
-                    <v-icon size="24" color="#4f4f4f" style="margin-right: -4px"
+                    <v-icon size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'" style="margin-right: -4px"
                       >mdi-bell-outline</v-icon
                     >
                     <div class="badge-container"></div>
@@ -119,7 +124,7 @@
                     @click="handleNotification()"
                     v-else
                     size="24"
-                    color="#4f4f4f"
+                    :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
                     style="margin-right: -16px"
                     >mdi-bell-outline</v-icon
                   >
@@ -133,11 +138,11 @@
                     color="#ff7800"
                     :content="messageCounter"
                     v-if="messageCounter > 0">
-                    <v-icon size="24" color="#4f4f4f"
+                    <v-icon size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
                       >mdi-chat-processing-outline</v-icon
                     >
                   </v-badge>
-                  <v-icon v-else size="24" color="#4f4f4f"
+                  <v-icon v-else size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
                     >mdi-chat-processing-outline</v-icon
                   >
                 </div>
@@ -152,156 +157,29 @@
                     </v-img>
                   </v-avatar>
                 </div>
-                <div v-if="isDropdownOpen" class="dropdown" ref="dropdown">
-                  <v-card width="300" style="border-radius: 6px">
-                    <div class="profile-container pa-3">
-                      <div
-                        class="profile-list__user mb-3"
-                        @click="handleProfile()">
-                        <v-avatar size="35" class="mr-2">
-                          <v-img
-                            src="https://randomuser.me/api/portraits/men/82.jpg">
-                          </v-img>
-                        </v-avatar>
-                        <div>
-                          <p class="username">@dikad19</p>
-                          <p class="email">dwiandika01@gmail.com</p>
-                        </div>
-                      </div>
 
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-trophy-outline
-                        </v-icon>
-                        <p>Pencapaian</p>
-                      </div>
-                      <div class="profile-list__dark-mode">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-weather-night
-                        </v-icon>
-                        <div
-                          style="width: 100%"
-                          class="d-flex align-center justify-space-between">
-                          <p>Mode Gelap</p>
-                          <v-switch
-                            @click="toggleTheme()"
-                            v-model="darkMode"
-                            color="#ff7800"
-                            hide-details
-                            inset>
-                          </v-switch>
-                        </div>
-                      </div>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-cog-outline
-                        </v-icon>
-                        <p>Pengaturan</p>
-                      </div>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-cursor-default-click-outline
-                        </v-icon>
-                        <p>Beriklan di <b style="color: #ff7800"> Foxon</b></p>
-                      </div>
-                      <v-divider class="mt-3 mb-3"></v-divider>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f"> mdi-headset </v-icon>
-                        <p>Dukungan</p>
-                      </div>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-help-circle-outline
-                        </v-icon>
-                        <p>Pusat Bantuan</p>
-                      </div>
-                      <v-divider class="mt-3 mb-3"></v-divider>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f"> mdi-logout </v-icon>
-                        <p>Keluar</p>
-                      </div>
-                    </div>
-                  </v-card>
+                <div
+                  class="btn-header ml-1"
+                  v-else
+                  style="margin-right: -4px"
+                  @click="profileSheet = true"
+                  ref="dropdownButton">
+                  <v-avatar size="27">
+                    <v-img src="https://randomuser.me/api/portraits/men/82.jpg">
+                    </v-img>
+                  </v-avatar>
                 </div>
 
-                <!-- <v-menu offset="14" v-if="windowWidth > '768'" :close-on-content-click="false">
-                  <template v-slot:activator="{ props }">
-                    <div class="btn-header ml-2" v-bind="props">
-                      <v-avatar size="30">
-                        <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
-                        </v-img>
-                      </v-avatar>
-                    </div>
-                  </template>
-                  <v-card width="300" style="border-radius: 6px">
-                    <div class="profile-container pa-3" >
-                      <div class="profile-list__user mb-3" @click="handleProfile()">
-                        <v-avatar size="35" class="mr-2">
-                          <v-img src="https://randomuser.me/api/portraits/men/82.jpg" >
-                        </v-img>
-                        </v-avatar>
-                        <div>
-                          <p class="username">@dikad19</p>
-                          <p class="email">dwiandika01@gmail.com</p>
-                        </div>
-                      </div>
-                      
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-trophy-outline
-                        </v-icon>
-                        <p>Pencapaian</p>
-                      </div>
-                      <div class="profile-list__dark-mode">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-weather-night
-                        </v-icon>
-                        <div style="width: 100%" class="d-flex align-center justify-space-between">
-                          <p>Mode Gelap</p>
-                          <v-switch
-                            v-model="darkMode"
-                            color="#ff7800"
-                            hide-details
-                            inset
-                          ></v-switch>
-                        </div>
-                      </div>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-cog-outline
-                        </v-icon>
-                        <p>Pengaturan</p>
-                      </div>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-cursor-default-click-outline
-                        </v-icon>
-                        <p>Beriklan di <b style="color: #ff7800"> Foxon</b></p>
-                      </div>
-                      <v-divider class="mt-3 mb-3"></v-divider>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-headset
-                        </v-icon>
-                        <p>Dukungan</p>
-                      </div>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-help-circle-outline
-                        </v-icon>
-                        <p>Pusat Bantuan</p>
-                      </div>
-                      <v-divider class="mt-3 mb-3"></v-divider>
-                      <div class="profile-list">
-                        <v-icon size="23" color="#4f4f4f">
-                          mdi-logout
-                        </v-icon>
-                        <p>Keluar</p>
-                      </div>
-                    </div>
-                  </v-card>
-                </v-menu> -->
+                <v-bottom-sheet v-model="profileSheet">
+                  <UserComponent />
+                </v-bottom-sheet>
+
+                <div v-if="isDropdownOpen" class="dropdown" ref="dropdown">
+                  <UserComponent />
+                </div>
+              
               </div>
+              
               <div v-else>
                 <v-btn
                   variant="outlined"
@@ -325,413 +203,105 @@
           </v-row>
         </div>
       </v-app-bar>
-      <v-layout>
-        <v-navigation-drawer
-          app
-          :fixed="windowWidth <= '1080' ? false : true"
-          v-model="drawer"
-          :color="themeState.isDarkMode ? '#222223' : 'white'"
-          :rail="rail"
-          :style="themeState.isDarkMode ? 'border-right: 1px solid #5e5e5e;' : 'border-right: 1px solid #e4e4e4;'"
-          class="navigation-drawer-content"
-          width="270"
-          :permanent="windowWidth <= '1080' ? false : true"
-          :temporary="windowWidth <= '1080' ? true : false"
-          @click="rail = false">
-          <div style="margin-top: 0px">
-            <!-- <v-list-item
-            prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-            title="John Leider"
-            nav
-          >
-            <template v-slot:append>
-              <v-btn
-                icon="mdi-chevron-left"
-                variant="text"
-                @click.stop="rail = !rail"
-              ></v-btn>
-            </template>
-          </v-list-item> -->
-
-            <v-list density="compact" nav>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-home-city"
-                title="Home"
-                value="home"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account"
-                title="My Account"
-                value="account"></v-list-item>
-              <v-list-item
-                prepend-icon="mdi-account-group-outline"
-                title="Users"
-                value="users"></v-list-item>
-            </v-list>
-          </div>
-        </v-navigation-drawer>
-        <v-main></v-main>
-      </v-layout>
-    </v-app>
+      <v-navigation-drawer
+        app
+        :fixed="windowWidth <= '1080' ? false : true"
+        v-model="drawer"
+        :color="themeState.isDarkMode ? '#222223' : 'white'"
+        :rail="rail"
+        :style="themeState.isDarkMode ? 'border-right: 1px solid #5e5e5e;' : 'border-right: 1px solid #e4e4e4;'"
+        :class="{
+          'navigation-drawer-content': themeState.isDarkMode,
+          'navigation-drawer-content-dark': !themeState.isDarkMode,
+        }"
+        width="270"
+        :temporary="windowWidth <= '1080' ? true : false"
+        @click="rail = false">
+        <div style="margin-top: 0px">
+          <v-list density="compact" nav>
+            <v-list-item
+              prepend-icon="mdi-account-group-outline"
+              title="Users"
+              value="users">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-home-city"
+              title="Home"
+              value="home">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account"
+              title="My Account"
+              value="account">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account-group-outline"
+              title="Users"
+              value="users">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-home-city"
+              title="Home"
+              value="home">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account"
+              title="My Account"
+              value="account">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account-group-outline"
+              title="Users"
+              value="users">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-home-city"
+              title="Home"
+              value="home">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account"
+              title="My Account"
+              value="account">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account-group-outline"
+              title="Users"
+              value="users">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-home-city"
+              title="Home"
+              value="home">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account"
+              title="My Account"
+              value="account">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account-group-outline"
+              title="Users"
+              value="users">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-home-city"
+              title="Home"
+              value="home">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account"
+              title="My Account"
+              value="account">
+            </v-list-item>
+            <v-list-item
+              prepend-icon="mdi-account-group-outline"
+              title="Users"
+              value="users">
+            </v-list-item>
+          </v-list>
+        </div>
+      </v-navigation-drawer>
     <ChatComponent :handle-close-chat="handleChat" v-if="chatActive" />
   </div>
 </template>
@@ -740,21 +310,27 @@
   .dropdown {
     position: fixed;
     z-index: 999 !important;
-    top: 65px; /* Position below the button */
-    right: 122px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px; /* Adjust width as needed */
-  }
+    top: 66px; 
+    right: 20px;
+    border-radius: 6px;
+    box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02),
+    0px 5px 4px rgba(3, 7, 18, 0.03),
+    0px 12px 9px rgba(3, 7, 18, 0.05),
+    0px 20px 15px rgba(3, 7, 18, 0.06),
+    0px 32px 24px rgba(3, 7, 18, 0.08);
+    }
 
   .dropdown-notification {
     position: fixed;
     z-index: 999 !important;
-    top: 65px; /* Position below the button */
-    right: 300px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px; /* Adjust width as needed */
+    top: 66px;
+    right: 118px;
+    border-radius: 6px;
+    box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02),
+    0px 5px 4px rgba(3, 7, 18, 0.03),
+    0px 12px 9px rgba(3, 7, 18, 0.05),
+    0px 20px 15px rgba(3, 7, 18, 0.06),
+    0px 32px 24px rgba(3, 7, 18, 0.08);
   }
 
   .v-navigation-drawer {
@@ -781,12 +357,15 @@
   import SearchComponent from "../Search/index.vue";
   import ChatComponent from "../Chat/index.vue";
   import NotificationComponent from "../Notification/index.vue";
+  import UserComponent from "../Notification/User/index.vue";
   import { themeState } from "../../theme";
+  
   export default {
     name: "BarComponents",
     data() {
       return {
         themeState,
+        profileSheet: false,
         isDropdownOpen: false,
         isDropdownNotificationOpen: false,
         tabActive: "inbox",
@@ -1089,7 +668,8 @@
     components: {
       SearchComponent,
       ChatComponent,
-      NotificationComponent
+      NotificationComponent,
+      UserComponent
       // DropdownTrigger
     },
     computed: {
@@ -1205,6 +785,7 @@
       } else {
         this.chatActive = false;
       }
+
       if (this.windowWidth <= "1080") {
         this.drawer = false;
       }
