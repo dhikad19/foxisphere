@@ -7,7 +7,7 @@
       Daftar Game
     </h1>
     <v-row dense>
-      <v-col cols="4" sm="3" v-for="(item, i) in gameList" :key="i">
+      <v-col cols="3" sm="3" v-for="(item, i) in gameList" :key="i">
         <div class="game-card">
           <div class="mx-auto game-image-container" :class="{'background-dark': themeState.isDarkMode}">
             <v-img

@@ -16,8 +16,8 @@
           </v-img>
         </v-avatar>
         <div>
-          <p class="username">@dikad19</p>
-          <p class="email">dwiandika01@gmail.com</p>
+          <p class="username" :class="{'title-dark': themeState.isDarkMode}">@dikad19</p>
+          <p class="email" :class="{'title-dark': themeState.isDarkMode}">dwiandika01@gmail.com</p>
         </div>
       </div>
 

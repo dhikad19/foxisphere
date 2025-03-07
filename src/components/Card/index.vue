@@ -1,11 +1,6 @@
 <template>
   <div class="card-container">
-    <v-card 
-      :color="themeState.isDarkMode ? '#141414' : '#f7f7f7'" 
-      variant="flat" 
-      class="card-content mb-5 pa-3" 
-      style="width: 100%; height: 100%; cursor: pointer"
-    >
+    <div class="card-content mb-4" >
       <v-row 
         dense 
         style="height: 100%;" 
@@ -15,10 +10,10 @@
           <div class="left-content">
             <div>
               <div class="d-flex align-center">
-                <v-img style="margin-top: -10px" class="mr-2" height="35" max-width="35" :src="gameImage"></v-img>
+                <v-img style="margin-top: -10px" class="mr-2" height="35" max-width="35" :src="game.image"></v-img>
                 <p :class="{'background-dark': themeState.isDarkMode}" 
                   class="categories-content">
-                  {{game}}
+                  {{game.name}}
                 </p>
               </div>
               <h1 
@@ -31,14 +26,14 @@
                 :class="{'subtitle-dark': themeState.isDarkMode}" 
                 class="blog-subtitle"
               >
-                {{subTitle}}
+                {{contents}}
               </p>
             </div>
             <div class="d-flex justify-space-between" style="width: 100%">
               <div>
                 <div class="d-flex align-center mt-3">
-                  <p class="card-categories mr-1">Ditulis oleh</p>
-                  <p class="card-categories mr-1"><b style="color: black">{{writters}}</b></p>
+                  <p :class="{'title-dark': themeState.isDarkMode}" class="card-categories mr-1">Ditulis oleh</p>
+                  <p :class="{'title-dark': themeState.isDarkMode}" class="card-categories mr-1"><b style="color: black">{{writters}}</b></p>
                 </div>
                 <div>
                   <p style="font-size: 13px; color: gray">{{formatDate(date)}}</p>
@@ -64,12 +59,23 @@
         </v-col>
       </v-row>
       <v-row dense style="height: 100%;" class="mobile">
-        <v-col cols="7" class="pr-6">
+        <v-col cols="12">
           <div class="left-content">
             <div>
-              <div class="d-flex align-center">
-                <p class="categories-content mr-2">{{categories}}</p>
-                <p class="reads">{{read}}</p>
+              <div class="d-flex align-center justify-space-between mb-1">
+                <div class="d-flex align-center">
+                  <v-avatar size="30" class="mr-2">
+                    <v-img :src="community.image"></v-img>
+                  </v-avatar>
+                  <p class="card-community__name" :class="{'title-dark': themeState.isDarkMode}" >{{community.name}}</p>
+                  <div :class="{'background-light': themeState.isDarkMode}" class="dot"></div>
+                  <div :class="{'subtitle-dark': themeState.isDarkMode}" class="card-post-date">
+                    {{date}}
+                  </div>
+                </div>
+                <div @click="toggleFollow()" :class="followStatus ? 'following' : 'follow'">
+                  <p>{{followStatus ? 'Mengikuti' : 'Ikuti'}}</p>
+                </div>
               </div>
               <h1 
                 :class="{'title-dark': themeState.isDarkMode}" 
@@ -81,41 +87,68 @@
                 :class="{'subtitle-dark': themeState.isDarkMode}" 
                 class="blog-subtitle"
               >
-                {{subTitle}}
+                {{contents}}
               </p>
+              <v-img class="card-community__image" :src="image"></v-img>
             </div>
           </div>
         </v-col>
-        <v-col cols="5">
-          <v-img :src="image"></v-img>
-        </v-col>
-        <v-col cols="12">
-          <v-row dense class="mt-1">
-            <v-col cols="8">
-              <div class="d-flex align-center mt-3">
-                <p class="card-categories mr-1">Ditulis oleh</p>
-                <p class="card-categories mr-1"><b style="color: black">{{writters}}</b></p>
-              </div>
-              <div>
-                <p style="font-size: 13px; color: gray">{{formatDate(date)}}</p>
-              </div>
-            </v-col>
-            <v-col cols="4">
-              <div class="d-flex flex-row-reverse align-center mt-6">
-                <div class="d-flex align-center mr-3">
-                  <v-icon color="grey" size="17" class="mr-1">mdi-comment-outline</v-icon>
-                  <p style="font-size: 14px; margin-top: 0px; color: gray">{{comments}}</p>
-                </div>
-                <div class="d-flex align-center mr-3">
-                  <v-icon color="grey" size="17" class="mr-1">mdi-thumb-up-outline</v-icon>
-                  <p style="font-size: 14px; margin-top: 0px; color: gray">{{like}}</p>
-                </div>
-              </div>
-            </v-col>
-          </v-row>
+        <v-col col="12" class="d-flex align-center mt-1">
+          <div class="card-action d-inline-block mr-2">
+            <div 
+              class="d-flex align-center card-action-btn" 
+              :class="{
+                'card-action-btn-upvote': vote.upvote,
+                'card-action-btn-downvote': vote.downvote,
+                'card-action-btn-dark': themeState.isDarkMode && !vote.downvote && !vote.upvote,
+                'card-action-btn-light': !themeState.isDarkMode && !vote.downvote && !vote.upvote,
+              }"
+            >
+              <v-icon 
+                size="18" 
+                class="mr-2" 
+                @click="handleVote('up')" 
+                v-if="vote.upvote">
+                mdi-heart
+              </v-icon>
+              <v-icon 
+                size="18" 
+                class="mr-2"
+                @click="handleVote('up')"  
+                v-else>mdi-heart-outline
+              </v-icon>
+              <p class="vote-count">{{ vote.vote }}</p>
+              <v-icon 
+                size="18" 
+                class="ml-2" 
+                @click="handleVote('down')" 
+                v-if="vote.downvote">
+                mdi-heart-broken
+              </v-icon>
+              <v-icon 
+                size="18" 
+                class="ml-2" 
+                @click="handleVote('down')"  
+                v-else>mdi-heart-broken-outline
+              </v-icon>
+            </div>
+          </div>
+          <div class="card-action d-inline-block">
+            <div 
+              class="d-flex align-center card-action-btn-cmt"
+              :class="{
+                'card-action-btn-dark': themeState.isDarkMode,
+                'card-action-btn-light': !themeState.isDarkMode,
+              }">
+              <v-icon size="18" class="mr-2" :color="themeState.isDarkMode ? '#ffffff' : '#4f4f4f'" >
+                mdi-comment-outline
+              </v-icon>
+              <p class="vote-count">112</p>
+            </div>
+          </div>
         </v-col>
       </v-row>
-    </v-card>
+    </div>
   </div>
 </template>
 
@@ -129,6 +162,44 @@ export default {
     }
   },
   methods: {
+    toggleFollow() {
+      const newFollowStatus = !this.followStatus;
+      this.$emit('updateFollowed', newFollowStatus); // Emit updated followStatus to the parent
+    },
+
+    handleVote(voteType) {
+      let newVoteData = { ...this.vote }; // Create a new vote data object to avoid direct mutation
+
+      if (voteType === 'up') {
+        newVoteData.upvote = !newVoteData.upvote
+        if (!newVoteData.upvote) {
+          newVoteData.vote = this.vote.vote - 1;
+        } else {
+          newVoteData.vote = this.vote.vote + 1;
+          if (newVoteData.downvote) {
+            newVoteData.vote = this.vote.vote + 2;
+          }
+          newVoteData.downvote = false;
+        }
+
+      } else if (voteType === 'down') {
+        newVoteData.downvote = !newVoteData.downvote
+        if (!newVoteData.downvote) {
+          newVoteData.vote = this.vote.vote + 1;
+        } else {
+          newVoteData.vote = this.vote.vote - 1;
+          if (newVoteData.upvote) {
+            newVoteData.vote = this.vote.vote - 2;
+          }
+          newVoteData.upvote = false
+        }
+
+      }
+
+      // Emit updated vote data back to the parent component
+      this.$emit('updateVote', newVoteData);
+    },
+
     formatDate(date) {
       const parsedDate = new Date(date);
 
@@ -147,7 +218,7 @@ export default {
       type: String,
       required: true
     },
-    subTitle: {
+    contents: {
       type: String,
       required: true
     },
@@ -156,27 +227,11 @@ export default {
       required: true
     },
     game: {
-      type: String,
-      required: true
-    },
-    gameImage: {
-      type: String,
+      type: Object,
       required: true
     },
     like: {
       type: Number,
-      required: true
-    },
-    read: {
-      type: String,
-      required: true
-    },
-    writters: {
-      type: String,
-      required: true
-    },
-    writtersImage: {
-      type: String,
       required: true
     },
     date: {
@@ -187,6 +242,22 @@ export default {
       type: Number,
       required: true
     },
+    community: {
+      type: Object,
+      required: true
+    },
+    vote: {
+      type: Object,
+      required: true
+    },
+    followStatus: {
+      type: Boolean,
+      required: true
+    },
+    followHidden: {
+      type: Boolean,
+      required: true
+    }
   }
 }
 </script>

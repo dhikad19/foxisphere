@@ -14,8 +14,8 @@
   height: 120px;
   max-width: 120px;
   @media screen and (max-width: 960px) {
-    height: 100px;
-    max-width: 120px;
+    height: 90px;
+    max-width: 90px;
   }
 }
 
@@ -32,8 +32,10 @@
   margin-top: 5px;
   font-size: 14px;
   margin-bottom: 10px;
+  line-height: normal;
   @media screen and (max-width: 960px) {
     text-align: center;
+    font-size: 13px;
     font-weight: normal;
   }
 }
