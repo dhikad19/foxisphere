@@ -1,17 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import SignInView from "../views/SignInView.vue";
-import SignUpView from "../views/SignUpView.vue";
-import WriteView from "../views/WriteView.vue";
-import NotFound from "../views/NotFoundView.vue";
-import UserProfile from "../views/ProfileView.vue";
-import ChatView from "../views/ChatView.vue";
-import SearchView from "../views/SearchView.vue";
-import NotificationView from "../views/NotificationView.vue";
-import AboutView from "../views/AboutView.vue";
-import ProfileView from "../views/ProfileView.vue";
-import CommunityView from "../views/CommunityView.vue";
-import PostView from "../views/PostView.vue";
+import HomeView from "@/views/HomeView.vue";
+import SignInView from "@/views/SignInView.vue";
+import SignUpView from "@/views/SignUpView.vue";
+import WriteView from "@/views/WriteView.vue";
+import NotFound from "@/views/NotFoundView.vue";
+import UserProfile from "@/views/ProfileView.vue";
+import ChatView from "@/views/ChatView.vue";
+import SearchView from "@/views/SearchView.vue";
+import NotificationView from "@/views/NotificationView.vue";
+import AboutView from "@/views/AboutView.vue";
+import ProfileView from "@/views/ProfileView.vue";
+import CommunityView from "@/views/CommunityView.vue";
+import PostView from "@/views/PostView.vue";
+import GamesView from "@/views/GamesView.vue";
 
 const routes = [
   {
@@ -86,6 +87,19 @@ const routes = [
     path: "/:pathMatch(.*)*",
     name: "NotFound",
     component: NotFound,
+  },
+  {
+    path: "/games/:id",
+    name: "games",
+    component: GamesView,
+    props: true,
+    // children: [
+    //   {
+    //     path: "settings", // Nested route for settings
+    //     name: "user-settings",
+    //     component: UserSettings,
+    //   },
+    // ],
   },
 ];
 

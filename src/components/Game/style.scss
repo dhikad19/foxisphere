@@ -61,3 +61,30 @@
     }
   }
 }
+
+.more-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1; /* Fully visible */
+  }
+  50% {
+    opacity: 0.5; /* Fully invisible */
+  }
+  100% {
+    opacity: 1; /* Fully visible again */
+  }
+}
+
+/* Apply the animation to an element */
+.blinking {
+  animation: blink 2.5s infinite; /* 1 second duration, infinite loop */
+}

@@ -5,30 +5,31 @@
       :color="themeState.isDarkMode ? '#222223' : 'white'"
       :class="{
         'drawer-active': windowWidth < 768 && drawer,
-        'drawer-active-dark': windowWidth < 768 && drawer && themeState.isDarkMode,
-        'app-bar-container': !windowWidth < 768 && drawer && !themeState.isDarkMode,
-        'app-bar-container-dark': themeState.isDarkMode
+        'drawer-active-dark':
+          windowWidth < 768 && drawer && themeState.isDarkMode,
+        'app-bar-container':
+          !windowWidth < 768 && drawer && !themeState.isDarkMode,
+        'app-bar-container-dark': themeState.isDarkMode,
       }"
       :height="windowWidth >= '768' ? 65 : 55"
       class="app-bar-container">
-        
       <div class="app-bar-content">
         <v-row dense>
           <v-col :cols="windowWidth <= '1080' ? '6' : '3'">
             <div class="mobile-left-navigation">
               <div @click="handleDrawer()" class="btn-drawer">
-                <v-icon 
-                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'" 
-                  v-if="!drawer"> 
-                  mdi-menu 
+                <v-icon
+                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
+                  v-if="!drawer">
+                  mdi-menu
                 </v-icon>
-                <v-icon 
-                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'" 
-                  v-else> 
-                  mdi-close 
+                <v-icon
+                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
+                  v-else>
+                  mdi-close
                 </v-icon>
               </div>
-                
+
               <v-img
                 @click="handleHome()"
                 src="assets/header-new.png"
@@ -48,260 +49,266 @@
           </v-col>
           <v-col :cols="windowWidth <= '1080' ? '6' : '3'">
             <div v-if="hasLoggedIn" class="d-flex align-center justify-end">
-
-              <div :class="{'background-dark title-dark': themeState.isDarkMode}" class="btn-header__create ml-6" v-if="windowWidth > '768'">
-                <v-icon size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">mdi-plus</v-icon>
+              <div
+                :class="{ 'background-dark title-dark': themeState.isDarkMode }"
+                class="btn-header__create ml-6"
+                v-if="windowWidth > '768'">
+                <v-icon
+                  size="24"
+                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
+                  >mdi-plus</v-icon
+                >
                 <p class="ml-2">Posting</p>
               </div>
               <div
                 v-if="windowWidth <= '1080'"
                 class="btn-header btn-search ml-2"
                 @click="handleChat()">
-                <v-icon 
-                  size="24" 
+                <v-icon
+                  size="24"
                   :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">
                   mdi-magnify
                 </v-icon>
               </div>
 
-                <div v-if="windowWidth > '1080'" ref="dropdownContainer">
-                  <div 
-                    class="btn-header__notification-desktop ml-2" 
-                    @click="toggleNotificationDropdown()"
-                  >
-                    <v-badge
-                      color="#ff7800"
-                      :content="notificationCounter"
-                      v-if="notificationCounter > 0">
-                      <v-icon 
-                        size="24" 
-                        :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">
-                        mdi-bell-outline
-                      </v-icon
-                      >
-                    </v-badge>
-                    <v-icon 
-                      v-else 
-                      size="24" 
-                      :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">
-                      mdi-bell-outline
-                    </v-icon>
-                  </div>
-
-                  <NotificationComponent 
-                    v-if="isDropdownNotificationOpen" 
-                    class="dropdown-notification" 
-                  />
-                </div>
-
+              <div v-if="windowWidth > '1080'" ref="dropdownContainer">
                 <div
-                  class="btn-header btn-search ml-2"
-                  @click="handleNotification()"
-                  v-else-if="windowWidth <= '1080'">
+                  class="btn-header__notification-desktop ml-2"
+                  @click="toggleNotificationDropdown()">
                   <v-badge
                     color="#ff7800"
                     :content="notificationCounter"
                     v-if="notificationCounter > 0">
-                    <v-icon size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">mdi-bell-outline</v-icon>
+                    <v-icon
+                      size="24"
+                      :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">
+                      mdi-bell-outline
+                    </v-icon>
                   </v-badge>
-                  <v-icon v-else size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
-                    >mdi-bell-outline</v-icon
-                  >
-                </div>
-
-                <div v-if="windowWidth <= '768'" class="mt-1 mr-4">
-                  <div
-                    @click="handleNotification()"
-                    class="d-flex"
-                    style="margin-right: -8px"
-                    v-if="notificationCounter > 0">
-                    <v-icon size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'" style="margin-right: -4px"
-                      >mdi-bell-outline</v-icon
-                    >
-                    <div class="badge-container"></div>
-                  </div>
                   <v-icon
-                    @click="handleNotification()"
                     v-else
                     size="24"
+                    :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'">
+                    mdi-bell-outline
+                  </v-icon>
+                </div>
+
+                <NotificationComponent
+                  v-if="isDropdownNotificationOpen"
+                  class="dropdown-notification" />
+              </div>
+
+              <div
+                class="btn-header btn-search ml-2"
+                @click="handleNotification()"
+                v-else-if="windowWidth <= '1080'">
+                <v-badge
+                  color="#ff7800"
+                  :content="notificationCounter"
+                  v-if="notificationCounter > 0">
+                  <v-icon
+                    size="24"
                     :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
-                    style="margin-right: -16px"
                     >mdi-bell-outline</v-icon
                   >
-                </div>
+                </v-badge>
+                <v-icon
+                  v-else
+                  size="24"
+                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
+                  >mdi-bell-outline</v-icon
+                >
+              </div>
 
+              <div v-if="windowWidth <= '768'" class="mt-1 mr-4">
                 <div
-                  v-if="windowWidth > '768'"
-                  class="btn-header ml-2"
-                  @click="handleChat()">
-                  <v-badge
-                    color="#ff7800"
-                    :content="messageCounter"
-                    v-if="messageCounter > 0">
-                    <v-icon size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
-                      >mdi-chat-processing-outline</v-icon
-                    >
-                  </v-badge>
-                  <v-icon v-else size="24" :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
+                  @click="handleNotification()"
+                  class="d-flex"
+                  style="margin-right: -8px"
+                  v-if="notificationCounter > 0">
+                  <v-icon
+                    size="24"
+                    :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
+                    style="margin-right: -4px"
+                    >mdi-bell-outline</v-icon
+                  >
+                  <div class="badge-container"></div>
+                </div>
+                <v-icon
+                  @click="handleNotification()"
+                  v-else
+                  size="24"
+                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
+                  style="margin-right: -16px"
+                  >mdi-bell-outline</v-icon
+                >
+              </div>
+
+              <div
+                v-if="windowWidth > '768'"
+                class="btn-header ml-2"
+                @click="handleChat()">
+                <v-badge
+                  color="#ff7800"
+                  :content="messageCounter"
+                  v-if="messageCounter > 0">
+                  <v-icon
+                    size="24"
+                    :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
                     >mdi-chat-processing-outline</v-icon
                   >
-                </div>
-
-                <div
-                  class="btn-header ml-2"
-                  v-if="windowWidth > '768'"
-                  @click="toggleDropdown()"
-                  ref="dropdownButton">
-                  <v-avatar size="30">
-                    <v-img src="https://randomuser.me/api/portraits/men/82.jpg">
-                    </v-img>
-                  </v-avatar>
-                </div>
-
-                <div
-                  class="btn-header ml-1"
+                </v-badge>
+                <v-icon
                   v-else
-                  style="margin-right: -4px"
-                  @click="profileSheet = true"
-                  ref="dropdownButton">
-                  <v-avatar size="27">
-                    <v-img src="https://randomuser.me/api/portraits/men/82.jpg">
-                    </v-img>
-                  </v-avatar>
-                </div>
-
-                <v-bottom-sheet v-model="profileSheet">
-                  <UserComponent />
-                </v-bottom-sheet>
-
-                <div v-if="isDropdownOpen" class="dropdown" ref="dropdown">
-                  <UserComponent />
-                </div>
-              
+                  size="24"
+                  :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
+                  >mdi-chat-processing-outline</v-icon
+                >
               </div>
-              
-              <div v-else>
+
+              <div
+                class="btn-header ml-2"
+                v-if="windowWidth > '768'"
+                @click="toggleDropdown()"
+                ref="dropdownButton">
+                <v-avatar size="30">
+                  <v-img src="https://randomuser.me/api/portraits/men/82.jpg">
+                  </v-img>
+                </v-avatar>
+              </div>
+
+              <div
+                class="btn-header ml-1"
+                v-else
+                style="margin-right: -4px; margin-top: 2px"
+                @click="profileSheet = true"
+                ref="dropdownButton">
+                <v-avatar size="27">
+                  <v-img src="https://randomuser.me/api/portraits/men/82.jpg">
+                  </v-img>
+                </v-avatar>
+              </div>
+
+              <v-bottom-sheet v-model="profileSheet">
+                <UserComponent />
+              </v-bottom-sheet>
+
+              <div v-if="isDropdownOpen" class="dropdown" ref="dropdown">
+                <UserComponent />
+              </div>
+            </div>
+
+            <div v-else>
+              <v-btn
+                variant="outlined"
+                style="text-transform: capitalize; letter-spacing: normal"
+                color="#FF7800"
+                class="ml-2"
+                @click="signIn()"
+                >Masuk</v-btn
+              >
+              <template v-if="$vuetify.display.mdAndUp">
                 <v-btn
-                  variant="outlined"
+                  @click="signUp()"
+                  variant="flat"
                   style="text-transform: capitalize; letter-spacing: normal"
                   color="#FF7800"
-                  class="ml-2"
-                  @click="signIn()"
-                  >Masuk</v-btn
+                  >Daftar</v-btn
                 >
-                <template v-if="$vuetify.display.mdAndUp">
-                  <v-btn
-                    @click="signUp()"
-                    variant="flat"
-                    style="text-transform: capitalize; letter-spacing: normal"
-                    color="#FF7800"
-                    >Daftar</v-btn
-                  >
-                </template>
-              </div>
-            </v-col>
-          </v-row>
-        </div>
-      </v-app-bar>
-      <v-navigation-drawer
-        app
-        :fixed="windowWidth <= '1080' ? false : true"
-        v-model="drawer"
-        :color="themeState.isDarkMode ? '#222223' : 'white'"
-        :rail="rail"
-        :style="themeState.isDarkMode ? 'border-right: 1px solid #5e5e5e;' : 'border-right: 1px solid #e4e4e4;'"
-        :class="{
-          'navigation-drawer-content': themeState.isDarkMode,
-          'navigation-drawer-content-dark': !themeState.isDarkMode,
-        }"
-        width="270"
-        :temporary="windowWidth <= '1080' ? true : false"
-        @click="rail = false">
-        <div style="margin-top: 0px">
-          <v-list density="compact" nav>
-            <v-list-item
-              prepend-icon="mdi-account-group-outline"
-              title="Users"
-              value="users">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-home-city"
-              title="Home"
-              value="home">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account"
-              title="My Account"
-              value="account">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account-group-outline"
-              title="Users"
-              value="users">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-home-city"
-              title="Home"
-              value="home">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account"
-              title="My Account"
-              value="account">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account-group-outline"
-              title="Users"
-              value="users">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-home-city"
-              title="Home"
-              value="home">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account"
-              title="My Account"
-              value="account">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account-group-outline"
-              title="Users"
-              value="users">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-home-city"
-              title="Home"
-              value="home">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account"
-              title="My Account"
-              value="account">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account-group-outline"
-              title="Users"
-              value="users">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-home-city"
-              title="Home"
-              value="home">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account"
-              title="My Account"
-              value="account">
-            </v-list-item>
-            <v-list-item
-              prepend-icon="mdi-account-group-outline"
-              title="Users"
-              value="users">
-            </v-list-item>
-          </v-list>
-        </div>
-      </v-navigation-drawer>
+              </template>
+            </div>
+          </v-col>
+        </v-row>
+      </div>
+    </v-app-bar>
+    <v-navigation-drawer
+      app
+      :fixed="windowWidth <= '1080' ? false : true"
+      v-model="drawer"
+      :color="themeState.isDarkMode ? '#222223' : 'white'"
+      :rail="rail"
+      :style="
+        themeState.isDarkMode
+          ? 'border-right: 1px solid #5e5e5e;'
+          : 'border-right: 1px solid #e4e4e4;'
+      "
+      :class="{
+        'navigation-drawer-content': themeState.isDarkMode,
+        'navigation-drawer-content-dark': !themeState.isDarkMode,
+      }"
+      width="270"
+      :temporary="windowWidth <= '1080' ? true : false"
+      @click="rail = false">
+      <div style="margin-top: 0px">
+        <v-list density="compact" nav>
+          <v-list-item
+            prepend-icon="mdi-account-group-outline"
+            title="Users"
+            value="users">
+          </v-list-item>
+          <v-list-item prepend-icon="mdi-home-city" title="Home" value="home">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="My Account"
+            value="account">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account-group-outline"
+            title="Users"
+            value="users">
+          </v-list-item>
+          <v-list-item prepend-icon="mdi-home-city" title="Home" value="home">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="My Account"
+            value="account">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account-group-outline"
+            title="Users"
+            value="users">
+          </v-list-item>
+          <v-list-item prepend-icon="mdi-home-city" title="Home" value="home">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="My Account"
+            value="account">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account-group-outline"
+            title="Users"
+            value="users">
+          </v-list-item>
+          <v-list-item prepend-icon="mdi-home-city" title="Home" value="home">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="My Account"
+            value="account">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account-group-outline"
+            title="Users"
+            value="users">
+          </v-list-item>
+          <v-list-item prepend-icon="mdi-home-city" title="Home" value="home">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account"
+            title="My Account"
+            value="account">
+          </v-list-item>
+          <v-list-item
+            prepend-icon="mdi-account-group-outline"
+            title="Users"
+            value="users">
+          </v-list-item>
+        </v-list>
+      </div>
+    </v-navigation-drawer>
     <ChatComponent :handle-close-chat="handleChat" v-if="chatActive" />
   </div>
 </template>
@@ -310,15 +317,13 @@
   .dropdown {
     position: fixed;
     z-index: 999 !important;
-    top: 66px; 
+    top: 66px;
     right: 20px;
     border-radius: 6px;
     box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02),
-    0px 5px 4px rgba(3, 7, 18, 0.03),
-    0px 12px 9px rgba(3, 7, 18, 0.05),
-    0px 20px 15px rgba(3, 7, 18, 0.06),
-    0px 32px 24px rgba(3, 7, 18, 0.08);
-    }
+      0px 5px 4px rgba(3, 7, 18, 0.03), 0px 12px 9px rgba(3, 7, 18, 0.05),
+      0px 20px 15px rgba(3, 7, 18, 0.06), 0px 32px 24px rgba(3, 7, 18, 0.08);
+  }
 
   .dropdown-notification {
     position: fixed;
@@ -327,10 +332,8 @@
     right: 118px;
     border-radius: 6px;
     box-shadow: 0px 1px 1px rgba(3, 7, 18, 0.02),
-    0px 5px 4px rgba(3, 7, 18, 0.03),
-    0px 12px 9px rgba(3, 7, 18, 0.05),
-    0px 20px 15px rgba(3, 7, 18, 0.06),
-    0px 32px 24px rgba(3, 7, 18, 0.08);
+      0px 5px 4px rgba(3, 7, 18, 0.03), 0px 12px 9px rgba(3, 7, 18, 0.05),
+      0px 20px 15px rgba(3, 7, 18, 0.06), 0px 32px 24px rgba(3, 7, 18, 0.08);
   }
 
   .v-navigation-drawer {
@@ -359,7 +362,7 @@
   import NotificationComponent from "../Notification/index.vue";
   import UserComponent from "../Notification/User/index.vue";
   import { themeState } from "../../theme";
-  
+
   export default {
     name: "BarComponents",
     data() {
@@ -669,7 +672,7 @@
       SearchComponent,
       ChatComponent,
       NotificationComponent,
-      UserComponent
+      UserComponent,
       // DropdownTrigger
     },
     computed: {
@@ -684,12 +687,12 @@
       },
 
       toggleNotificationDropdown() {
-        this.isDropdownNotificationOpen = !this.isDropdownNotificationOpen
+        this.isDropdownNotificationOpen = !this.isDropdownNotificationOpen;
       },
 
       closeDropdownIfClickedOutside(event) {
-        const dropdown = this.$refs.dropdown
-        const dropdownButton = this.$refs.dropdownButton
+        const dropdown = this.$refs.dropdown;
+        const dropdownButton = this.$refs.dropdownButton;
 
         // Check if the click is outside of both the dropdown and the button
         if (
@@ -698,15 +701,15 @@
           dropdownButton &&
           !dropdownButton.contains(event.target)
         ) {
-          this.isDropdownOpen = false
+          this.isDropdownOpen = false;
         }
       },
 
       handleClickOutside(event) {
-      // Check if the click happened outside the dropdown
+        // Check if the click happened outside the dropdown
         const dropdownContainer = this.$refs.dropdownContainer;
         if (dropdownContainer && !dropdownContainer.contains(event.target)) {
-          this.isDropdownNotificationOpen = false // Close the dropdown
+          this.isDropdownNotificationOpen = false; // Close the dropdown
         }
       },
 
@@ -764,11 +767,11 @@
       // Remove the event listener when the component is destroyed
       window.removeEventListener("resize", this.updateWindowWidth);
       document.removeEventListener("click", this.closeDropdownIfClickedOutside);
-      document.removeEventListener('click', this.handleClickOutside);
+      document.removeEventListener("click", this.handleClickOutside);
     },
     created() {
       document.addEventListener("click", this.closeDropdownIfClickedOutside);
-      document.addEventListener('click', this.handleClickOutside);
+      document.addEventListener("click", this.handleClickOutside);
       if (this.themeState.isDarkMode) {
         this.darkMode = true;
       } else {

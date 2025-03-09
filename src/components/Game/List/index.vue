@@ -1,15 +1,14 @@
 <template>
   <div class="game-list-container">
-    <h1 
-      :class="{'title-dark': themeState.isDarkMode}"
-      class="game-title"
-    >
+    <h1 :class="{ 'title-dark': themeState.isDarkMode }" class="game-title">
       Daftar Game
     </h1>
     <v-row dense>
-      <v-col cols="3" sm="3" v-for="(item, i) in gameList" :key="i">
+      <v-col cols="3" sm="3" v-for="(item, i) in gameListData" :key="i">
         <div class="game-card">
-          <div class="mx-auto game-image-container" :class="{'background-dark': themeState.isDarkMode}">
+          <div
+            class="mx-auto game-image-container"
+            :class="{ 'background-dark': themeState.isDarkMode }">
             <v-img
               v-if="
                 item.name == 'Genshin Impact' ||
@@ -35,12 +34,72 @@
               contain>
             </v-img>
           </div>
-          <div 
-            :class="{'title-dark': themeState.isDarkMode}"
-            class="image-title"
-          >
+          <div
+            :class="{ 'title-dark': themeState.isDarkMode }"
+            class="image-title">
             <p>{{ item.name }}</p>
           </div>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row dense>
+      <v-col cols="3" v-for="(item, i) in gameList.slice(8, 12)" :key="i">
+        <v-expand-transition>
+          <div class="game-card" v-show="gameExpand">
+            <div
+              class="mx-auto game-image-container"
+              :class="{ 'background-dark': themeState.isDarkMode }">
+              <v-img
+                v-if="
+                  item.name == 'Genshin Impact' ||
+                  item.name == 'Wuthering Waves' ||
+                  item.name == 'Arknights' ||
+                  item.name == 'Reverse: 1999' ||
+                  item.name == 'Brown Dust 2'
+                "
+                class="game-image align-end list-image"
+                :style="themeState.isDarkMode ? 'filter: invert(100%)' : ''"
+                :src="item.image"
+                contain>
+              </v-img>
+              <v-img
+                v-else
+                class="game-image align-end list-image"
+                :style="
+                  item.name == 'AFK Journey' && !themeState.isDarkMode
+                    ? 'filter: grayscale(100%) brightness(0)'
+                    : ''
+                "
+                :src="item.image"
+                contain>
+              </v-img>
+            </div>
+            <div
+              :class="{ 'title-dark': themeState.isDarkMode }"
+              class="image-title">
+              <p>{{ item.name }}</p>
+            </div>
+          </div>
+        </v-expand-transition>
+      </v-col>
+      <v-col cols="12" class="mt-2">
+        <div
+          :class="{ 'title-dark': themeState.isDarkMode }"
+          class="more-btn"
+          @click="gameExpand = !gameExpand">
+          <v-icon
+            class="blinking"
+            v-if="gameExpand"
+            :color="themeState.isDarkMode ? '#ffffff' : '#4f4f4f'"
+            >mdi-chevron-up</v-icon
+          >
+          {{ gameExpand ? "Lebih Sedikit" : "Lebih Banyak" }}
+          <v-icon
+            class="blinking"
+            v-if="!gameExpand"
+            :color="themeState.isDarkMode ? '#ffffff' : '#4f4f4f'"
+            >mdi-chevron-down</v-icon
+          >
         </div>
       </v-col>
     </v-row>
@@ -54,6 +113,7 @@
     data() {
       return {
         themeState,
+        gameExpand: false,
         gameList: [
           {
             id: "1",
@@ -128,7 +188,28 @@
             name: "AFK Journey",
           },
         ],
+        windowWidth: window.innerWidth,
       };
+    },
+    computed: {
+      gameListData() {
+        if (this.windowWidth <= "960") {
+          return this.gameList.slice(0, 8);
+        } else {
+          return this.gameList;
+        }
+      },
+    },
+    created() {
+      window.addEventListener("resize", this.handleResize);
+    },
+    beforeUnmount() {
+      window.addEventListener("resize", this.handleResize);
+    },
+    methods: {
+      handleResize() {
+        this.windowWidth = window.innerWidth;
+      },
     },
   };
 </script>
