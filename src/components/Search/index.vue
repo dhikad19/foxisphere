@@ -194,11 +194,8 @@
 
 <style lang="scss" scoped>
   @import "./style.scss";
-</style>
-
-<style>
-.v-overlay__content {
-  width: 100% !important;
-  max-width: 580px;
-}
+  .v-overlay__content {
+    width: 100% !important;
+    max-width: 580px;
+  }
 </style>

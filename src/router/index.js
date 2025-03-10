@@ -106,6 +106,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    // Prevent scroll to top when navigating
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0, behavior: "smooth" }; // You can also return `false` to prevent any scroll action.
+    }
+  },
 });
 
 router.beforeEach((to, from, next) => {

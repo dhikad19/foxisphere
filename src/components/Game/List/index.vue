@@ -4,7 +4,7 @@
       Daftar Game
     </h1>
     <v-row dense>
-      <v-col cols="3" sm="3" v-for="(item, i) in gameListData" :key="i">
+      <v-col cols="3" sm="3" v-for="(item, i) in gameListData" :key="i" @click="handleGameList(i)">
         <div class="game-card">
           <div
             class="mx-auto game-image-container"
@@ -43,7 +43,7 @@
       </v-col>
     </v-row>
     <v-row dense>
-      <v-col cols="3" v-for="(item, i) in gameList.slice(8, 12)" :key="i">
+      <v-col cols="3" v-for="(item, i) in gameList.slice(8, 12)" :key="i" @click="handleGameListExpand(i)">
         <v-expand-transition>
           <div class="game-card" v-show="gameExpand">
             <div
@@ -120,72 +120,84 @@
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1740473419/Games/reverse-1999_voa7td.png",
             name: "Reverse: 1999",
+            url: 'reverse-1999'
           },
           {
             id: "2",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1740469634/Games/arknights_oz6wzl.png",
             name: "Arknights",
+            url: 'arknights'
           },
           {
             id: "3",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1740469629/Games/epic-seven_psohrd.png",
             name: "Epic Seven",
+            url: 'epic-seven'
           },
           {
             id: "4",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1740466847/Games/wuthering-waves_gpltcq.png",
             name: "Wuthering Waves",
+            url: 'wuthering-waves'
           },
           {
             id: "5",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1740469635/Games/honkai-impact_tgn56j.png",
-            name: "Honkai Impact",
+            name: "Honkai Impact 3rd",
+            url: 'honkai-impact-3rd'
           },
           {
             id: "6",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259775/Games/zzz_rceyrv.png",
             name: "Zenless Zone Zero",
+            url: 'zenless-zone-zero'
           },
           {
             id: "7",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259648/Games/genhin-impact_tvqxbi.png",
             name: "Genshin Impact",
+            url: 'genshin-impact'
           },
           {
             id: "8",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1739259649/Games/star-rail_esjixp.png",
             name: "Honkai: Star Rail",
+            url: 'honkai-star-rail'
           },
           {
             id: "9",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1740469629/Games/summoners-war_f5u2md.png",
             name: "Summoners War",
+            url: 'summoners-war'
           },
           {
             id: "10",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1740469636/Games/Group_63_whjhdt.png",
             name: "Guardian Tales",
+            url: 'guardian-tales'
           },
           {
             id: "11",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1740469634/Games/brown-dust2_aceotn.png",
             name: "Brown Dust 2",
+            url: 'brown-dust-2'
           },
           {
             id: "12",
             image:
               "https://res.cloudinary.com/dqaylwrrx/image/upload/v1740473418/Games/afk-journey_pivr1a.png",
             name: "AFK Journey",
+            url: 'afk-journey'
           },
         ],
         windowWidth: window.innerWidth,
@@ -207,6 +219,14 @@
       window.addEventListener("resize", this.handleResize);
     },
     methods: {
+      handleGameList(i) {
+        this.$router.push(`/games/${this.gameList[i].url}`)
+      },
+
+      handleGameListExpand(i) {
+        this.$router.push(`/games/${this.gameList[i + 8].url}`)
+      },
+
       handleResize() {
         this.windowWidth = window.innerWidth;
       },

@@ -32,14 +32,14 @@
 
               <v-img
                 @click="handleHome()"
-                src="assets/header-new.png"
+                src="https://res.cloudinary.com/dqaylwrrx/image/upload/v1741591784/Icons/header-new_apwmvg.png"
                 style="margin-bottom: 5px"
                 class="app-bar-logo">
               </v-img>
             </div>
             <v-img
               @click="handleHome()"
-              src="assets/header-new.png"
+              src="https://res.cloudinary.com/dqaylwrrx/image/upload/v1741591784/Icons/header-new_apwmvg.png"
               style="margin-bottom: 2px"
               class="app-bar-logo dekstop-left-navigation">
             </v-img>

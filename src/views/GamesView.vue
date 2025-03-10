@@ -3,7 +3,14 @@
     <v-layout>
       <v-main>
         <Navigation />
-        <div class="content-container pa-4"></div>
+        <div
+          class="content-container pa-4"
+          :class="{ 'background-body-dark': themeState.isDarkMode }">
+          <TopContent />
+          <div class="d-flex mt-10">
+            
+          </div>
+        </div>
       </v-main>
     </v-layout>
   </div>
@@ -11,10 +18,12 @@
 
 <script>
   import Navigation from "@/components/Navigation/index.vue";
+  import TopContent from "@/components/Game/Detail/TopContent/index.vue";
   export default {
     name: "GamesView",
     components: {
       Navigation,
+      TopContent
     },
   };
 </script>

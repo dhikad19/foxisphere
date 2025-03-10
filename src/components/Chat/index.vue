@@ -3,6 +3,10 @@
     <div class="chat-wrapper" v-if="variant == 'full'">
       <div 
         class="chat-box"
+        :class="{'background-dark title-dark': themeState.isDarkMode,
+                  'chat-box-color-dark': themeState.isDarkMode,
+                  'chat-box-color-light': !themeState.isDarkMode
+                }"
       >
         <div class="chat-topbar">
           <p style="font-weight: 500">Chat</p>
@@ -19,11 +23,11 @@
             </div>
           </div>
         </div>
-        <div class="chat-box__content">
-          <div class="chat-list">
+        <div class="chat-box__content" :class="themeState.isDarkMode ? 'color-dark__content' : 'color-light__content'">
+          <div class="chat-list" :class="themeState.isDarkMode ? 'color-dark' : 'color-light'">
             <div style="padding: 10px;">
               <div class="discover d-flex" style="width: 100%">
-                <div class="chat-list__box-content justify-start" style="width: 100%; padding: 7px">
+                <div :class="themeState.isDarkMode ? 'chat-list__box-content-color-dark' : 'chat-list__box-content-color-light'" class="chat-list__box-content justify-start" style="width: 100%; padding: 7px">
                   <v-icon size="18" class="mr-2">
                     mdi-account-plus-outline
                   </v-icon>
@@ -33,11 +37,15 @@
                 </div>
               </div>
               <div class="chat-list__box" v-for="(item, i) in chatList" :key="i" @click="setActiveChat(i)">
-                <div :class="item.active ? 'chat-list__box-content-active' : ''" class="chat-list__box-content" style="padding-top: 11px" v-if="item.type == 'personal'">
+                <div :class="{'chat-list__box-content-active-dark': item.active && themeState.isDarkMode,
+                              'chat-list__box-content-active-light': item.active && !themeState.isDarkMode,
+                              'chat-list__box-content-color-dark': themeState.isDarkMode, 
+                              'chat-list__box-content-color-light': !themeState.isDarkMode, }"  
+                              class="chat-list__box-content" style="padding-top: 11px" v-if="item.type == 'personal'">
                   <v-avatar size="30" style="margin-bottom: 10px">
                     <v-img :src="item.photo"></v-img>
                   </v-avatar>
-                  <div class="ml-2 list-separator">
+                  <div class="ml-2 list-separator" :class="themeState.isDarkMode ? 'separator-color-dark' : 'separator-color-light'">
                     <div class="d-flex justify-space-between" style="width: 100%">
                       <p style="font-size: 13px; font-weight: 500">
                         {{ item.name }}
@@ -52,7 +60,10 @@
                     </div>
                   </div>
                 </div>
-                <div :class="item.active ? 'chat-list__box-content-active' : ''" class="chat-list__box-content flex-column" v-if="item.type == 'guild' || item.type == 'team'">
+                <div :class="{'chat-list__box-content-active-dark': item.active && themeState.isDarkMode,
+                'chat-list__box-content-active-light': item.active && !themeState.isDarkMode,
+                'chat-list__box-content-color-dark': themeState.isDarkMode, 
+                'chat-list__box-content-color-light': !themeState.isDarkMode, }"   class="chat-list__box-content flex-column" v-if="item.type == 'guild' || item.type == 'team'">
                   <div class="mb-1 d-flex align-center justify-space-between" style="width: 100%; padding-top: 11px">
                     <p style="font-size: 11px">{{ item.game.gameName }} </p>
                   </div>
@@ -60,7 +71,7 @@
                     <v-avatar size="30" style="margin-bottom: 10px">
                       <v-img :src="item.photo"></v-img>
                     </v-avatar>
-                    <div class="ml-2 list-separator" style="width: 100%">
+                    <div class="ml-2 list-separator" style="width: 100%" :class="themeState.isDarkMode ? 'separator-color-dark' : 'separator-color-light'">
                       <div class="d-flex justify-space-between align-center" style="width: 100%">
                         <p style="font-size: 13px; font-weight: 500" v-if="item.type == 'guild'">
                           {{ item.guildName }}
@@ -79,15 +90,15 @@
               </div>
             </div>
           </div>
-          <div class="chat-list__content">
+          <div class="chat-list__content" :class="{'background-dark title-dark': themeState.isDarkMode}">
             <div v-if="isChatActive">
-              <div class="chat-top__title">
+              <div :class="{'background-dark title-dark': themeState.isDarkMode}" class="chat-top__title">
                 <p>Agus</p>
               </div>
-              <v-divider></v-divider>
+              <div :class="themeState.isDarkMode ? 'separator-color-dark' : 'separator-color-light'"></div>
               <div class="chat-content__box">
                 <div class="chat-data__box">
-                  <div class="chat-bubbles" v-for="(item, i) in messages" :key="i">
+                  <div class="chat-bubbles" v-for="(item, i) in messages" :key="i" :class="themeState.isDarkMode ? 'chat-bubbles-dark' : 'chat-bubbles-light'">
                     <div v-if="!isSameUser(i)" class="d-flex" style="width: 100%;">
                       <div class="mr-5 ml-1">
                         <v-menu :disabled="item.position == 'user'" open-on-hover position="center" offset="14">
@@ -133,7 +144,7 @@
                                 v-bind="props"
                                 :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f' : 'color: transparent'"
                               >
-                                <v-icon size="18" >
+                                <v-icon size="18" :class="{'title-dark': themeState.isDarkMode}" >
                                   mdi-dots-vertical
                                 </v-icon>
                               </div>
@@ -196,7 +207,7 @@
                                 v-bind="props"
                                 :style="props['aria-expanded'] == 'true' ? 'color: #4f4f4f' : 'color: transparent'"
                               >
-                                <v-icon size="18" >
+                                <v-icon size="18" :class="{'title-dark': themeState.isDarkMode}" >
                                   mdi-dots-vertical
                                 </v-icon>
                               </div>
@@ -249,7 +260,12 @@
                       </div>
                       <div v-if="item.reaction.length > 0" class="d-flex align-center mt-2" style="margin-left: 54px; flex-wrap: wrap">
                         <div v-for="(reactionList, k) in item.reaction" :key="k">
-                          <div class="d-flex align-center mr-2 mb-2" :class="reactionList.user ? 'reaction-box__user' : 'reaction-box'" @click="handleUpdateReaction(i, k)">
+                          <div class="d-flex align-center mr-2 mb-2" :class="{
+                            'reaction-box__user' : reactionList.user,
+                            'reaction-box' : !reactionList.user,
+                            'reaction-box__user-dark' : reactionList.user && themeState.isDarkMode,
+                            'reaction-box-dark' : !reactionList.user && themeState.isDarkMode,
+                          }" @click="handleUpdateReaction(i, k)">
                             <p style="font-size: 15px" class="mr-1">{{reactionList.emoticon}}</p>
                             <p style="font-size: 12px; margin-top: 2px">{{reactionList.count}}</p>
                           </div>
@@ -276,7 +292,9 @@
                     </div> -->
                   </div>
                 </div>
-                <div class="chat-text">
+                <div class="chat-text" :class="{'background-dark title-dark': themeState.isDarkMode,
+                'chat-box-color-dark color-dark__content': themeState.isDarkMode,
+              'chat-box-color-light': !themeState.isDarkMode,}">
                   <v-divider></v-divider>
                   <Input @send-message="addMessage"/>
                 </div>
@@ -334,11 +352,13 @@
 
 
 <script>
+import { themeState } from "../../theme";
 import Input from './Input/index.vue'
 export default {
   name: 'ChatComponents',
   data() {
     return {
+      themeState,
       menuCLoseOnContentClick: true,
       emoticonMenu: false,
       expandReaction: false,
