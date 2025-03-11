@@ -149,20 +149,22 @@
                                 </v-icon>
                               </div>
                             </template>
-                            <div class="d-flex action-hover">
+                            <div :class="{'background-dark title-dark': themeState.isDarkMode}" class="d-flex action-hover">
                               <div class="btn-action-hover">
-                                <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
+                                <v-icon size="20">
+                                  mdi-reply-outline
+                                </v-icon>
                               </div>
   
                               <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
                                 <template v-slot:activator="{ props }">
                                   <div class="btn-action-hover ml-1 mr-1" v-bind="props">
-                                    <v-icon size="20" color="#4f4f4f">
+                                    <v-icon size="20">
                                       mdi-emoticon-outline
                                     </v-icon>
                                   </div>
                                 </template>
-                                <div v-if="!expandReaction" class="action-hover d-flex align-center justify-center" style="gap: 5px">
+                                <div :class="{'background-dark title-dark': themeState.isDarkMode}" v-if="!expandReaction" class="action-hover d-flex align-center justify-center" style="gap: 5px">
                                   <div v-for="(reaction, j) in reaction.slice(0, 6)" :key="j">
                                     <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
                                       {{ reaction.emoticon }}
@@ -174,7 +176,7 @@
                                     </v-icon>
                                   </div>
                                 </div>
-                                <div v-else class="action-hover d-flex align-center justify-center" style="gap: 5px; max-width: 200px; flex-wrap: wrap">
+                                <div :class="{'background-dark title-dark': themeState.isDarkMode}" v-else class="action-hover d-flex align-center justify-center" style="gap: 5px; max-width: 200px; flex-wrap: wrap">
                                   <div v-for="(reaction, j) in reaction" :key="j">
                                     <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
                                       {{ reaction.emoticon }}
@@ -184,7 +186,7 @@
                               </v-menu>
   
                               <div class="btn-action-hover">
-                                <v-icon size="20" color="#4f4f4f">
+                                <v-icon size="20">
                                   mdi-flag-outline
                                 </v-icon>
                               </div>
@@ -212,20 +214,22 @@
                                 </v-icon>
                               </div>
                             </template>
-                            <div class="d-flex action-hover">
+                            <div :class="{'background-dark title-dark': themeState.isDarkMode}" class="d-flex action-hover">
                               <div class="btn-action-hover">
-                                <v-img src="assets/arrow.png" contain height="22" max-width="22"></v-img>
+                                <v-icon size="20">
+                                  mdi-reply-outline
+                                </v-icon>
                               </div>
     
                               <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
                                 <template v-slot:activator="{ props }">
                                   <div class="btn-action-hover ml-1 mr-1" v-bind="props">
-                                    <v-icon size="20" color="#4f4f4f">
+                                    <v-icon size="20">
                                       mdi-emoticon-outline
                                     </v-icon>
                                   </div>
                                 </template>
-                                <div v-if="!expandReaction" class="action-hover d-flex align-center justify-center" style="gap: 5px">
+                                <div :class="{'background-dark title-dark': themeState.isDarkMode}" v-if="!expandReaction" class="action-hover d-flex align-center justify-center" style="gap: 5px">
                                   <div v-for="(reaction, j) in reaction.slice(0, 6)" :key="j">
                                     <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
                                       {{ reaction.emoticon }}
@@ -237,7 +241,7 @@
                                     </v-icon>
                                   </div>
                                 </div>
-                                <div v-else class="action-hover d-flex align-center justify-center" style="gap: 5px; max-width: 200px; flex-wrap: wrap">
+                                <div :class="{'background-dark title-dark': themeState.isDarkMode}" v-else class="action-hover d-flex align-center justify-center" style="gap: 5px; max-width: 200px; flex-wrap: wrap">
                                   <div v-for="(reaction, j) in reaction" :key="j">
                                     <div style="cursor: pointer; font-size: 18px" @click="handleReaction(i, j)">
                                       {{ reaction.emoticon }}
@@ -247,7 +251,7 @@
                               </v-menu>
     
                               <div class="btn-action-hover">
-                                <v-icon size="20" color="#4f4f4f">
+                                <v-icon size="20">
                                   mdi-flag-outline
                                 </v-icon>
                               </div>

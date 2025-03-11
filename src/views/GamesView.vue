@@ -17,10 +17,16 @@
 </template>
 
 <script>
+import { themeState } from "../theme";
   import Navigation from "@/components/Navigation/index.vue";
   import TopContent from "@/components/Game/Detail/TopContent/index.vue";
   export default {
     name: "GamesView",
+    data() {
+      return {
+        themeState
+      }
+    },
     components: {
       Navigation,
       TopContent

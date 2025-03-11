@@ -31,9 +31,11 @@
 </template>
 
 <style>
-.v-field__overlay {
-  background-color: rgba(128, 128, 128, 0.185) !important;
+.v-field {
+  background-color: #8d8b8b;
+  color: white;
 }
+
 .v-field--variant-solo, .v-field--variant-solo-filled {
   border-radius: 30px !important;
   box-shadow: none !important;
