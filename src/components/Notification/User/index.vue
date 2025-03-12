@@ -1,6 +1,5 @@
 <template>
-  <div
-    flat 
+  <div 
     class="user-box"
     :class="{'background-dark': themeState.isDarkMode}" 
     :color="themeState.isDarkMode ? '#141414' : '#ffffff'" 

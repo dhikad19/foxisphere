@@ -10,7 +10,7 @@
         </v-avatar>
         <div class="ml-4 d-flex">
           <div>
-            <p class="title-content">
+            <p class="title-content" :class="{'title-dark': themeState.isDarkMode}">
               <span class="user">
                 {{ user }}
               </span>
@@ -19,7 +19,7 @@
                 {{ community }}
               </span>
             </p>
-            <p class="description-content">
+            <p class="description-content" :class="{'subtitle-light': themeState.isDarkMode}">
               {{ description }}
             </p>
           </div>
@@ -35,8 +35,14 @@
 </style>
 
 <script>
+import { themeState } from "../../../../theme";
 export default {
   name: 'ListComponent',
+  data() {
+    return {
+      themeState
+    }
+  },
   props: {
     image: {
       type: String,

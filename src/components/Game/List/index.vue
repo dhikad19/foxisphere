@@ -203,6 +203,7 @@
         windowWidth: window.innerWidth,
       };
     },
+    
     computed: {
       gameListData() {
         if (this.windowWidth <= "960") {

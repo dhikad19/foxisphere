@@ -150,7 +150,7 @@
                               </div>
                             </template>
                             <div :class="{'background-dark title-dark': themeState.isDarkMode}" class="d-flex action-hover">
-                              <div class="btn-action-hover">
+                              <div class="btn-action-hover" :class="themeState.isDarkMode ? 'action-hover-dark' : 'action-hover-light'">
                                 <v-icon size="20">
                                   mdi-reply-outline
                                 </v-icon>
@@ -158,7 +158,7 @@
   
                               <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
                                 <template v-slot:activator="{ props }">
-                                  <div class="btn-action-hover ml-1 mr-1" v-bind="props">
+                                  <div :class="themeState.isDarkMode ? 'action-hover-dark' : 'action-hover-light'" class="btn-action-hover ml-1 mr-1" v-bind="props">
                                     <v-icon size="20">
                                       mdi-emoticon-outline
                                     </v-icon>
@@ -170,7 +170,7 @@
                                       {{ reaction.emoticon }}
                                     </div>
                                   </div>
-                                  <div @click="handleExpandReaction()" class="btn-action-hover">
+                                  <div @click="handleExpandReaction()" class="btn-action-hover" :class="themeState.isDarkMode ? 'action-hover-dark' : 'action-hover-light'">
                                     <v-icon>
                                       mdi-plus
                                     </v-icon>
@@ -185,7 +185,7 @@
                                 </div>
                               </v-menu>
   
-                              <div class="btn-action-hover">
+                              <div class="btn-action-hover" :class="themeState.isDarkMode ? 'action-hover-dark' : 'action-hover-light'">
                                 <v-icon size="20">
                                   mdi-flag-outline
                                 </v-icon>
@@ -215,7 +215,7 @@
                               </div>
                             </template>
                             <div :class="{'background-dark title-dark': themeState.isDarkMode}" class="d-flex action-hover">
-                              <div class="btn-action-hover">
+                              <div class="btn-action-hover" :class="themeState.isDarkMode ? 'action-hover-dark' : 'action-hover-light'">
                                 <v-icon size="20">
                                   mdi-reply-outline
                                 </v-icon>
@@ -223,7 +223,7 @@
     
                               <v-menu v-model="emoticonMenu" location="bottom" :close-on-content-click="menuCLoseOnContentClick" offset="10">
                                 <template v-slot:activator="{ props }">
-                                  <div class="btn-action-hover ml-1 mr-1" v-bind="props">
+                                  <div class="btn-action-hover ml-1 mr-1" v-bind="props" :class="themeState.isDarkMode ? 'action-hover-dark' : 'action-hover-light'">
                                     <v-icon size="20">
                                       mdi-emoticon-outline
                                     </v-icon>
@@ -235,7 +235,7 @@
                                       {{ reaction.emoticon }}
                                     </div>
                                   </div>
-                                  <div @click="handleExpandReaction()" class="btn-action-hover">
+                                  <div @click="handleExpandReaction()" class="btn-action-hover" :class="themeState.isDarkMode ? 'action-hover-dark' : 'action-hover-light'">
                                     <v-icon>
                                       mdi-plus
                                     </v-icon>
@@ -250,7 +250,7 @@
                                 </div>
                               </v-menu>
     
-                              <div class="btn-action-hover">
+                              <div class="btn-action-hover" :class="themeState.isDarkMode ? 'action-hover-dark' : 'action-hover-light'">
                                 <v-icon size="20">
                                   mdi-flag-outline
                                 </v-icon>

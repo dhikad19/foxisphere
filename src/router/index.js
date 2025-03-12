@@ -112,11 +112,6 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem("authToken");
   document.title = to.meta.title;
 
-  if (to.name === "games" && to.params.id) {
-    // For example, use the game ID to create a title
-    document.title = `Game ${to.params.id} Details`; // Dynamic title based on route params
-  }
-
   if (
     to.matched.some((record) => record.meta.requiresAuth) &&
     !isAuthenticated

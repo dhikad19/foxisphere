@@ -270,8 +270,17 @@ button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.action-hover-light {
   &:hover {
     background-color: #e4e4e4;
+  }
+}
+
+.action-hover-dark {
+  &:hover {
+    background-color: #646464;
   }
 }
 

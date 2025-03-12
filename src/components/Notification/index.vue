@@ -1,9 +1,12 @@
 <template>
 <div>
-  <v-card flat width="380" style="border-radius: 6px">
+  <div 
+    :class="{'background-dark': themeState.isDarkMode}" 
+    :color="themeState.isDarkMode ? '#141414' : '#ffffff'" 
+    style="border-radius: 6px; width: 380px">
     <div class="notification-container">
       <div class="notification-content__top pa-3 mt-1 d-flex align-center justify-space-between" style="width: 100%">
-        <p style="font-size: 15px; color: #4f4f4f; font-weight: 500">Notifikasi</p>
+        <p :class="{'title-dark': themeState.isDarkMode}" style="font-size: 15px; font-weight: 500">Notifikasi</p>
         <div class="d-flex align-center" style="cursor: pointer">
           <v-icon class="mr-2" color="#ff7800" size="18">
             mdi-check-all
@@ -17,8 +20,13 @@
           <div class="tab-content" v-for="(item, i) in tabContent" :key="i">
             <div class="tab-toolbar d-flex align-center" @click="handleTab(i)" :class="item.active ? 'tab-active' : 'tab'">
               <p 
-              style="user-select: none"
-                :class="item.active ? 'tab-title__active' : 'tab-title'" 
+                style="user-select: none"
+                :class="{
+                  'tab-title__active' : item.active,
+                  'tab-title': !item.active,
+                  'tab-title__active-dark' : item.active && themeState.isDarkMode,
+                  'tab-title-dark': !item.active && themeState.isDarkMode,
+                }" 
                 class="mb-3"
               >
                 {{ item.name }}
@@ -96,16 +104,18 @@
         </div>
       </div>
     </div>
-  </v-card>
+  </div>
 </div>
 </template>
 
 <script>
 import InboxList from './List/Inbox/index.vue'
 import TeamList from './List/Team/index.vue'
+import { themeState } from "../../theme";
 export default {
   data() {
     return {
+      themeState,
       tabActive: 'inbox',
       listInbox: [
           {
@@ -365,7 +375,7 @@ export default {
             community: 'Kucing'
           },
         ],
-      tabContent: [
+        tabContent: [
           {
             name: 'Inbox',
             id: '',
