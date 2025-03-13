@@ -4,7 +4,6 @@ import SignInView from "@/views/SignInView.vue";
 import SignUpView from "@/views/SignUpView.vue";
 import WriteView from "@/views/WriteView.vue";
 import NotFound from "@/views/NotFoundView.vue";
-import UserProfile from "@/views/ProfileView.vue";
 import ChatView from "@/views/ChatView.vue";
 import SearchView from "@/views/SearchView.vue";
 import NotificationView from "@/views/NotificationView.vue";
@@ -13,6 +12,8 @@ import ProfileView from "@/views/ProfileView.vue";
 import CommunityView from "@/views/CommunityView.vue";
 import PostView from "@/views/PostView.vue";
 import GamesView from "@/views/GamesView.vue";
+import ItemsView from "@/views/ItemsView.vue";
+import ItemDetailView from "@/views/ItemDetailView.vue";
 
 const routes = [
   {
@@ -34,7 +35,6 @@ const routes = [
     component: WriteView,
     meta: { requiresUnauth: true, title: "Foxi Sphere | Write" },
   },
-  { path: "/:id", component: UserProfile },
   {
     path: "/signup",
     name: "signup",
@@ -75,7 +75,7 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: ProfileView,
-    meta: { requiresUnauth: true, title: "Foxi Sphere | Profile" },
+    meta: { requiresAuth: true, title: "Foxi Sphere | Profile" },
   },
   {
     path: "/community",
@@ -92,6 +92,20 @@ const routes = [
     path: "/games/:id",
     name: "games",
     component: GamesView,
+    children: [
+      {
+        path: ":items",
+        name: "items",
+        component: ItemsView,
+        children: [
+          {
+            path: ":item",
+            name: "item",
+            component: ItemDetailView,
+          },
+        ],
+      },
+    ],
   },
 ];
 
@@ -99,11 +113,10 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    // Prevent scroll to top when navigating
     if (savedPosition) {
       return savedPosition;
     } else {
-      return { top: 0, behavior: "smooth" }; // You can also return `false` to prevent any scroll action.
+      return { top: 0, behavior: "smooth" };
     }
   },
 });
@@ -116,14 +129,14 @@ router.beforeEach((to, from, next) => {
     to.matched.some((record) => record.meta.requiresAuth) &&
     !isAuthenticated
   ) {
-    next("/signin"); // Redirect to login if not authenticated
+    next("/signin");
   } else if (
     to.matched.some((record) => record.meta.requiresUnauth) &&
     isAuthenticated
   ) {
-    next("/"); // Redirect to dashboard if already authenticated
+    next("/");
   } else {
-    next(); // Allow navigation
+    next();
   }
 });
 
