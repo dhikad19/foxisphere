@@ -144,7 +144,7 @@
                 >
               </div>
 
-              <div
+              <!-- <div
                 v-if="windowWidth > '768'"
                 class="btn-header ml-2"
                 @click="handleChat()">
@@ -164,7 +164,7 @@
                   :color="themeState.isDarkMode ? '#e4e1da' : '#4f4f4f'"
                   >mdi-chat-processing-outline</v-icon
                 >
-              </div>
+              </div> -->
 
               <div
                 class="btn-header ml-2"

@@ -7,9 +7,7 @@
           class="content-container pa-4"
           :class="{ 'background-body-dark': themeState.isDarkMode }">
           <TopContent />
-          <div class="d-flex mt-10">
-            
-          </div>
+          <TierList />
         </div>
       </v-main>
     </v-layout>
@@ -20,6 +18,7 @@
   import { themeState } from "../theme";
   import Navigation from "@/components/Navigation/index.vue";
   import TopContent from "@/components/Game/Detail/TopContent/index.vue";
+  import TierList from "@/components/Game/Detail/Content/TierList/index.vue";
   export default {
     name: "GamesView",
     data() {
@@ -32,10 +31,11 @@
     },
     created() {
       this.gamesId = this.$route.params.id
-      document.title = this.gamesId.replace('-', ' ').toUpperCase() + ' | Panduan & Wiki'
+      document.title = this.gamesId.replace('-', ' ').toUpperCase() + ', Panduan & Wiki | Foxcore'
     },
     components: {
       Navigation,
+      TierList,
       TopContent
     },
   };
