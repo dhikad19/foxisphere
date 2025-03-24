@@ -77,17 +77,29 @@
 
 @keyframes blink {
   0% {
-    opacity: 1; /* Fully visible */
+    opacity: 1;
   }
   50% {
-    opacity: 0.5; /* Fully invisible */
+    opacity: 0.5;
   }
   100% {
-    opacity: 1; /* Fully visible again */
+    opacity: 1;
   }
 }
 
-/* Apply the animation to an element */
 .blinking {
-  animation: blink 2.5s infinite; /* 1 second duration, infinite loop */
+  animation: blink 2.5s infinite;
+}
+
+.tier-ranks {
+  font-weight: 800;
+  font-size: 18px;
+  color: #4f4f4f;
+}
+
+.categories-title {
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #4f4f4f;
 }
