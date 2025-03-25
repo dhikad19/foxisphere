@@ -6,7 +6,7 @@
       </div>
       <div class="tierlist-content" >
         <div>
-          <v-row dense class="mb-6 mt-6" style="margin-left: 63px">
+          <v-row dense class="mb-6 mt-6" style="margin-left: 74px; margin-right: 0px">
             <v-col
               v-for="(item, i) in categoriesList"
               :key="i"
@@ -28,7 +28,7 @@
                 flat
                 style="border-radius: 0px;"
                 height="100%"
-                width="55"
+                min-width="50"
               >
                 <p class="tier-ranks">{{tier.name}}</p>
               </v-card>
@@ -37,9 +37,9 @@
                 v-for="(item, i) in categoriesList"
                 :key="i"
                 class="text-center"
-                style="width: 33%; height: 100%"
+                style="width: calc(25% - 17px); height: 100%"
               >
-                <v-card :color="item.backgroundColor" height="100%" flat class="pa-2" style="border-radius: 0px;">
+                <v-card :color="item.backgroundColor" height="100%" flat class="pa-3" style="border-radius: 0px;">
                   <v-row dense>
                     <v-col
                       v-for="character in filteredCharacters(tier.name, item.name)"
@@ -61,10 +61,21 @@
                             </div>
                           </v-card>
                         </template>
-                        <v-card>
-                          <h1>
-                            hahahahahaha
-                          </h1>
+                        <v-card color="#000" class="pa-3" width="100%">
+                          <v-row dense>
+                            <v-col cols="6">
+                              <div class="d-flex align-center justify-center flex-column pa-2">
+                                <v-img height="30" min-width="30" :src="character.combatType.image"></v-img>
+                                <p>{{character.combatType.name}}</p>
+                              </div>
+                            </v-col>
+                            <v-col cols="6">
+                              <div class="d-flex align-center justify-center flex-column pa-2">
+                                <v-img height="30" min-width="30" :src="character.path.image"></v-img>
+                                <p>{{character.path.name}}</p>
+                              </div>
+                            </v-col>
+                          </v-row>
                         </v-card>
                       </v-menu>
                       <v-card-title>{{ character.name }}</v-card-title>
@@ -90,10 +101,16 @@ export default {
         {
           name: 'mydei',
           new: true,
-          combatType: 'imaginary',
+          combatType: {
+            name: 'imaginary',
+            image: 'https://i.ibb.co.com/Swk1ZXzq/Type-Imaginary-2.png'
+          },
           categories: 'dps',
           rarity: '5',
-          path: 'destruction',
+          path: {
+            name: 'destruction',
+            image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
+          },
           image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
           games: 'honkai-star-rail',
           id: '1',
@@ -102,10 +119,16 @@ export default {
         {
           name: 'tribbie',
           new: true,
-          combatType: 'imaginary',
-          categories: 'support / buffer',
+          combatType: {
+            name: 'imaginary',
+            image: 'https://i.ibb.co.com/Swk1ZXzq/Type-Imaginary-2.png'
+          },
+          categories: 'support',
           rarity: '5',
-          path: 'destruction',
+          path: {
+            name: 'destruction',
+            image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
+          },
           image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
           games: 'honkai-star-rail',
           id: '2',
@@ -114,10 +137,16 @@ export default {
         {
           name: 'mydei',
           new: false,
-          combatType: 'imaginary',
+          combatType: {
+            name: 'imaginary',
+            image: 'https://i.ibb.co.com/Swk1ZXzq/Type-Imaginary-2.png'
+          },
           categories: 'dps',
           rarity: '5',
-          path: 'destruction',
+          path: {
+            name: 'destruction',
+            image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
+          },
           image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
           games: 'honkai-star-rail',
           id: '3',
@@ -126,10 +155,16 @@ export default {
         {
           name: 'mydei',
           new: false,
-          combatType: 'imaginary',
+          combatType: {
+            name: 'imaginary',
+            image: 'https://i.ibb.co.com/Swk1ZXzq/Type-Imaginary-2.png'
+          },
           categories: 'dps',
           rarity: '5',
-          path: 'destruction',
+          path: {
+            name: 'destruction',
+            image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
+          },
           image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
           games: 'honkai-star-rail',
           id: '3',
@@ -138,10 +173,16 @@ export default {
         {
           name: 'lingsha',
           new: false,
-          combatType: 'imaginary',
-          categories: 'sustain / healer',
+          combatType: {
+            name: 'imaginary',
+            image: 'https://i.ibb.co.com/Swk1ZXzq/Type-Imaginary-2.png'
+          },
+          categories: 'healer',
           rarity: '5',
-          path: 'destruction',
+          path: {
+            name: 'destruction',
+            image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
+          },
           image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
           games: 'honkai-star-rail',
           id: '4',
@@ -150,10 +191,16 @@ export default {
         {
           name: 'lingsha',
           new: false,
-          combatType: 'imaginary',
-          categories: 'sustain / healer',
+          combatType: {
+            name: 'imaginary',
+            image: 'https://i.ibb.co.com/Swk1ZXzq/Type-Imaginary-2.png'
+          },
+          categories: 'shielder',
           rarity: '5',
-          path: 'destruction',
+          path: {
+            name: 'destruction',
+            image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
+          },
           image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
           games: 'honkai-star-rail',
           id: '4',
@@ -162,37 +209,49 @@ export default {
         {
           name: 'lingsha',
           new: false,
-          combatType: 'imaginary',
-          categories: 'sustain / healer',
+          combatType: {
+            name: 'imaginary',
+            image: 'https://i.ibb.co.com/Swk1ZXzq/Type-Imaginary-2.png'
+          },
+          categories: 'healer',
           rarity: '5',
-          path: 'destruction',
+          path: {
+            name: 'destruction',
+            image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
+          },
           image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
           games: 'honkai-star-rail',
           id: '4',
-          tier: 'A'
+          tier: 'B'
         },
         {
           name: 'lingsha',
           new: false,
-          combatType: 'imaginary',
-          categories: 'sustain / healer',
+          combatType: {
+            name: 'imaginary',
+            image: 'https://i.ibb.co.com/Swk1ZXzq/Type-Imaginary-2.png'
+          },
+          categories: 'healer',
           rarity: '5',
-          path: 'destruction',
+          path: {
+            name: 'destruction',
+            image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
+          },
           image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
           games: 'honkai-star-rail',
           id: '4',
-          tier: 'A'
+          tier: 'C'
         },
       ],
       tiers: [
         {name: 'SSS', color: '#ef5350'}, 
-        {name: 'SS', color: 'green'},
-        {name: 'S', color: 'yellow'},
-        {name: 'A', color: 'blue'}, 
-        {name: 'B', color: 'orange'},
-        {name: 'C', color: 'grey'}
+        {name: 'SS', color: '#ffc300'},
+        {name: 'S', color: '#FFDF7F'},
+        {name: 'A', color: '#FFFF7F'}, 
+        {name: 'B', color: '#009E60'},
+        {name: 'C', color: '#6495ED'}
       ],
-      categories: ['dps', 'support / buffer', 'sustain / healer'],
+      categories: ['dps', 'support', 'healer', 'shielder'],
       categoriesList: [
         {
           name: 'dps',
