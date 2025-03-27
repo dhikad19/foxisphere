@@ -3,6 +3,13 @@
     <v-layout>
       <v-main>
         <Navigation />
+        <div
+          class="content-container pa-4"
+          :class="{ 'background-body-dark': themeState.isDarkMode }">
+          <h1 style="color: white">
+            fufufafa
+          </h1>
+        </div>
       </v-main>
     </v-layout>
   </div>

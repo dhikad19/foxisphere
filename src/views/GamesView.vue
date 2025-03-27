@@ -1,16 +1,19 @@
 <template>
   <div class="game-container">
+    <router-view></router-view>
     <v-layout>
       <v-main>
         <Navigation />
         <div
+          v-if="!itemsId && !itemId"
           class="content-container pa-4"
           :class="{ 'background-body-dark': themeState.isDarkMode }">
           <TopContent />
-          <TierList />
+          <ListContent />
         </div>
       </v-main>
     </v-layout>
+    
   </div>
 </template>
 
@@ -18,25 +21,29 @@
   import { themeState } from "../theme";
   import Navigation from "@/components/Navigation/index.vue";
   import TopContent from "@/components/Game/Detail/TopContent/index.vue";
-  import TierList from "@/components/Game/Detail/Content/TierList/index.vue";
+  import ListContent from "@/components/Game/Detail/Content/List/index.vue";
   export default {
     name: "GamesView",
     data() {
       return {
         themeState,
-        gamesId: ''
+        gamesId: '',
+        itemsId: '',
+        itemId: ''
       }
     },
     methods: {
     },
     created() {
+      this.itemsId = this.$route.params.items
       this.gamesId = this.$route.params.id
+      this.itemId = this.$route.params.item
       document.title = this.gamesId.replace('-', ' ').toUpperCase() + ', Panduan & Wiki | Foxcore'
     },
     components: {
       Navigation,
-      TierList,
-      TopContent
+      TopContent,
+      ListContent
     },
   };
 </script>
