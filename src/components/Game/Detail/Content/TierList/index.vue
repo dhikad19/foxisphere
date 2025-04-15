@@ -111,7 +111,7 @@ export default {
             name: 'destruction',
             image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
           },
-          image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
+          image: 'https://i.ibb.co.com/N6thkzsM/argenti.png',
           games: 'honkai-star-rail',
           id: '1',
           tier: 'SSS'
@@ -129,7 +129,7 @@ export default {
             name: 'destruction',
             image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
           },
-          image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
+          image: 'https://i.ibb.co.com/N6thkzsM/argenti.png',
           games: 'honkai-star-rail',
           id: '2',
           tier: 'SS'
@@ -147,7 +147,7 @@ export default {
             name: 'destruction',
             image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
           },
-          image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
+          image: 'https://i.ibb.co.com/N6thkzsM/argenti.png',
           games: 'honkai-star-rail',
           id: '3',
           tier: 'S'
@@ -165,7 +165,7 @@ export default {
             name: 'destruction',
             image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
           },
-          image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
+          image: 'https://i.ibb.co.com/N6thkzsM/argenti.png',
           games: 'honkai-star-rail',
           id: '3',
           tier: 'S'
@@ -183,7 +183,7 @@ export default {
             name: 'destruction',
             image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
           },
-          image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
+          image: 'https://i.ibb.co.com/N6thkzsM/argenti.png',
           games: 'honkai-star-rail',
           id: '4',
           tier: 'A'
@@ -201,7 +201,7 @@ export default {
             name: 'destruction',
             image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
           },
-          image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
+          image: 'https://i.ibb.co.com/N6thkzsM/argenti.png',
           games: 'honkai-star-rail',
           id: '4',
           tier: 'A'
@@ -219,7 +219,7 @@ export default {
             name: 'destruction',
             image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
           },
-          image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
+          image: 'https://i.ibb.co.com/N6thkzsM/argenti.png',
           games: 'honkai-star-rail',
           id: '4',
           tier: 'B'
@@ -237,7 +237,7 @@ export default {
             name: 'destruction',
             image: 'https://i.ibb.co.com/xtFZ6gxX/Path-Destruction-1.png'
           },
-          image: 'https://res.cloudinary.com/dqaylwrrx/image/upload/v1742193370/Games/Characters/mydei_qxxylj.png',
+          image: 'https://i.ibb.co.com/N6thkzsM/argenti.png',
           games: 'honkai-star-rail',
           id: '4',
           tier: 'C'
