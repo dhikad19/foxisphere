@@ -56,7 +56,14 @@
                         <template v-slot:activator="{ props }">
                           <v-card flat class="pa-1" color="transparent" v-bind="props" style="cursor: pointer">
                             <div style="background: linear-gradient(180deg, #885550,#c9a36a 53%);">
-                              <v-img :src="character.image" />
+                              <v-img aspect-ratio="2/1" :src="character.image" >
+                                <div class="d-flex justify-space-between" v-if="character.new">
+                                  <div></div>
+                                  <div style="background-color: #ed343e; color: white; padding: 1px 5px 1px 5px">
+                                    <p style="font-size: 13px; font-weight: bold">NEW</p>
+                                  </div>
+                                </div>
+                              </v-img>
                             </div>
                             <div style="background: #c9a36a; margin-top: -15px; padding: 5px">
                               <p style="color: #000; line-height: normal; font-weight: 500; text-transform: capitalize; font-size: 13px" class="text-center">{{character.name}}</p>
