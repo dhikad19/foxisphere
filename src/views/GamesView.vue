@@ -34,7 +34,7 @@
     },
     methods: {
     },
-    created() {
+    mounted() {
       this.itemsId = this.$route.params.items
       this.gamesId = this.$route.params.id
       this.itemId = this.$route.params.item

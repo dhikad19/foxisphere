@@ -214,10 +214,6 @@ export default {
     Pagination
   },
 
-  created() {
-    console.log('im called')
-  },
-
   watch: {
     isTabActive(val) {
       this.progressWidth = 0

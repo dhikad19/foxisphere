@@ -1268,7 +1268,7 @@ export default {
     },
   },
 
-  created() {
+  mounted() {
     window.addEventListener('resize', this.updateWindowWidth);
     this.goToBottom();
   }

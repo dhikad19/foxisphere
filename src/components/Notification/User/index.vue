@@ -108,7 +108,7 @@ export default {
     },
   },
 
-  created() {
+  mounted() {
     if (this.themeState.isDarkMode) {
       this.darkMode = true
     } else {

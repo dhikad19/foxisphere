@@ -4,10 +4,11 @@
       <v-main>
         <Navigation />
         <div
+          v-if="itemsId"
           class="content-container pa-4"
           :class="{ 'background-body-dark': themeState.isDarkMode }">
           <h1 style="color: white">
-            fufufafa
+            
           </h1>
         </div>
       </v-main>
@@ -22,12 +23,20 @@
     name: 'ItemView',
     data() {
       return {
-        themeState
+        themeState,
+        gamesId: '',
+        itemsId: '',
+        itemId: ''
       }
     },
     components: {
       Navigation,
     },
+    mounted() {
+      this.itemsId = this.$route.params.items
+      this.gamesId = this.$route.params.id
+      this.itemId = this.$route.params.item
+    }
   }
 </script>
 

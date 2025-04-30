@@ -235,7 +235,7 @@
       }
     },
 
-    created() {
+    mounted() {
       window.addEventListener('resize', this.updateWindowWidth);
     },
 

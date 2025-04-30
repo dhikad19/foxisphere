@@ -769,7 +769,7 @@
       document.removeEventListener("click", this.closeDropdownIfClickedOutside);
       document.removeEventListener("click", this.handleClickOutside);
     },
-    created() {
+    mounted() {
       document.addEventListener("click", this.closeDropdownIfClickedOutside);
       document.addEventListener("click", this.handleClickOutside);
       if (this.themeState.isDarkMode) {

@@ -213,7 +213,7 @@
         }
       },
     },
-    created() {
+    mounted() {
       window.addEventListener("resize", this.handleResize);
     },
     beforeUnmount() {

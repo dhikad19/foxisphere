@@ -762,7 +762,7 @@ export default {
     }
   },
 
-  created() {
+  mounted() {
     const chatStatus = localStorage.getItem('variant')
     if (chatStatus) {
       this.variant = chatStatus

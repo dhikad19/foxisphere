@@ -54,7 +54,7 @@
                         location="top center"
                       >
                         <template v-slot:activator="{ props }">
-                          <v-card flat class="pa-1" color="transparent" v-bind="props" style="cursor: pointer">
+                          <v-card flat class="pa-1" color="transparent" v-bind="props" style="cursor: pointer" @click="handleCharacterDetail(character.id)">
                             <div style="background: linear-gradient(180deg, #885550,#c9a36a 53%);">
                               <v-img aspect-ratio="2/1" :src="character.image" >
                                 <div class="d-flex justify-space-between" v-if="character.new">
@@ -124,7 +124,7 @@
                     :key="character.id + tier.name"
                     cols="3"
                   >
-                    <v-card flat class="pa-1" color="transparent" style="cursor: pointer">
+                    <v-card flat class="pa-1" color="transparent" style="cursor: pointer" @click="handleCharacterDetail(character.id)">
                       <div style="background: linear-gradient(180deg, #885550,#c9a36a 53%);">
                         <v-img aspect-ratio="2/1" :src="character.image" >
                           <div class="d-flex justify-space-between" v-if="character.new">
@@ -435,6 +435,10 @@ export default {
       return this.tierList.filter(
         char => char.tier === tier && char.categories === category
       );
+    },
+    handleCharacterDetail(id) {
+      console.log(this.tierList[id])
+      this.$router.push(`/games/honkai-star-rail/character/${this.tierList[id].name}`)
     }
   }
 }
